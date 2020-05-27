@@ -88,7 +88,6 @@ export default class Menu extends Phaser.Scene
         this.cursors = this.input.keyboard.createCursorKeys()
         
 
-        
     }
 
     private handlePlay()
@@ -128,6 +127,10 @@ export default class Menu extends Phaser.Scene
         if (this.cursors.up?.isDown && this.player?.body.touching.down) 
          {
              this.player.setVelocityY(-360)
+        }
+
+        if (!this.player?.body.touching.down) {
+            this.player?.anims.play('turn')
         }
     }
 }
