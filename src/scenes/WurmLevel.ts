@@ -13,13 +13,13 @@ export default class WurmLevel extends Phaser.Scene {
 
     constructor()
 	{
-		super('wurm-world')
+		super('wurmWorld')
 	}
 
 
     preload() {
 
-        this.load.image('background', 'assets/background/background.png')
+        this.load.image('cavebg', 'assets/background/background.png')
         this.load.image('ground', 'assets/platform/ground5.png')
         this.load.image('suitcase', 'assets/koffer.png')
         this.load.spritesheet('worm', 'assets/worm.png', { 
@@ -30,7 +30,7 @@ export default class WurmLevel extends Phaser.Scene {
     create() {
 
         //set background
-        this.add.image(960, 500, 'background')
+        this.add.image(960, 500, 'cavebg')
 
         //create start point for platfom
         let platformX = 60
@@ -106,11 +106,18 @@ export default class WurmLevel extends Phaser.Scene {
         this.score += 100
         this.scoreText?.setText(`Score: ${this.score}`)
 
+        //stop all animations
+        this.physics.pause();
+        this.anims.pauseAll()
+
         //create Level completed text
         this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
             fontSize: '60px',
             fill: '#fff',
                 })
+
+        //go to next level
+        this.scene.start('mole-world')
     }
 
     update() {

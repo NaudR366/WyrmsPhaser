@@ -7,6 +7,7 @@ export default class Menu extends Phaser.Scene
     private platforms?: Phaser.Physics.Arcade.StaticGroup
     private player? : Phaser.Physics.Arcade.Sprite
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
+    private play?: Phaser.Physics.Arcade.StaticGroup
 
 	constructor()
 	{
@@ -30,20 +31,19 @@ export default class Menu extends Phaser.Scene
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
-        this.platforms.create(0,670, 'platform').setOrigin(0)
-        this.platforms.create(400,670, 'platform').setOrigin(0)
-        this.platforms.create(800,670, 'platform').setOrigin(0)
-        this.platforms.create(1200,670, 'platform').setOrigin(0)
+        this.platforms.create(0,690, 'platform')
+        this.platforms.create(400,690, 'platform')
+        this.platforms.create(800,690, 'platform')
+        this.platforms.create(1200,690, 'platform')
+        this.platforms.create(1400,690, 'platform')
 
         //create play button
-        let play = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 + 200, "start").setOrigin(0).setDepth(1);
+        this.play = this.physics.add.staticGroup()
+        this.play.create(this.game.renderer.width / 2, 550, 'start')
 
         //create level select button
 
         //create exit button
-
-        //set interactivity for buttons
-        play.setInteractive();
 
         //create player
         this.player = this.physics.add.sprite(20, 600, 'worm')
@@ -75,12 +75,18 @@ export default class Menu extends Phaser.Scene
 
         //set collisions
         this.physics.add.collider(this.player, this.platforms)
+        this.physics.add.collider(this.player, this.play, this.handlePlay, undefined, this)
 
         //set keys
         this.cursors = this.input.keyboard.createCursorKeys()
         
 
         
+    }
+
+    private handlePlay()
+    {
+        this.scene.start('wurmWorld')
     }
 
     update()
@@ -91,7 +97,7 @@ export default class Menu extends Phaser.Scene
         {
              return
         }
-    
+
         if(this.cursors?.left?.isDown)
         {
              this.player?.setVelocityX(-260)
@@ -106,7 +112,7 @@ export default class Menu extends Phaser.Scene
          this.player?.setVelocityX(0)
          this.player?.anims.play('turn')
         }
-    
+
         if (this.cursors.up?.isDown && this.player?.body.touching.down) 
          {
              this.player.setVelocityY(-360)

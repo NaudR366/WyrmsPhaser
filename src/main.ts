@@ -14,13 +14,13 @@ const config: Phaser.Types.Core.GameConfig = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 400 },
-			debug: false,
+			debug: true,
 		}
 	},
 	render: {
 		pixelArt: true,
 	},
-	scene: [Menu]
+	scene: [Menu, WurmLevel, WurmVsMole]
 }
 
 export default new Phaser.Game(config)

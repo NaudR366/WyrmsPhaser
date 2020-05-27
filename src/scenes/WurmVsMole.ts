@@ -31,18 +31,18 @@ export default class WurmVsMole extends Phaser.Scene {
         this.add.image(960, 500, 'background')
 
         this.platforms = this.physics.add.staticGroup()
-        const ground = this.platforms.create(780, 690, 'ground') as Phaser.Physics.Arcade.Sprite 
+        const ground = this.platforms.create(780, 690, 'platform') as Phaser.Physics.Arcade.Sprite 
         ground
         .setScale(1)
         .refreshBody()
 
-        this.platforms.create(1050,250, 'ground')
-        this.platforms.create(550,400, 'ground')
-        this.platforms.create(1200,540, 'ground')
-        this.platforms.create(200,690, 'ground')
-        this.platforms.create(400,690, 'ground')
-        this.platforms.create(1000,690, 'ground')
-        this.platforms.create(1400,690, 'ground')
+        this.platforms.create(1050,250, 'platform')
+        this.platforms.create(550,400, 'platform')
+        this.platforms.create(1200,540, 'platform')
+        this.platforms.create(200,690, 'platform')
+        this.platforms.create(400,690, 'platform')
+        this.platforms.create(1000,690, 'platform')
+        this.platforms.create(1400,690, 'platform')
 
         this.player = this.physics.add.sprite(100, 450, 'worm')
         this.player.setBounce(0.1)
