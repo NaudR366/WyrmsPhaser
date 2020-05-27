@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 
 import HelloWorldScene from './scenes/HelloWorldScene'
+import WurmLevel from './scenes/WurmLevel'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -9,11 +10,11 @@ const config: Phaser.Types.Core.GameConfig = {
 	physics: {
 		default: 'arcade',
 		arcade: {
-			gravity: { y: 200 }
-			// debug: true,
+			gravity: { y: 500 },
+			debug: true,
 		}
 	},
-	scene: [HelloWorldScene]
+	scene: [WurmLevel]
 }
 
 export default new Phaser.Game(config)
