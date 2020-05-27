@@ -7,6 +7,8 @@ export default class WurmVsMole extends Phaser.Scene {
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private suitcase?: Phaser.Physics.Arcade.Group
     private mole?: Phaser.Physics.Arcade.Sprite
+    private moleX?
+    private moleY?
 
     private score = 0
     private scoreText?: Phaser.GameObjects.Text
@@ -18,7 +20,7 @@ export default class WurmVsMole extends Phaser.Scene {
 	}
 
     preload() {
-        this.load.image('background', 'assets/background.png')
+        this.load.image('background', 'assets/background/background.png')
         this.load.spritesheet('worm', 'assets/worm.png',{frameWidth: 65, frameHeight: 60})
         this.load.image('ground', 'assets/ground.png')
         this.load.image('suitcase', 'assets/koffer.png')
@@ -26,7 +28,6 @@ export default class WurmVsMole extends Phaser.Scene {
     }
 
     create() {
-
         this.add.image(960, 500, 'background')
 
         this.platforms = this.physics.add.staticGroup()
@@ -35,7 +36,6 @@ export default class WurmVsMole extends Phaser.Scene {
         .setScale(5)
         .refreshBody()
 
-        this.mole?.x
         this.platforms.create(1050,350, 'ground')
         this.platforms.create(550,500, 'ground')
         this.platforms.create(1200,600, 'ground')
@@ -44,7 +44,10 @@ export default class WurmVsMole extends Phaser.Scene {
         this.player.setBounce(0.1)
         this.player.setCollideWorldBounds(true)
 
-        this.mole = this.physics.add.sprite(200, 450, 'mol')
+        this.moleX = 1000
+        this.moleY = 500
+
+        this.mole = this.physics.add.sprite(this.moleX, this.moleY, 'mol')
         this.mole.setBounce(0.1)
         this.mole.setCollideWorldBounds(true)
 
@@ -72,9 +75,9 @@ export default class WurmVsMole extends Phaser.Scene {
         });
 
         //mol animation
-           this.anims.create({
+        this.anims.create({
             key: 'leftmol',
-            frames: this.anims.generateFrameNumbers('wormmol', {
+            frames: this.anims.generateFrameNumbers('mol', {
                 start: 0, end: 3
             }),
             frameRate: 10,
@@ -83,7 +86,7 @@ export default class WurmVsMole extends Phaser.Scene {
 
         this.anims.create({
             key: 'turnmol',
-            frames: [ { key: 'mol', frame: 4 } ],
+            frames: [ { key: 'mol', frame: 7 } ],
             frameRate: 20
         })
 
@@ -116,9 +119,8 @@ export default class WurmVsMole extends Phaser.Scene {
             fill: '#fff',
         })
 
-        if(this.mole.x > 25) {
-            this.mole?.setVelocityX(200)
-        }
+        
+
     }
 
     private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject)
@@ -128,6 +130,7 @@ export default class WurmVsMole extends Phaser.Scene {
         this.score += 100
         this.scoreText?.setText(`Score: ${this.score}`)
         this.physics.pause();
+        this.anims.pauseAll()
         //create Level completed text
         this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
             fontSize: '60px',
@@ -143,8 +146,10 @@ export default class WurmVsMole extends Phaser.Scene {
         this.scoreText?.setText(`Score: ${this.score}`)
     }
 
-    update() {
+    
 
+    update() {
+        
         //Player Controls
         if(!this.cursors)
         {
@@ -170,7 +175,17 @@ export default class WurmVsMole extends Phaser.Scene {
         {
              this.player.setVelocityY(-360)
         }
+        
 
+        if(this.moleX > 1200 ){
+            this.mole?.setVelocityX(-100)
+            this.mole?.anims.play('leftmol', true)
+            
+        } else {
+            this.mole?.setVelocityX(100)
+            this.mole?.anims.play('rightmol', true)
+            this.moleX = this.moleX += 1
+        }
     }
 
 }
