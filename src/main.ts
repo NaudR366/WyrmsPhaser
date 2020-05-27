@@ -1,10 +1,7 @@
 import Phaser from 'phaser'
-
-//import HelloWorldScene from './scenes/HelloWorldScene'
-//import WurmLevel from './scenes/WurmLevel'
+import WurmVsMole from './scenes/WurmVsMole'
 import AalLevel from './scenes/AalLevel'
-import WurmLevel from './scenes/WurmLevel'
-import Menu from './scenes/menu'
+
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -17,7 +14,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			debug: true,
 		}
 	},
-	scene: [Menu]
+	scene: [AalLevel]
 }
 
 export default new Phaser.Game(config)
