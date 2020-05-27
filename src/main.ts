@@ -1,6 +1,9 @@
 import Phaser from 'phaser'
+
 import WurmVsMole from './scenes/WurmVsMole'
 import AalLevel from './scenes/AalLevel'
+import WurmLevel from './scenes/WurmLevel'
+import Menu from './scenes/menu'
 
 
 const config: Phaser.Types.Core.GameConfig = {
