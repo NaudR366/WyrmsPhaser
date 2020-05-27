@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 import HelloWorldScene from './scenes/HelloWorldScene'
 import WurmLevel from './scenes/WurmLevel'
+import AalLevel from './scenes/AalLevel'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
