@@ -20,7 +20,7 @@ export default class WurmVsMole extends Phaser.Scene {
 	}
 
     preload() {
-        this.load.image('background', 'assets/background/background.png')
+        this.load.image('background', 'assets/background/menubg.png')
         this.load.spritesheet('worm', 'assets/worm.png',{frameWidth: 65, frameHeight: 60})
         this.load.image('ground', 'assets/ground.png')
         this.load.image('suitcase', 'assets/koffer.png')
@@ -31,21 +31,25 @@ export default class WurmVsMole extends Phaser.Scene {
         this.add.image(960, 500, 'background')
 
         this.platforms = this.physics.add.staticGroup()
-        const ground = this.platforms.create(780, 800, 'ground') as Phaser.Physics.Arcade.Sprite 
+        const ground = this.platforms.create(780, 690, 'ground') as Phaser.Physics.Arcade.Sprite 
         ground
-        .setScale(5)
+        .setScale(1)
         .refreshBody()
 
-        this.platforms.create(1050,350, 'ground')
-        this.platforms.create(550,500, 'ground')
-        this.platforms.create(1200,600, 'ground')
+        this.platforms.create(1050,250, 'ground')
+        this.platforms.create(550,400, 'ground')
+        this.platforms.create(1200,540, 'ground')
+        this.platforms.create(200,690, 'ground')
+        this.platforms.create(400,690, 'ground')
+        this.platforms.create(1000,690, 'ground')
+        this.platforms.create(1400,690, 'ground')
 
         this.player = this.physics.add.sprite(100, 450, 'worm')
         this.player.setBounce(0.1)
         this.player.setCollideWorldBounds(true)
 
         this.moleX = 1000
-        this.moleY = 500
+        this.moleY = 450
 
         this.mole = this.physics.add.sprite(this.moleX, this.moleY, 'mol')
         this.mole.setBounce(0.1)

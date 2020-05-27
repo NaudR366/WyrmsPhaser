@@ -3,7 +3,7 @@ body {
     padding: 0;
     overflow: hidden;
     /* cursor: none; */
-    background-color: blue;
+    background-color: grey;
 }
 
 canvas {
