@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 //import HelloWorldScene from './scenes/HelloWorldScene'
 //import WurmLevel from './scenes/WurmLevel'
 import AalLevel from './scenes/AalLevel'
+import WurmLevel from './scenes/WurmLevel'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -12,10 +13,10 @@ const config: Phaser.Types.Core.GameConfig = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 400 },
-			debug: true,
+			// debug: true,
 		}
 	},
-	scene: [AalLevel]
+	scene: [WurmLevel]
 }
 
 export default new Phaser.Game(config)
