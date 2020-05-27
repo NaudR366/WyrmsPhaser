@@ -16,11 +16,8 @@ const config: Phaser.Types.Core.GameConfig = {
 			debug: true,
 		}
 	},
-<<<<<<< HEAD
+
 	scene: [WurmVsMole]
-=======
-	scene: [AalLevel]
->>>>>>> 1dabdff261417851568c5d8f8cf2b83dd902614a
 }
 
 export default new Phaser.Game(config)
