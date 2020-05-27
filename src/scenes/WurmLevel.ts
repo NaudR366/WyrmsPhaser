@@ -19,8 +19,8 @@ export default class WurmLevel extends Phaser.Scene {
 
     preload() {
 
-        this.load.image('background', 'assets/background.png')
-        this.load.image('ground', 'assets/ground.png')
+        this.load.image('background', 'assets/background/background.png')
+        this.load.image('ground', 'assets/platform/ground5.png')
         this.load.image('suitcase', 'assets/koffer.png')
         this.load.spritesheet('worm', 'assets/worm.png', { 
             frameWidth: 65, frameHeight: 60
@@ -37,12 +37,16 @@ export default class WurmLevel extends Phaser.Scene {
         const ground = this.platforms.create(760, 750, 'ground') as Phaser.Physics.Arcade.Sprite
         
         ground
-        .setScale(4)
+        .setScale(1)
         .refreshBody()
 
-        this.platforms.create(900,300, 'ground')
-        this.platforms.create(500,450, 'ground')
-        this.platforms.create(1200,550, 'ground')
+        // this.platforms.create(900,300, 'ground')
+        // this.platforms.create(500,450, 'ground')
+        // this.platforms.create(1200,550, 'ground')
+
+        // for(let i = 0; i < window.innerWidth; i++) {
+
+        // }
 
         //create player
         this.player = this.physics.add.sprite(100, 450, 'worm')
@@ -104,7 +108,7 @@ export default class WurmLevel extends Phaser.Scene {
         this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
             fontSize: '60px',
             fill: '#fff',
-        })
+                })
     }
 
     update() {
