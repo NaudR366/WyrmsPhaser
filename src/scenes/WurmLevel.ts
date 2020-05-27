@@ -13,7 +13,8 @@ export default class WurmLevel extends Phaser.Scene {
 
     constructor()
 	{
-		super('wurmWorld')
+        super('wurmWorld')
+        
     }
     
     create() {
@@ -96,8 +97,6 @@ export default class WurmLevel extends Phaser.Scene {
         this.scoreText?.setText(`Score: ${this.score}`)
 
         //stop all animations
-        this.physics.pause();
-        this.anims.pauseAll()
 
         //create Level completed text
         this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
@@ -105,8 +104,14 @@ export default class WurmLevel extends Phaser.Scene {
             fill: '#fff',
                 })
 
+            this.physics.pause();
+            this.anims.pauseAll()
+
         //go to next level
-        this.scene.start('mole-world')
+        setTimeout(() => {
+            this.scene.start('mole-world')
+        }, 3000);
+
     }
 
     update() {

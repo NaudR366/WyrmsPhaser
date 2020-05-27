@@ -22,6 +22,9 @@ export default class WurmVsMole extends Phaser.Scene {
     create() {
         this.add.image(750, 330, 'blueCave')
 
+        //restart animations
+        this.anims.resumeAll()
+
         this.platforms = this.physics.add.staticGroup()
         const ground = this.platforms.create(780, 690, 'grassPlatform') as Phaser.Physics.Arcade.Sprite 
         ground
@@ -134,7 +137,9 @@ export default class WurmVsMole extends Phaser.Scene {
         })
 
         //go to next level
-        this.scene.start('aal-world')
+        setTimeout(() => {
+            this.scene.start('aal-world')
+        }, 3000);
     }
 
     private handleCollectMole(player: Phaser.GameObjects.GameObject, m: Phaser.GameObjects.GameObject)

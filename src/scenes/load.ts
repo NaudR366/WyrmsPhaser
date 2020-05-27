@@ -2,10 +2,10 @@ import Phaser from 'phaser'
 
 export default class Load extends Phaser.Scene
 {
-
     constructor()
     {
         super('load')
+
     }
 
     preload() {
@@ -16,6 +16,7 @@ export default class Load extends Phaser.Scene
 
         //load menu buttons
         this.load.image('start', 'assets/menubuttons/menustart.png')
+        this.load.image('levels', 'assets/menubuttons/levelselect.png')
 
         //load platforms
         this.load.image('grassPlatform', 'assets/grassplatforms/ground.png')
