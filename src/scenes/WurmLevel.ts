@@ -48,6 +48,7 @@ export default class WurmLevel extends Phaser.Scene {
         this.platforms.create(820,500, 'ground')
         this.platforms.create(820,380, 'ground')
         this.platforms.create(1200,550, 'ground')
+        this.platforms.create(1320,550, 'ground')
 
         //create player
         this.player = this.physics.add.sprite(platformX, 450, 'worm')
@@ -83,7 +84,7 @@ export default class WurmLevel extends Phaser.Scene {
         //create suitcase
         this.suitcase = this.physics.add.group({
             key: 'suitcase',
-            setXY: {x: 1200, y: 400,}
+            setXY: {x: 1300, y: 400,}
         })
 
         this.physics.add.collider(this.suitcase, this.platforms)
