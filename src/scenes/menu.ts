@@ -14,28 +14,28 @@ export default class Menu extends Phaser.Scene
 		super('menu')
     }
 
-    preload()
-    {
-        this.load.image('background', 'assets/background/menubg.png')
-        this.load.image('start', 'assets/menubuttons/menustart.png')
-        this.load.image('platform', 'assets/ground.png')
-        this.load.spritesheet('worm', 'assets/worm.png', { 
-            frameWidth: 65, frameHeight: 60
-        })
-    }
+    // preload()
+    // {
+    //     this.load.image('background', 'assets/background/menubg.png')
+    //     this.load.image('start', 'assets/menubuttons/menustart.png')
+    //     this.load.image('platform', 'assets/ground.png')
+    //     this.load.spritesheet('worm', 'assets/worm.png', { 
+    //         frameWidth: 65, frameHeight: 60
+    //     })
+    // }
 
     create()
     {
         //create background
-        this.add.image(0,0, "background").setOrigin(0).setDepth(0);
+        this.add.image(0,0, "blueCave").setOrigin(0).setDepth(0);
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
-        this.platforms.create(0,690, 'platform')
-        this.platforms.create(400,690, 'platform')
-        this.platforms.create(800,690, 'platform')
-        this.platforms.create(1200,690, 'platform')
-        this.platforms.create(1400,690, 'platform')
+        this.platforms.create(0,690, 'grassPlatform')
+        this.platforms.create(400,690, 'grassPlatform')
+        this.platforms.create(800,690, 'grassPlatform')
+        this.platforms.create(1200,690, 'grassPlatform')
+        this.platforms.create(1400,690, 'grassPlatform')
 
         //create play button
         this.play = this.physics.add.staticGroup()

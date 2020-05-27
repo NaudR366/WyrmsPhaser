@@ -19,12 +19,12 @@ export default class WurmLevel extends Phaser.Scene {
 
     preload() {
 
-        this.load.image('cavebg', 'assets/background/background.png')
-        this.load.image('ground', 'assets/platform/ground5.png')
-        this.load.image('suitcase', 'assets/koffer.png')
-        this.load.spritesheet('worm', 'assets/worm.png', { 
-            frameWidth: 65, frameHeight: 60
-        })
+        // this.load.image('cavebg', 'assets/background/background.png')
+        // this.load.image('stoneGround', 'assets/platform/ground5.png')
+        // this.load.image('suitcase', 'assets/koffer.png')
+        // this.load.spritesheet('worm', 'assets/worm.png', { 
+        //     frameWidth: 65, frameHeight: 60
+        // })
     }
 
     create() {
@@ -37,18 +37,18 @@ export default class WurmLevel extends Phaser.Scene {
 
         //create platforms
         this.platforms = this.physics.add.staticGroup()
-        const ground = this.platforms.create(platformX, 750, 'ground') as Phaser.Physics.Arcade.Sprite
+        const ground = this.platforms.create(platformX, 750, 'stoneGround') as Phaser.Physics.Arcade.Sprite
         
         ground
         .setScale(1)
         .refreshBody()
 
-        this.platforms.create(700,500, 'ground')
-        this.platforms.create(400,650, 'ground')
-        this.platforms.create(820,500, 'ground')
-        this.platforms.create(820,380, 'ground')
-        this.platforms.create(1200,550, 'ground')
-        this.platforms.create(1320,550, 'ground')
+        this.platforms.create(700,500, 'stoneGround')
+        this.platforms.create(400,650, 'stoneGround')
+        this.platforms.create(820,500, 'stoneGround')
+        this.platforms.create(820,380, 'stoneGround')
+        this.platforms.create(1200,550, 'stoneGround')
+        this.platforms.create(1320,550, 'stoneGround')
 
         //create player
         this.player = this.physics.add.sprite(platformX, 450, 'worm')
