@@ -15,7 +15,13 @@ export default class Menu extends Phaser.Scene
 
     create()
     {
-        this.add.image(0,0, "background").setOrigin(0)
+        //create background
+        this.add.image(0,0, "background").setOrigin(0).setDepth(0);
+
+        //create play button
+
+
+        //create level select button
     }
 
     update()

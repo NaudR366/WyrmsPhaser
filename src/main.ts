@@ -17,7 +17,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			debug: true,
 		}
 	},
-	scene: [AalLevel]
+	scene: [Menu]
 }
 
 export default new Phaser.Game(config)
