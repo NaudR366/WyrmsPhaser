@@ -5,6 +5,11 @@ export default class WurmLevel extends Phaser.Scene {
     private platforms?: Phaser.Physics.Arcade.StaticGroup
     private player? : Phaser.Physics.Arcade.Sprite
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
+    private suitcase?: Phaser.Physics.Arcade.Group
+
+    private score = 0
+    private scoreText?: Phaser.GameObjects.Text
+    private levelCompleteText?: Phaser.GameObjects.Text
 
     constructor()
 	{
@@ -16,6 +21,7 @@ export default class WurmLevel extends Phaser.Scene {
 
         this.load.image('background', 'assets/background.png')
         this.load.image('ground', 'assets/ground.png')
+        this.load.image('suitcase', 'assets/koffer.png')
         this.load.spritesheet('worm', 'assets/worm.png', { 
             frameWidth: 65, frameHeight: 60
         })
@@ -23,6 +29,7 @@ export default class WurmLevel extends Phaser.Scene {
 
     create() {
 
+        //set background
         this.add.image(960, 500, 'background')
 
         //create platforms
@@ -34,7 +41,7 @@ export default class WurmLevel extends Phaser.Scene {
         .refreshBody()
 
         this.platforms.create(900,300, 'ground')
-        this.platforms.create(400,450, 'ground')
+        this.platforms.create(500,450, 'ground')
         this.platforms.create(1200,550, 'ground')
 
         //create player
@@ -68,6 +75,36 @@ export default class WurmLevel extends Phaser.Scene {
 
         this.cursors = this.input.keyboard.createCursorKeys()
 
+        //create suitcase
+        this.suitcase = this.physics.add.group({
+            key: 'suitcase',
+            setXY: {x: 1000, y: 200,}
+        })
+
+        this.physics.add.collider(this.suitcase, this.platforms)
+        this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
+
+        //create score
+        this.scoreText = this.add.text(16, 16, 'Score: 0', {
+            fontSize: '32px',
+            fill: '#fff',
+        })
+
+    }
+
+    //function for collecting suitcase
+    private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject)
+    {
+        const suitcase = s as Phaser.Physics.Arcade.Image
+        suitcase.disableBody(true, true)
+        this.score += 100
+        this.scoreText?.setText(`Score: ${this.score}`)
+
+        //create Level completed text
+        this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
+            fontSize: '60px',
+            fill: '#fff',
+        })
     }
 
     update() {
@@ -96,8 +133,7 @@ export default class WurmLevel extends Phaser.Scene {
         {
              this.player.setVelocityY(-360)
         }
- 
-     } 
+  
     }
 
 }
