@@ -14,7 +14,7 @@ export default class AalLevel extends Phaser.Scene {
 
     preload() {
 
-        this.load.image('bg', 'assets/bg.png');
+        this.load.image('background', 'assets/bg_aal.png');
         this.load.image('koffer', 'assets/koffer.png');
         this.load.image('ground', 'assets/ground.png');
         this.load.image('aal', 'assets/aal.png');
@@ -23,7 +23,7 @@ export default class AalLevel extends Phaser.Scene {
 
     create() {
 
-        this.add.image(960, 500, 'bg');
+        this.add.image(960, 500, 'background');
 
         //platform
         this.platforms = this.physics.add.staticGroup();
