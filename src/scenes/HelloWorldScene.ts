@@ -30,7 +30,7 @@ export default class HelloWorldScene extends Phaser.Scene
 
     create()
     {
-        this.add.image(0, 0, 'background')
+        this.add.image(960, 500, 'background')
         
         this.platforms = this.physics.add.staticGroup()
         const ground = this.platforms.create(400, 568, 'ground') as Phaser.Physics.Arcade.Sprite
