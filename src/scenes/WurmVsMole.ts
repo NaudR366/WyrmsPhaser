@@ -19,30 +19,22 @@ export default class WurmVsMole extends Phaser.Scene {
 		super('mole-world')
 	}
 
-    preload() {
-        this.load.image('background', 'assets/background/menubg.png')
-        this.load.spritesheet('worm', 'assets/worm.png',{frameWidth: 65, frameHeight: 60})
-        this.load.image('ground', 'assets/ground.png')
-        this.load.image('suitcase', 'assets/koffer.png')
-        this.load.spritesheet('mol', 'assets/mole.png',{frameWidth: 65, frameHeight: 57})
-    }
-
     create() {
-        this.add.image(750, 330, 'background')
+        this.add.image(750, 330, 'blueCave')
 
         this.platforms = this.physics.add.staticGroup()
-        const ground = this.platforms.create(780, 690, 'platform') as Phaser.Physics.Arcade.Sprite 
+        const ground = this.platforms.create(780, 690, 'grassPlatform') as Phaser.Physics.Arcade.Sprite 
         ground
         .setScale(1)
         .refreshBody()
 
-        this.platforms.create(1050,250, 'platform')
-        this.platforms.create(550,400, 'platform')
-        this.platforms.create(1200,540, 'platform')
-        this.platforms.create(200,690, 'platform')
-        this.platforms.create(400,690, 'platform')
-        this.platforms.create(1000,690, 'platform')
-        this.platforms.create(1400,690, 'platform')
+        this.platforms.create(1050,250, 'grassPlatform')
+        this.platforms.create(550,400, 'grassPlatform')
+        this.platforms.create(1200,540, 'grassPlatform')
+        this.platforms.create(200,690, 'grassPlatform')
+        this.platforms.create(400,690, 'grassPlatform')
+        this.platforms.create(1000,690, 'grassPlatform')
+        this.platforms.create(1400,690, 'grassPlatform')
 
         this.player = this.physics.add.sprite(100, 450, 'worm')
         this.player.setBounce(0.1)
@@ -140,6 +132,9 @@ export default class WurmVsMole extends Phaser.Scene {
             fontSize: '60px',
             fill: '#fff',
         })
+
+        //go to next level
+        this.scene.start('aal-world')
     }
 
     private handleCollectMole(player: Phaser.GameObjects.GameObject, m: Phaser.GameObjects.GameObject)

@@ -7,6 +7,8 @@ body {
 }
 
 canvas {
-    margin: 10;
+    display: block;
     cursor: none;
+    margin: 10 auto;
+    border: 5px black solid;
 }

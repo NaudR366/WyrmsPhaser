@@ -21,7 +21,7 @@ const config: Phaser.Types.Core.GameConfig = {
 	render: {
 		pixelArt: true,
 	},
-	scene: [Load, Menu, WurmLevel, WurmVsMole]
+	scene: [Load, Menu, WurmLevel, WurmVsMole, AalLevel]
 }
 
 export default new Phaser.Game(config)

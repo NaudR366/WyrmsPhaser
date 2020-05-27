@@ -14,19 +14,8 @@ export default class WurmLevel extends Phaser.Scene {
     constructor()
 	{
 		super('wurmWorld')
-	}
-
-
-    preload() {
-
-        // this.load.image('cavebg', 'assets/background/background.png')
-        // this.load.image('stoneGround', 'assets/platform/ground5.png')
-        // this.load.image('suitcase', 'assets/koffer.png')
-        // this.load.spritesheet('worm', 'assets/worm.png', { 
-        //     frameWidth: 65, frameHeight: 60
-        // })
     }
-
+    
     create() {
 
         //set background

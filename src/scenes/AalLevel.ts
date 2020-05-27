@@ -11,29 +11,19 @@ export default class AalLevel extends Phaser.Scene {
 		super('aal-world');
 	}
 
-
-    preload() {
-
-        this.load.image('background', 'assets/bg_aal.png');
-        this.load.image('koffer', 'assets/koffer.png');
-        this.load.image('ground', 'assets/ground.png');
-        this.load.image('aal', 'assets/aal.png');
-        //this.load.image('enemy', 'assets/aa_enemy.png');
-    }
-
     create() {
 
-        this.add.image(751, 351, 'background');
+        this.add.image(751, 351, 'underwaterBackground');
 
         //platform
         this.platforms = this.physics.add.staticGroup();
-        const ground = this.platforms.create(760, 750, 'ground') as Phaser.Physics.Arcade.Sprite;
+        const ground = this.platforms.create(760, 750, 'grassPlatform') as Phaser.Physics.Arcade.Sprite;
 
         ground.setScale(4).refreshBody();
 
-        this.platforms.create(20,100, 'ground');
-        this.platforms.create(150,250, 'ground');
-        this.platforms.create(1200,400, 'ground');
+        this.platforms.create(20,100, 'grassPlatform');
+        this.platforms.create(150,250, 'grassPlatform');
+        this.platforms.create(1200,400, 'grassPlatform');
 
         //playa create
         this.player = this.physics.add.sprite(100, 450, 'aal');

@@ -14,20 +14,21 @@ export default class Menu extends Phaser.Scene
 		super('menu')
     }
 
-    // preload()
-    // {
-    //     this.load.image('background', 'assets/background/menubg.png')
-    //     this.load.image('start', 'assets/menubuttons/menustart.png')
-    //     this.load.image('platform', 'assets/ground.png')
-    //     this.load.spritesheet('worm', 'assets/worm.png', { 
-    //         frameWidth: 65, frameHeight: 60
-    //     })
-    // }
-
     create()
     {
         //create background
         this.add.image(0,0, "blueCave").setOrigin(0).setDepth(0);
+
+        //create controls text
+        this.add.text(10,10, "Controls", {
+            fontSize: '30px',
+            fill: '#fff',
+                })
+
+        this.add.text(10,40, "To move use the arrow keys", {
+            fontSize: '25px',
+            fill: '#fff',
+                })
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
