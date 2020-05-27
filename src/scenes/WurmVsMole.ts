@@ -28,7 +28,7 @@ export default class WurmVsMole extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(960, 500, 'background')
+        this.add.image(750, 330, 'background')
 
         this.platforms = this.physics.add.staticGroup()
         const ground = this.platforms.create(780, 690, 'platform') as Phaser.Physics.Arcade.Sprite 
