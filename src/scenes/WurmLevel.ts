@@ -16,7 +16,7 @@ export default class WurmLevel extends Phaser.Scene {
 
         this.load.image('background', 'assets/background.png')
         this.load.image('ground', 'assets/ground.png')
-        this.load.spritesheet('dude', 'assets/dude2.png', { 
+        this.load.spritesheet('worm', 'assets/worm.png', { 
             frameWidth: 65, frameHeight: 60
         })
     }
@@ -33,18 +33,18 @@ export default class WurmLevel extends Phaser.Scene {
         .setScale(4)
         .refreshBody()
 
-        this.platforms.create(800,100, 'ground')
-        this.platforms.create(50,250, 'ground')
+        this.platforms.create(900,300, 'ground')
+        this.platforms.create(400,450, 'ground')
         this.platforms.create(1200,550, 'ground')
 
         //create player
-        this.player = this.physics.add.sprite(100, 450, 'dude')
+        this.player = this.physics.add.sprite(100, 450, 'worm')
         this.player.setBounce(0.1)
         this.player.setCollideWorldBounds(true)
 
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('dude', {
+            frames: this.anims.generateFrameNumbers('worm', {
                 start: 0, end: 3
             }),
             frameRate: 10,
@@ -53,13 +53,13 @@ export default class WurmLevel extends Phaser.Scene {
 
         this.anims.create({
             key: 'turn',
-            frames: [ { key: 'dude', frame: 4 } ],
+            frames: [ { key: 'worm', frame: 4 } ],
             frameRate: 20
         })
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+            frames: this.anims.generateFrameNumbers('worm', { start: 5, end: 8 }),
             frameRate: 10,
             repeat: -1
         });
