@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 import HelloWorldScene from './scenes/HelloWorldScene'
 import WurmLevel from './scenes/WurmLevel'
 import AalLevel from './scenes/AalLevel'
+import WurmVsMole from './scenes/WurmVsMole'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -15,7 +16,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			debug: true,
 		}
 	},
-	scene: [WurmLevel]
+	scene: [WurmVsMole]
 }
 
 export default new Phaser.Game(config)
