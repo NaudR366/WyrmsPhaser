@@ -1,14 +1,14 @@
 import Phaser from 'phaser'
-
+import WurmVsMole from './scenes/WurmVsMole'
 //import HelloWorldScene from './scenes/HelloWorldScene'
 //import WurmLevel from './scenes/WurmLevel'
 import AalLevel from './scenes/AalLevel'
-import WurmVsMole from './scenes/WurmVsMole'
+
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
-	width: window.innerWidth,
-	height: window.innerHeight,
+	width: 1500,
+	height: 700,
 	physics: {
 		default: 'arcade',
 		arcade: {

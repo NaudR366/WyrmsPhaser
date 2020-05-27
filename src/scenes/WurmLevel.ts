@@ -32,24 +32,26 @@ export default class WurmLevel extends Phaser.Scene {
         //set background
         this.add.image(960, 500, 'background')
 
+        //create start point for platfom
+        let platformX = 60
+
         //create platforms
         this.platforms = this.physics.add.staticGroup()
-        const ground = this.platforms.create(760, 750, 'ground') as Phaser.Physics.Arcade.Sprite
+        const ground = this.platforms.create(platformX, 750, 'ground') as Phaser.Physics.Arcade.Sprite
         
         ground
         .setScale(1)
         .refreshBody()
 
-        // this.platforms.create(900,300, 'ground')
-        // this.platforms.create(500,450, 'ground')
-        // this.platforms.create(1200,550, 'ground')
-
-        // for(let i = 0; i < window.innerWidth; i++) {
-
-        // }
+        this.platforms.create(700,500, 'ground')
+        this.platforms.create(400,650, 'ground')
+        this.platforms.create(820,500, 'ground')
+        this.platforms.create(820,380, 'ground')
+        this.platforms.create(1200,550, 'ground')
+        this.platforms.create(1320,550, 'ground')
 
         //create player
-        this.player = this.physics.add.sprite(100, 450, 'worm')
+        this.player = this.physics.add.sprite(platformX, 450, 'worm')
         this.player.setBounce(0.1)
         this.player.setCollideWorldBounds(true)
 
@@ -82,7 +84,7 @@ export default class WurmLevel extends Phaser.Scene {
         //create suitcase
         this.suitcase = this.physics.add.group({
             key: 'suitcase',
-            setXY: {x: 1000, y: 200,}
+            setXY: {x: 1300, y: 400,}
         })
 
         this.physics.add.collider(this.suitcase, this.platforms)
@@ -137,7 +139,6 @@ export default class WurmLevel extends Phaser.Scene {
         {
              this.player.setVelocityY(-360)
         }
-  
     }
 
 }

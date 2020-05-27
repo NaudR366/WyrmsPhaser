@@ -23,7 +23,7 @@ export default class AalLevel extends Phaser.Scene {
 
     create() {
 
-        this.add.image(960, 500, 'background');
+        this.add.image(751, 351, 'background');
 
         //platform
         this.platforms = this.physics.add.staticGroup();
@@ -31,9 +31,9 @@ export default class AalLevel extends Phaser.Scene {
 
         ground.setScale(4).refreshBody();
 
-        this.platforms.create(800,100, 'ground');
-        this.platforms.create(50,250, 'ground');
-        this.platforms.create(1200,550, 'ground');
+        this.platforms.create(20,100, 'ground');
+        this.platforms.create(150,250, 'ground');
+        this.platforms.create(1200,400, 'ground');
 
         //playa create
         this.player = this.physics.add.sprite(100, 450, 'aal');
@@ -43,6 +43,10 @@ export default class AalLevel extends Phaser.Scene {
         this.physics.add.collider(this.player, this.platforms);
 
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        /*this.koffer = this.physics.add.group();
+        this.physics.add.collider(this.koffer, this.platforms);*/
+
     }
 
     update() {
