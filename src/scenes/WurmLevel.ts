@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 export default class WurmLevel extends Phaser.Scene {
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
+    private lava?: Phaser.Physics.Arcade.StaticGroup
     private player? : Phaser.Physics.Arcade.Sprite
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private suitcase?: Phaser.Physics.Arcade.Group
@@ -25,13 +26,21 @@ export default class WurmLevel extends Phaser.Scene {
         //create start point for platfom
         let platformX = 60
 
+        //add lava
+        this.lava = this.physics.add.staticGroup()
+        this.lava.create(0, 730, 'lava')
+        this.lava.create(200, 730, 'lava')
+        this.lava.create(600, 730, 'lava')
+        this.lava.create(1200, 730, 'lava')
+
         //create platforms
         this.platforms = this.physics.add.staticGroup()
-        const ground = this.platforms.create(platformX, 750, 'stoneGround') as Phaser.Physics.Arcade.Sprite
-        
+        const ground = this.platforms.create(platformX, 740, 'stoneGround') as Phaser.Physics.Arcade.Sprite
+
         ground
         .setScale(1)
         .refreshBody()
+        
 
         this.platforms.create(700,500, 'stoneGround')
         this.platforms.create(400,650, 'stoneGround')
@@ -68,6 +77,7 @@ export default class WurmLevel extends Phaser.Scene {
         });
 
         this.physics.add.collider(this.player, this.platforms)
+        this.physics.add.collider(this.player, this.lava)
 
         this.cursors = this.input.keyboard.createCursorKeys()
 
@@ -96,14 +106,13 @@ export default class WurmLevel extends Phaser.Scene {
         this.score += 100
         this.scoreText?.setText(`Score: ${this.score}`)
 
-        //stop all animations
-
         //create Level completed text
         this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
             fontSize: '60px',
             fill: '#fff',
                 })
 
+            //pause animations
             this.physics.pause();
             this.anims.pauseAll()
 

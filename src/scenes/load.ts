@@ -34,6 +34,9 @@ export default class Load extends Phaser.Scene
         //load pickups
         this.load.image('suitcase', 'assets/pickups/koffer.png')
 
+        //load misc
+        this.load.image('lava', 'assets/misc/lavaground.png')
+
 
         //create loading bar
         let loadingBar = this.add.graphics({
