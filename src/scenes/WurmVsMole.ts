@@ -9,6 +9,7 @@ export default class WurmVsMole extends Phaser.Scene {
     private mole?: Phaser.Physics.Arcade.Sprite
     private moleX?
     private moleY?
+    private fadeCheck = true
 
     private score = 0
     private scoreText?: Phaser.GameObjects.Text
@@ -148,6 +149,8 @@ export default class WurmVsMole extends Phaser.Scene {
         mole.disableBody(true, true)
         this.score += 25
         this.scoreText?.setText(`Score: ${this.score}`)
+        
+    
     }
 
     

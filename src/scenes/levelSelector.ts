@@ -84,7 +84,7 @@ export default class Menu extends Phaser.Scene
         } else 
          {
          this.player?.setVelocityX(0)
-         this.player?.anims.play('turn')
+         
         }
 
         if (this.cursors.up?.isDown && this.player?.body.touching.down) 
