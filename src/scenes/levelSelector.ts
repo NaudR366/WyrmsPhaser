@@ -38,19 +38,19 @@ export default class Menu extends Phaser.Scene
 
         //create back button
         this.back = this.physics.add.staticGroup()
-        this.back.create(this.game.renderer.width / 2 - 200, 550, 'start')
+        this.back.create(this.game.renderer.width / 2 - 300, 550, 'start')
 
         //level 1 select button
         this.level1 = this.physics.add.staticGroup()
-        this.level1.create(this.game.renderer.width / 2, 650, 'Wurm')
+        this.level1.create(this.game.renderer.width / 2 - 200, 550, 'Wurm')
         
         //level 2 select button
         this.level2 = this.physics.add.staticGroup()
-        this.level2.create(this.game.renderer.width / 2 - 200, 750, 'WvM')
+        this.level2.create(this.game.renderer.width / 2 - 100, 550, 'WvM')
 
         //level 3 select button
         this.level3 = this.physics.add.staticGroup()
-        this.level3.create(this.game.renderer.width / 2, 850, 'Aal')
+        this.level3.create(this.game.renderer.width / 2 - 50, 550, 'Aal')
         
         //worm animation
         this.anims.create({
