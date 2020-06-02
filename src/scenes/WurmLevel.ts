@@ -118,7 +118,7 @@ export default class WurmLevel extends Phaser.Scene {
 
         //go to next level
         setTimeout(() => {
-            this.scene.start('mole-world')
+            this.scene.start('aal-world')
         }, 3000);
 
     }
