@@ -70,7 +70,7 @@ export default class AalLevel extends Phaser.Scene {
 
         //go to next level
         setTimeout(() => {
-            this.scene.start('aal-world')
+            this.scene.start('iceWorld')
         }, 3000);
     }
 

@@ -21,6 +21,7 @@ export default class Load extends Phaser.Scene
         //load platforms
         this.load.image('grassPlatform', 'assets/grassplatforms/ground.png')
         this.load.image('stoneGround', 'assets/icegrounds/ground5.png')
+        this.load.image('iceGround', 'assets/icegrounds/ground2.png')
 
         //load players
         this.load.spritesheet('worm', 'assets/players/worm.png', { 

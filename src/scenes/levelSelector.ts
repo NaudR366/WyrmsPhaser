@@ -12,6 +12,7 @@ export default class Level extends Phaser.Scene
     private level1?: Phaser.Physics.Arcade.StaticGroup
     private level2?: Phaser.Physics.Arcade.StaticGroup
     private level3?: Phaser.Physics.Arcade.StaticGroup
+    private level4?: Phaser.Physics.Arcade.StaticGroup
 
 	constructor()
 	{
@@ -51,7 +52,11 @@ export default class Level extends Phaser.Scene
 
         //level 3 select button
         this.level3 = this.physics.add.staticGroup()
-        this.level3.create(this.game.renderer.width / 2 - 50, 550, 'Aal')
+        this.level3.create(this.game.renderer.width / 2, 550, 'Aal')
+
+        //level 3 select button
+        this.level4 = this.physics.add.staticGroup()
+        this.level4.create(this.game.renderer.width / 2 + 100, 550, 'ice')
         
         //worm animation
         this.anims.create({
@@ -82,6 +87,7 @@ export default class Level extends Phaser.Scene
         this.physics.add.collider(this.player, this.level1, this.handleLevel1, undefined, this)
         this.physics.add.collider(this.player, this.level2, this.handleLevel2, undefined, this)
         this.physics.add.collider(this.player, this.level3, this.handleLevel3, undefined, this)
+        this.physics.add.collider(this.player, this.level4, this.handleLevel4, undefined, this)
         
         //set keys
         this.cursors = this.input.keyboard.createCursorKeys()
@@ -89,22 +95,32 @@ export default class Level extends Phaser.Scene
 
     private handleBack()
     {
+        this.sound.stopAll()
         this.scene.start('menu')
     }
 
     private handleLevel1()
     {
+        this.sound.stopAll()
         this.scene.start('wurmWorld')
     }
 
     private handleLevel2()
     {
+        this.sound.stopAll()
         this.scene.start('mole-world')
     }
 
     private handleLevel3()
     {
+        this.sound.stopAll()
         this.scene.start('aal-world')
+    }
+
+    private handleLevel4()
+    {
+        this.sound.stopAll()
+        this.scene.start('iceWorld')
     }
 
     update() {
