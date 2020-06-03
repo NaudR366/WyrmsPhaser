@@ -88,9 +88,9 @@ export default class Menu extends Phaser.Scene
         this.cursors = this.input.keyboard.createCursorKeys()
 
         //create camera
-        // this.cameras.main.setBounds(0, 0, 720 * 2, 176);
-        // this.cameras.main.startFollow(this.player, true)
-        // this.cameras.main.setZoom(1)
+        this.cameras.main.setBounds(0, 0, this.game.renderer.width, this.game.renderer.height, false);
+        this.cameras.main.startFollow(this.player, true)
+        this.cameras.main.setZoom(1.5)
         
 
     }

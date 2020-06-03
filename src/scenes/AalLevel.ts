@@ -44,6 +44,11 @@ export default class AalLevel extends Phaser.Scene {
             setXY: {x: 400, y: 100,}
         });
 
+        //create camera
+        this.cameras.main.setBounds(0, 0, this.game.renderer.width, this.game.renderer.height, false);
+        this.cameras.main.startFollow(this.player, true)
+        this.cameras.main.setZoom(1.5)
+
         this.physics.add.collider(this.koffer, this.platforms)
         this.physics.add.overlap(this.player, this.koffer, this.handleCollectSuitcase, undefined, this)
 

@@ -113,6 +113,11 @@ export default class WurmVsMole extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
         this.physics.add.overlap(this.player, this.mole, this.handleCollectMole, undefined, this)
 
+        //create camera
+        this.cameras.main.setBounds(0, 0, this.game.renderer.width, this.game.renderer.height, false);
+        this.cameras.main.startFollow(this.player, true)
+        this.cameras.main.setZoom(1.5)
+
         //create score
         this.scoreText = this.add.text(16, 16, 'Score: 0', {
             fontSize: '32px',
