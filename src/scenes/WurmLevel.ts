@@ -12,6 +12,9 @@ export default class WurmLevel extends Phaser.Scene {
     private scoreText?: Phaser.GameObjects.Text
     private levelCompleteText?: Phaser.GameObjects.Text
 
+    private widthBounds = 1600
+    private heightBounds = 600
+
     constructor()
 	{
         super('wurmWorld')
@@ -20,37 +23,37 @@ export default class WurmLevel extends Phaser.Scene {
     
     create() {
 
-        //set background
-        this.add.image(960, 500, 'cavebg')
+        //set world bounderies
+        this.physics.world.setBounds(0, 0, this.widthBounds, this.heightBounds)
 
-        //create start point for platfom
-        let platformX = 60
+        //set background
+        this.add.image(0, 0, "cavebg").setDisplaySize(this.widthBounds, this.heightBounds).setOrigin(0)
 
         //add lava
         this.lava = this.physics.add.staticGroup()
-        this.lava.create(0, 730, 'lava')
-        this.lava.create(200, 730, 'lava')
-        this.lava.create(600, 730, 'lava')
-        this.lava.create(1200, 730, 'lava')
+        this.lava.create(0, this.heightBounds, 'lava')
+        this.lava.create(200, this.heightBounds, 'lava')
+        this.lava.create(700, this.heightBounds, 'lava')
+        this.lava.create(1400, this.heightBounds, 'lava')
 
         //create platforms
         this.platforms = this.physics.add.staticGroup()
-        const ground = this.platforms.create(platformX, 740, 'stoneGround') as Phaser.Physics.Arcade.Sprite
+        const ground = this.platforms.create(50, this.heightBounds, 'stoneGround') as Phaser.Physics.Arcade.Sprite // spawn ground 
 
         ground
         .setScale(1)
         .refreshBody()
         
 
-        this.platforms.create(700,500, 'stoneGround')
-        this.platforms.create(400,650, 'stoneGround')
-        this.platforms.create(820,500, 'stoneGround')
-        this.platforms.create(820,380, 'stoneGround')
-        this.platforms.create(1200,550, 'stoneGround')
-        this.platforms.create(1320,550, 'stoneGround')
+        this.platforms.create(400,this.heightBounds - 100, 'stoneGround') //1
+        this.platforms.create(700,this.heightBounds - 200, 'stoneGround') // 2
+        this.platforms.create(820,this.heightBounds - 200, 'stoneGround')
+        this.platforms.create(820,this.heightBounds - 330, 'stoneGround')
+        this.platforms.create(1200,this.heightBounds - 200, 'stoneGround')
+        this.platforms.create(1320,this.heightBounds - 200, 'stoneGround')
 
         //create player
-        this.player = this.physics.add.sprite(platformX, 450, 'worm')
+        this.player = this.physics.add.sprite(0, this.heightBounds - 200, 'worm')
         this.player.setBounce(0.1)
         this.player.setCollideWorldBounds(true)
 
@@ -84,14 +87,14 @@ export default class WurmLevel extends Phaser.Scene {
         //create suitcase
         this.suitcase = this.physics.add.group({
             key: 'suitcase',
-            setXY: {x: 1300, y: 400,}
+            setXY: {x: 1300, y: this.heightBounds - 400,}
         })
 
         this.physics.add.collider(this.suitcase, this.platforms)
         this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
 
         //create camera
-        this.cameras.main.setBounds(0, 0, this.game.renderer.width, this.game.renderer.height, false);
+        this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
         this.cameras.main.setZoom(1.5)
         

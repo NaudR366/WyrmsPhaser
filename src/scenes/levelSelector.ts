@@ -25,11 +25,12 @@ export default class Level extends Phaser.Scene
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
-        this.platforms.create(0,690, 'grassPlatform')
-        this.platforms.create(400,690, 'grassPlatform')
-        this.platforms.create(800,690, 'grassPlatform')
-        this.platforms.create(1200,690, 'grassPlatform')
-        this.platforms.create(1400,690, 'grassPlatform')
+        this.platforms.create(0,this.game.renderer.height, 'grassPlatform')
+        this.platforms.create(800,this.game.renderer.height, 'grassPlatform')
+        this.platforms.create(400,this.game.renderer.height, 'grassPlatform')
+        this.platforms.create(1200,this.game.renderer.height, 'grassPlatform')
+        this.platforms.create(1400,this.game.renderer.height, 'grassPlatform')
+
 
         //create player
         this.player = this.physics.add.sprite(20, 600, 'worm')

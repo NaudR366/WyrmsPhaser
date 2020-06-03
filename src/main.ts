@@ -1,4 +1,4 @@
-import Phaser from 'phaser'
+import Phaser, { NONE } from 'phaser'
 
 import Load from './scenes/load'
 import WurmVsMole from './scenes/WurmVsMole'
@@ -10,15 +10,25 @@ import Levels from './scenes/levelSelector'
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
-	width: window.innerWidth,
-	height: window.innerHeight,
+	scale: {
+		mode: Phaser.Scale.FIT,
+		autoCenter: Phaser.Scale.CENTER_BOTH,
+		width: window.innerWidth,
+		height: window.innerHeight,
+	},
 	physics: {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 400 },
-			debug: false,
+			debug: true,
 		}
 	},
+	fps: {
+        min: 10,
+        target: 60,
+        forceSetTimeOut: false,
+        deltaHistory: 10
+    },
 	render: {
 		pixelArt: true,
 	},

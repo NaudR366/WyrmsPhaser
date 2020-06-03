@@ -11,6 +11,9 @@ export default class Menu extends Phaser.Scene
     private levelSelect?: Phaser.Physics.Arcade.StaticGroup
     private score = 0
 
+    private widthBounds = 1400
+    private heigthBounds = 600
+
 	constructor()
 	{
         super('menu')
@@ -19,42 +22,45 @@ export default class Menu extends Phaser.Scene
 
     create()
     {
+        //set world bounderies
+        this.physics.world.setBounds(0, 0, this.widthBounds, this.heigthBounds)
+
         //create background
-        this.add.image(0,0, "blueCave").setDisplaySize(this.game.renderer.width, this.game.renderer.height).setOrigin(0.1)
-
-        //create controls text
-        this.add.text(10,10, "Controls", {
-            fontSize: '30px',
-            fill: '#fff',
-                })
-
-        this.add.text(10,40, "To move use the arrow keys", {
-            fontSize: '25px',
-            fill: '#fff',
-                })
+        this.add.image(this.widthBounds /2,this.heigthBounds / 2, "blueCave").setDisplaySize(this.widthBounds, this.heigthBounds)
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
-        this.platforms.create(0,this.game.renderer.height, 'grassPlatform')
-        this.platforms.create(800,this.game.renderer.height, 'grassPlatform')
-        this.platforms.create(400,this.game.renderer.height, 'grassPlatform')
-        this.platforms.create(1200,this.game.renderer.height, 'grassPlatform')
-        this.platforms.create(1400,this.game.renderer.height, 'grassPlatform')
+        this.platforms.create(0,this.heigthBounds, 'grassPlatform')
+        this.platforms.create(800,this.heigthBounds, 'grassPlatform')
+        this.platforms.create(400,this.heigthBounds, 'grassPlatform')
+        this.platforms.create(1200,this.heigthBounds, 'grassPlatform')
+        this.platforms.create(1400,this.heigthBounds, 'grassPlatform')
 
         //create play button
         this.play = this.physics.add.staticGroup()
-        this.play.create(this.game.renderer.width / 2 - 200, this.game.renderer.height - 150, 'start')
+        this.play.create(this.widthBounds / 2 - 200, this.heigthBounds - 150, 'start')
 
         //create level select button
         this.levelSelect = this.physics.add.staticGroup()
-        this.levelSelect.create(this.game.renderer.width / 2, this.game.renderer.height - 150, 'levels')
+        this.levelSelect.create(this.widthBounds / 2, this.heigthBounds - 150, 'levels')
 
         //create exit button
 
         //create player
-        this.player = this.physics.add.sprite(20, 600, 'worm')
+        this.player = this.physics.add.sprite(0, this.heigthBounds - 100, 'worm')
         this.player.setBounce(0.1)
         this.player.setCollideWorldBounds(true)
+
+        //create controls text
+        this.add.text(10,this.heigthBounds - 270, "Controls", {
+            fontSize: '30px',
+            fill: '#fff',
+                })
+
+        this.add.text(10,this.heigthBounds - 240, "To move use the arrow keys", {
+            fontSize: '25px',
+            fill: '#fff',
+                })
 
         //worm animation
         this.anims.create({
@@ -88,15 +94,22 @@ export default class Menu extends Phaser.Scene
         this.cursors = this.input.keyboard.createCursorKeys()
 
         //create camera
-        this.cameras.main.setBounds(0, 0, this.game.renderer.width, this.game.renderer.height, false);
+        this.cameras.main.setBounds(0, 0, this.widthBounds, this.heigthBounds, false);
         this.cameras.main.startFollow(this.player, true)
         this.cameras.main.setZoom(1.5)
         
+    }
 
+    private handleFullscreen() {
+        if(this.scale.isFullscreen == false) {
+            console.log("test")
+            this.scale.startFullscreen()
+        }
     }
 
     private handlePlay()
     {
+        // this.scene.stop
         this.scene.start('wurmWorld')
     }
 
