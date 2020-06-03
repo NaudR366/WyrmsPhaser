@@ -29,6 +29,8 @@ export default class WurmLevel extends Phaser.Scene {
         //set background
         this.add.image(0, 0, "cavebg").setDisplaySize(this.widthBounds, this.heightBounds).setOrigin(0)
 
+        //set background sound
+
         //add lava
         this.lava = this.physics.add.staticGroup()
         this.lava.create(0, this.heightBounds, 'lava')
@@ -157,6 +159,9 @@ export default class WurmLevel extends Phaser.Scene {
         if (this.cursors.up?.isDown && this.player?.body.touching.down) 
         {
              this.player.setVelocityY(-360)
+             this.sound.play('playerJump', {
+                 volume: 0.5
+             })
         }
     }
 

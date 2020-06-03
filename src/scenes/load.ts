@@ -37,6 +37,10 @@ export default class Load extends Phaser.Scene
         //load misc
         this.load.image('lava', 'assets/misc/lavaground.png')
 
+        //load sounds
+        this.load.audio('menuMusic', 'assets/backgroundsounds/menuMusic.mp3')
+        this.load.audio('playerJump', 'assets/playersounds/jump.wav')
+
 
         //create loading bar
         let loadingBar = this.add.graphics({
