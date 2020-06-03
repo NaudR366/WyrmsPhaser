@@ -6,6 +6,9 @@ export default class AalLevel extends Phaser.Scene {
     private player?: Phaser.Physics.Arcade.Sprite;
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
 
+    private koffer?: Phaser.Physics.Arcade.Group
+    private levelCompleteText?: Phaser.GameObjects.Text
+
     constructor()
 	{
 		super('aal-world');
@@ -21,9 +24,9 @@ export default class AalLevel extends Phaser.Scene {
 
         ground.setScale(4).refreshBody();
 
-        this.platforms.create(20,100, 'grassPlatform');
-        this.platforms.create(150,250, 'grassPlatform');
-        this.platforms.create(1200,400, 'grassPlatform');
+        this.platforms.create(500,100, 'grassPlatform');
+        this.platforms.create(450,450, 'grassPlatform');
+        this.platforms.create(1000,600, 'grassPlatform');
 
         //playa create
         this.player = this.physics.add.sprite(100, 450, 'aal');
@@ -34,9 +37,36 @@ export default class AalLevel extends Phaser.Scene {
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        /*this.koffer = this.physics.add.group();
-        this.physics.add.collider(this.koffer, this.platforms);*/
+        this.koffer = this.physics.add.group();
 
+        this.koffer = this.physics.add.group({
+            key: 'suitcase',
+            setXY: {x: 400, y: 100,}
+        });
+
+        this.physics.add.collider(this.koffer, this.platforms)
+        this.physics.add.overlap(this.player, this.koffer, this.handleCollectSuitcase, undefined, this)
+
+    }
+    //function for collecting suitcase
+    private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject){
+        const suitcase = s as Phaser.Physics.Arcade.Image
+        suitcase.disableBody(true, true)
+  
+        //create Level completed text
+        this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
+            fontSize: '60px',
+            fill: '#fff',
+        })
+
+        //pause animations
+        this.physics.pause();
+        this.anims.pauseAll()
+
+        //go to next level
+        setTimeout(() => {
+            this.scene.start('aal-world')
+        }, 3000);
     }
 
     update() {
