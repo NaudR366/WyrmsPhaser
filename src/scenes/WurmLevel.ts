@@ -90,6 +90,12 @@ export default class WurmLevel extends Phaser.Scene {
         this.physics.add.collider(this.suitcase, this.platforms)
         this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
 
+        //create camera
+        // this.cameras.main.setBounds(0, 0, 720 * 2, 176);
+        this.cameras.main.startFollow(this.player, true)
+        this.cameras.main.setZoom(1)
+        
+
         //create score
         this.scoreText = this.add.text(16, 16, 'Score: 0', {
             fontSize: '32px',

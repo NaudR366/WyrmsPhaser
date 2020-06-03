@@ -1,4 +1,4 @@
-import Phaser from 'phaser'
+import Phaser, { Game } from 'phaser'
 
 export default class Menu extends Phaser.Scene
 {
@@ -20,7 +20,7 @@ export default class Menu extends Phaser.Scene
     create()
     {
         //create background
-        this.add.image(0,0, "blueCave").setOrigin(0).setDepth(0);
+        this.add.image(0,0, "blueCave").setDisplaySize(this.game.renderer.width, this.game.renderer.height).setOrigin(0.1)
 
         //create controls text
         this.add.text(10,10, "Controls", {
@@ -35,19 +35,19 @@ export default class Menu extends Phaser.Scene
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
-        this.platforms.create(0,690, 'grassPlatform')
-        this.platforms.create(400,690, 'grassPlatform')
-        this.platforms.create(800,690, 'grassPlatform')
-        this.platforms.create(1200,690, 'grassPlatform')
-        this.platforms.create(1400,690, 'grassPlatform')
+        this.platforms.create(0,this.game.renderer.height, 'grassPlatform')
+        this.platforms.create(800,this.game.renderer.height, 'grassPlatform')
+        this.platforms.create(400,this.game.renderer.height, 'grassPlatform')
+        this.platforms.create(1200,this.game.renderer.height, 'grassPlatform')
+        this.platforms.create(1400,this.game.renderer.height, 'grassPlatform')
 
         //create play button
         this.play = this.physics.add.staticGroup()
-        this.play.create(this.game.renderer.width / 2 - 200, 550, 'start')
+        this.play.create(this.game.renderer.width / 2 - 200, this.game.renderer.height - 150, 'start')
 
         //create level select button
         this.levelSelect = this.physics.add.staticGroup()
-        this.levelSelect.create(this.game.renderer.width / 2, 550, 'levels')
+        this.levelSelect.create(this.game.renderer.width / 2, this.game.renderer.height - 150, 'levels')
 
         //create exit button
 
@@ -67,11 +67,11 @@ export default class Menu extends Phaser.Scene
         })
 
         this.anims.create({
-             key: 'turn',
+            key: 'turn',
             frames: [ { key: 'worm', frame: 4 } ],
-             frameRate: 20
+            frameRate: 20
         })
-        
+
         this.anims.create({
             key: 'right',
             frames: this.anims.generateFrameNumbers('worm', { start: 5, end: 8 }),
@@ -86,6 +86,11 @@ export default class Menu extends Phaser.Scene
 
         //set keys
         this.cursors = this.input.keyboard.createCursorKeys()
+
+        //create camera
+        // this.cameras.main.setBounds(0, 0, 720 * 2, 176);
+        // this.cameras.main.startFollow(this.player, true)
+        // this.cameras.main.setZoom(1)
         
 
     }
