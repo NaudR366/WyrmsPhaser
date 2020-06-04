@@ -21,6 +21,10 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
         this.cursors = this.scene.input.keyboard.createCursorKeys()
     }
 
+    create() {
+        
+    }
+
     update() {
         //check keyboard inputs
         if(!this.cursors)

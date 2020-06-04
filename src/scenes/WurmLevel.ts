@@ -47,12 +47,12 @@ export default class WurmLevel extends Phaser.Scene {
         .setScale(1)
         .refreshBody()
         
-        this.platforms.create(400,this.heightBounds - 100, 'stoneGround') //1
-        this.platforms.create(700,this.heightBounds - 200, 'stoneGround') // 2
-        this.platforms.create(820,this.heightBounds - 200, 'stoneGround')
-        this.platforms.create(820,this.heightBounds - 330, 'stoneGround')
-        this.platforms.create(1200,this.heightBounds - 200, 'stoneGround')
-        this.platforms.create(1320,this.heightBounds - 200, 'stoneGround')
+        this.platforms.create(400,this.heightBounds - 100, 'stoneground5') //1
+        this.platforms.create(700,this.heightBounds - 200, 'stoneground5') // 2
+        this.platforms.create(820,this.heightBounds - 200, 'stoneground5')
+        this.platforms.create(820,this.heightBounds - 330, 'stoneground5')
+        this.platforms.create(1200,this.heightBounds - 200, 'stoneground5')
+        this.platforms.create(1320,this.heightBounds - 200, 'stoneground5')
 
         //create player
         this.player = new Worm(this, 0, this.heightBounds - 200)
