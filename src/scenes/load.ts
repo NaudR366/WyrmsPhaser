@@ -62,6 +62,52 @@ export default class Load extends Phaser.Scene
 
     create()
     {
+        //create worm animations
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('worm', {
+                start: 0, end: 3
+            }),
+            frameRate: 10,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: 'turn',
+            frames: [ { key: 'worm', frame: 4 } ],
+            frameRate: 20
+        })
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('worm', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        // mol animation
+        this.anims.create({
+            key: 'leftmol',
+            frames: this.anims.generateFrameNumbers('mol', {
+                start: 0, end: 3
+            }),
+            frameRate: 10,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: 'turnmol',
+            frames: [ { key: 'mol', frame: 7 } ],
+            frameRate: 20
+        })
+
+        this.anims.create({
+            key: 'rightmol',
+            frames: this.anims.generateFrameNumbers('mol', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
         this.scene.start('menu')
     }
 }

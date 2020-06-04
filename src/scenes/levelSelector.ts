@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import Worm from '~/players/worm'
 
 export default class Level extends Phaser.Scene
 {
@@ -6,7 +7,7 @@ export default class Level extends Phaser.Scene
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
     private player? : Phaser.Physics.Arcade.Sprite
-    private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
+    // private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private play?: Phaser.Physics.Arcade.StaticGroup
     private back?: Phaser.Physics.Arcade.StaticGroup
     private level1?: Phaser.Physics.Arcade.StaticGroup
@@ -34,9 +35,7 @@ export default class Level extends Phaser.Scene
 
 
         //create player
-        this.player = this.physics.add.sprite(20, 600, 'worm')
-        this.player.setBounce(0.1)
-        this.player.setCollideWorldBounds(true)
+        this.player = new Worm(this, 0, 60)
 
         //create back button
         this.back = this.physics.add.staticGroup()
@@ -56,30 +55,9 @@ export default class Level extends Phaser.Scene
 
         //level 3 select button
         this.level4 = this.physics.add.staticGroup()
+
+        //level 4 select button
         this.level4.create(this.game.renderer.width / 2 + 100, 550, 'ice')
-        
-        //worm animation
-        this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('worm', {
-                start: 0, end: 3
-            }),
-            frameRate: 10,
-            repeat: -1
-        })
-        
-        this.anims.create({
-             key: 'turn',
-            frames: [ { key: 'worm', frame: 4 } ],
-             frameRate: 20
-        })
-        
-        this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('worm', { start: 5, end: 8 }),
-            frameRate: 10,
-            repeat: -1
-        });
         
         //set collisions
         this.physics.add.collider(this.player, this.platforms)
@@ -88,66 +66,44 @@ export default class Level extends Phaser.Scene
         this.physics.add.collider(this.player, this.level2, this.handleLevel2, undefined, this)
         this.physics.add.collider(this.player, this.level3, this.handleLevel3, undefined, this)
         this.physics.add.collider(this.player, this.level4, this.handleLevel4, undefined, this)
-        
-        //set keys
-        this.cursors = this.input.keyboard.createCursorKeys()
     }
 
     private handleBack()
     {
+        this.scene.stop()
         this.sound.stopAll()
         this.scene.start('menu')
     }
 
     private handleLevel1()
     {
+        this.scene.stop()
         this.sound.stopAll()
         this.scene.start('wurmWorld')
     }
 
     private handleLevel2()
     {
+        this.scene.stop()
         this.sound.stopAll()
         this.scene.start('mole-world')
     }
 
     private handleLevel3()
     {
+        this.scene.stop()
         this.sound.stopAll()
         this.scene.start('aal-world')
     }
 
     private handleLevel4()
     {
+        this.scene.stop()
         this.sound.stopAll()
         this.scene.start('iceWorld')
     }
 
     update() {
-        //check keyboard inputs
-        if(!this.cursors)
-        {
-             return
-        }
- 
-        if(this.cursors?.left?.isDown)
-        {
-            this.player?.setVelocityX(-260)
-            this.player?.anims.play('left',true)
-        } 
-        else if(this.cursors?.right?.isDown)
-        {
-            this.player?.setVelocityX(260)
-            this.player?.anims.play('right',true)
-        } else 
-        {
-         this.player?.setVelocityX(0)
-         this.player?.anims.play('turn')
-        }
- 
-        if (this.cursors.up?.isDown && this.player?.body.touching.down) 
-        {
-             this.player.setVelocityY(-360)
-        }
+
     }
 }

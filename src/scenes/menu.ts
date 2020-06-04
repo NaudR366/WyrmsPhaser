@@ -1,4 +1,5 @@
 import Phaser, { Game } from 'phaser'
+import Worm from '~/players/worm'
 
 export default class Menu extends Phaser.Scene
 {
@@ -6,7 +7,6 @@ export default class Menu extends Phaser.Scene
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
     private player? : Phaser.Physics.Arcade.Sprite
-    private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private play?: Phaser.Physics.Arcade.StaticGroup
     private levelSelect?: Phaser.Physics.Arcade.StaticGroup
     private score = 0
@@ -17,7 +17,6 @@ export default class Menu extends Phaser.Scene
 	constructor()
 	{
         super('menu')
-
     }
 
     create()
@@ -53,9 +52,7 @@ export default class Menu extends Phaser.Scene
         //create exit button
 
         //create player
-        this.player = this.physics.add.sprite(0, this.heigthBounds - 100, 'worm')
-        this.player.setBounce(0.1)
-        this.player.setCollideWorldBounds(true)
+        this.player = new Worm(this, 0, this.heigthBounds - 100)
 
         //create controls text
         this.add.text(10,this.heigthBounds - 270, "Controls", {
@@ -68,36 +65,10 @@ export default class Menu extends Phaser.Scene
             fill: '#fff',
                 })
 
-        //worm animation
-        this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('worm', {
-                start: 0, end: 3
-            }),
-            frameRate: 10,
-            repeat: -1
-        })
-
-        this.anims.create({
-            key: 'turn',
-            frames: [ { key: 'worm', frame: 4 } ],
-            frameRate: 20
-        })
-
-        this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('worm', { start: 5, end: 8 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
         //set collisions
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.player, this.play, this.handlePlay, undefined, this)
         this.physics.add.collider(this.player, this.levelSelect, this.handleSelect, undefined, this)
-
-        //set keys
-        this.cursors = this.input.keyboard.createCursorKeys()
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heigthBounds, false);
@@ -106,15 +77,9 @@ export default class Menu extends Phaser.Scene
         
     }
 
-    private handleFullscreen() {
-        if(this.scale.isFullscreen == false) {
-            console.log("test")
-            this.scale.startFullscreen()
-        }
-    }
-
     private handlePlay()
-    {
+    {   
+        this.scene.stop()
         this.sound.stopAll()
         this.scene.start('wurmWorld')
     }
@@ -126,40 +91,6 @@ export default class Menu extends Phaser.Scene
 
     update()
     {
-
-        //Player Controls
-        if(!this.cursors)
-        {
-             return
-        }
-
-        if(this.cursors?.left?.isDown)
-        {
-             this.player?.setVelocityX(-260)
-            this.player?.anims.play('left',true)
-        } 
-        else if(this.cursors?.right?.isDown)
-         {
-             this.player?.setVelocityX(260)
-            this.player?.anims.play('right',true)
-        } else 
-         {
-         this.player?.setVelocityX(0)
-         this.player?.anims.play('turn')
-        }
-
-        if (this.cursors.up?.isDown && this.player?.body.touching.down) 
-         {
-             this.player.setVelocityY(-360)
-
-             //play jump sound
-             this.sound.play('playerJump', {
-                volume: 0.5
-            })
-        }
-
-        if (!this.player?.body.touching.down) {
-            this.player?.anims.play('turn')
-        }
+        
     }
 }

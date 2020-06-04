@@ -1,4 +1,5 @@
 import Phaser, { Loader } from 'phaser'
+import Worm from '~/players/worm'
 
 export default class WurmVsMole extends Phaser.Scene {
 
@@ -40,9 +41,8 @@ export default class WurmVsMole extends Phaser.Scene {
         this.platforms.create(1000,690, 'grassPlatform')
         this.platforms.create(1400,690, 'grassPlatform')
 
-        this.player = this.physics.add.sprite(100, 450, 'worm')
-        this.player.setBounce(0.1)
-        this.player.setCollideWorldBounds(true)
+        //create player
+        this.player = new Worm(this, 0 , 100)
 
         this.moleX = 1000
         this.moleY = 450
@@ -50,59 +50,9 @@ export default class WurmVsMole extends Phaser.Scene {
         this.mole = this.physics.add.sprite(this.moleX, this.moleY, 'mol')
         this.mole.setBounce(0.1)
         this.mole.setCollideWorldBounds(true)
-
-        //worm animation
-        this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('worm', {
-                start: 0, end: 3
-            }),
-            frameRate: 10,
-            repeat: -1
-        })
-
-        this.anims.create({
-            key: 'turn',
-            frames: [ { key: 'worm', frame: 4 } ],
-            frameRate: 20
-        })
-
-        this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('worm', { start: 5, end: 8 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        //mol animation
-        this.anims.create({
-            key: 'leftmol',
-            frames: this.anims.generateFrameNumbers('mol', {
-                start: 0, end: 3
-            }),
-            frameRate: 10,
-            repeat: -1
-        })
-
-        this.anims.create({
-            key: 'turnmol',
-            frames: [ { key: 'mol', frame: 7 } ],
-            frameRate: 20
-        })
-
-        this.anims.create({
-            key: 'rightmol',
-            frames: this.anims.generateFrameNumbers('mol', { start: 5, end: 8 }),
-            frameRate: 10,
-            repeat: -1
-        });
         
-
         this.physics.add.collider(this.mole, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
-     
-
-        this.cursors = this.input.keyboard.createCursorKeys()
 
         this.suitcase = this.physics.add.group({
             key: 'suitcase',
@@ -161,33 +111,6 @@ export default class WurmVsMole extends Phaser.Scene {
     
 
     update() {
-        
-        //Player Controls
-        if(!this.cursors)
-        {
-             return
-        }
- 
-        if(this.cursors?.left?.isDown)
-        {
-            this.player?.setVelocityX(-260)
-            this.player?.anims.play('left',true)
-        } 
-        else if(this.cursors?.right?.isDown)
-        {
-            this.player?.setVelocityX(260)
-            this.player?.anims.play('right',true)
-        } else 
-        {
-         this.player?.setVelocityX(0)
-         this.player?.anims.play('turn')
-        }
- 
-        if (this.cursors.up?.isDown && this.player?.body.touching.down) 
-        {
-             this.player.setVelocityY(-360)
-        }
-        
 
         if(this.moleX > 1200 ){
             this.mole?.setVelocityX(-100)
