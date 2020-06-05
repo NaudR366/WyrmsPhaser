@@ -4,7 +4,7 @@ import Worm from '~/players/worm'
 export default class WurmLevel extends Phaser.Scene {
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
-    private player? : Phaser.Physics.Arcade.Sprite
+    private player? : Worm
     // private suitcase?: Phaser.Physics.Arcade.Group
 
     // private score = 0

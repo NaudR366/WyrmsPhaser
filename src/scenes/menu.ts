@@ -8,7 +8,7 @@ export default class Menu extends Phaser.Scene
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
     private player? : Phaser.Physics.Arcade.Sprite
-    private mole?: Phaser.Physics.Arcade.Sprite
+    // private mole?: Phaser.Physics.Arcade.Sprite
     private play?: Phaser.Physics.Arcade.StaticGroup
     private levelSelect?: Phaser.Physics.Arcade.StaticGroup
     private exit?: Phaser.Physics.Arcade.StaticGroup

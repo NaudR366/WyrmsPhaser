@@ -3,6 +3,11 @@ import Phaser from 'phaser'
 export default class Worm extends Phaser.Physics.Arcade.Sprite {
 
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
+    private hp: number = 3
+
+     public getHp() {
+        return this.hp
+    }
 
     constructor(scene, x : number, y: number, texture = 'worm') {
         super(scene, x, y, texture)
@@ -53,6 +58,16 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
              this.scene.sound.play('playerJump', {
                  volume: 0.1
              })
+        }
+    }
+
+    handleHit() {
+        if(this.hp == 0) {
+            console.log("Game over")
+            return this.hp
+        } else {
+            this.hp -= 1
+            return this.hp
         }
     }
 }

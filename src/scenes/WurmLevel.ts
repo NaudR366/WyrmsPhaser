@@ -5,7 +5,7 @@ export default class WurmLevel extends Phaser.Scene {
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
     private lava?: Phaser.Physics.Arcade.StaticGroup
-    private player? : Phaser.Physics.Arcade.Sprite
+    private player? : Worm
     // private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private suitcase?: Phaser.Physics.Arcade.Group
 
@@ -58,7 +58,7 @@ export default class WurmLevel extends Phaser.Scene {
         this.player = new Worm(this, 0, this.heightBounds - 200)
 
         this.physics.add.collider(this.player, this.platforms)
-        this.physics.add.collider(this.player, this.lava)
+        this.physics.add.collider(this.player, this.lava, this.handleLava, undefined, this)
 
         //create suitcase
         this.suitcase = this.physics.add.group({
@@ -104,12 +104,21 @@ export default class WurmLevel extends Phaser.Scene {
         //go to next level
         setTimeout(() => {
             this.scene.start('mole-world')
-        }, 3000);
+        }, 2000);
 
     }
 
-    update() {
+    handleLava() {
+            this.player?.handleHit()
+    }
 
+    update() {
+        //update player life
+        let hp = this.player?.getHp()
+        
+        if(hp == 0) {
+            this.player?.destroy()
+        }
     }
 
 }
