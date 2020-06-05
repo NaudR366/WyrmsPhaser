@@ -1,5 +1,6 @@
 import Phaser, { Loader } from 'phaser'
 import Worm from '~/players/worm'
+import Mole from '~/enemies/mole'
 
 export default class WurmVsMole extends Phaser.Scene {
 
@@ -47,9 +48,8 @@ export default class WurmVsMole extends Phaser.Scene {
         this.moleX = 1000
         this.moleY = 450
 
-        this.mole = this.physics.add.sprite(this.moleX, this.moleY, 'mol')
-        this.mole.setBounce(0.1)
-        this.mole.setCollideWorldBounds(true)
+        //create mole
+        this.mole = new Mole(this, this.moleX, this.moleY)
         
         this.physics.add.collider(this.mole, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
