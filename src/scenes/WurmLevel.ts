@@ -72,7 +72,7 @@ export default class WurmLevel extends Phaser.Scene {
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
-        this.cameras.main.setZoom(1.5)
+        this.cameras.main.setZoom(1.8)
         
 
         //create score
@@ -95,11 +95,12 @@ export default class WurmLevel extends Phaser.Scene {
         this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
             fontSize: '60px',
             fill: '#fff',
-                })
+                }).setScrollFactor(0)
 
             //pause animations
-            this.physics.pause();
+            this.physics.pause()
             this.anims.pauseAll()
+            this.sound.mute = true
 
         //go to next level
         setTimeout(() => {
@@ -109,7 +110,7 @@ export default class WurmLevel extends Phaser.Scene {
     }
 
     handleLava() {
-            this.player?.handleHit()
+            this.player?.handleHit() 
     }
 
     update() {
@@ -118,6 +119,8 @@ export default class WurmLevel extends Phaser.Scene {
         
         if(hp == 0) {
             this.player?.destroy()
+            this.sound.stopAll()
+            this.scene.start('death')
         }
     }
 

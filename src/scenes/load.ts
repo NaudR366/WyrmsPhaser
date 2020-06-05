@@ -45,6 +45,7 @@ export default class Load extends Phaser.Scene
 
         //load sounds
         this.load.audio('menuMusic', 'assets/backgroundsounds/menuMusic.mp3')
+        this.load.audio('deathMusic', 'assets/backgroundsounds/deathMusic.mp3')
         this.load.audio('playerJump', 'assets/playersounds/jump.wav')
 
 

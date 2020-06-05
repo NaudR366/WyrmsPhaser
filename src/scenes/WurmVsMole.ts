@@ -5,10 +5,10 @@ import Mole from '~/enemies/mole'
 export default class WurmVsMole extends Phaser.Scene {
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
-    private player? : Phaser.Physics.Arcade.Sprite
+    private player? : Worm
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private suitcase?: Phaser.Physics.Arcade.Group
-    private mole?: Phaser.Physics.Arcade.Sprite
+    private mole?: Mole
     private moleX?
     private moleY?
     private fadeCheck = true
@@ -27,6 +27,9 @@ export default class WurmVsMole extends Phaser.Scene {
 
         //restart animations
         this.anims.resumeAll()
+
+        //unmute sound
+        this.sound.mute = false
 
         this.platforms = this.physics.add.staticGroup()
         const ground = this.platforms.create(780, 690, 'grassPlatform') as Phaser.Physics.Arcade.Sprite 

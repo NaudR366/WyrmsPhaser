@@ -7,6 +7,7 @@ import WurmLevel from './scenes/WurmLevel'
 import Menu from './scenes/menu'
 import Levels from './scenes/levelSelector'
 import Ice from './scenes/iceWorld'
+import Death from './scenes/deathscene'
 
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -33,7 +34,7 @@ const config: Phaser.Types.Core.GameConfig = {
 	render: {
 		pixelArt: true,
 	},
-	scene: [Load, Menu, Levels, WurmLevel, WurmVsMole, AalLevel, Ice]
+	scene: [Load, Menu, Levels, WurmLevel, WurmVsMole, AalLevel, Ice, Death]
 }
 
 export default new Phaser.Game(config)

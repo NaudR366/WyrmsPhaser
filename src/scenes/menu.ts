@@ -7,7 +7,7 @@ export default class Menu extends Phaser.Scene
 
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
-    private player? : Phaser.Physics.Arcade.Sprite
+    private player? : Worm
     // private mole?: Phaser.Physics.Arcade.Sprite
     private play?: Phaser.Physics.Arcade.StaticGroup
     private levelSelect?: Phaser.Physics.Arcade.StaticGroup
@@ -60,12 +60,12 @@ export default class Menu extends Phaser.Scene
         this.player = new Worm(this, 0, this.heigthBounds - 100)
 
         //create controls text
-        this.add.text(10,this.heigthBounds - 270, "Controls", {
+        this.add.text(10,this.heigthBounds - 300, "Controls", {
             fontSize: '30px',
             fill: '#fff',
                 })
 
-        this.add.text(10,this.heigthBounds - 240, "To move use the arrow keys", {
+        this.add.text(10,this.heigthBounds - 270, "To move use the arrow keys", {
             fontSize: '25px',
             fill: '#fff',
                 })
@@ -79,7 +79,7 @@ export default class Menu extends Phaser.Scene
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heigthBounds, false);
         this.cameras.main.startFollow(this.player, true)
-        this.cameras.main.setZoom(1.5)
+        this.cameras.main.setZoom(1.8)
         
     }
 
@@ -92,6 +92,8 @@ export default class Menu extends Phaser.Scene
 
     private handleSelect()
     {
+        this.scene.stop()
+        this.sound.stopAll()
         this.scene.start('levels')
     }
 

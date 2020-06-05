@@ -27,7 +27,7 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
     }
 
     create() {
-        
+
     }
 
     update() {
@@ -64,6 +64,7 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
     handleHit() {
         if(this.hp == 0) {
             console.log("Game over")
+            // this.destroy()
             return this.hp
         } else {
             this.hp -= 1
