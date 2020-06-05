@@ -41,7 +41,7 @@ export default class WurmLevel extends Phaser.Scene {
 
         //create platforms
         this.platforms = this.physics.add.staticGroup()
-        const ground = this.platforms.create(50, this.heightBounds, 'stoneGround') as Phaser.Physics.Arcade.Sprite // spawn ground 
+        const ground = this.platforms.create(50, this.heightBounds, 'stoneground5') as Phaser.Physics.Arcade.Sprite // spawn ground 
 
         ground
         .setScale(1)

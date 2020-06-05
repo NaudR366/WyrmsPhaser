@@ -337,7 +337,7 @@ export default class WurmLevel extends Phaser.Scene {
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
-        this.cameras.main.setZoom(1.5)
+        this.cameras.main.setZoom(1.2)
 
     }
 
