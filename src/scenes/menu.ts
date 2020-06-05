@@ -9,6 +9,7 @@ export default class Menu extends Phaser.Scene
     private player? : Phaser.Physics.Arcade.Sprite
     private play?: Phaser.Physics.Arcade.StaticGroup
     private levelSelect?: Phaser.Physics.Arcade.StaticGroup
+    private exit?: Phaser.Physics.Arcade.StaticGroup
     private score = 0
 
     private widthBounds = 1400
@@ -50,6 +51,8 @@ export default class Menu extends Phaser.Scene
         this.levelSelect.create(this.widthBounds / 2, this.heigthBounds - 150, 'levels')
 
         //create exit button
+        this.exit = this.physics.add.staticGroup()
+        this.exit.create(this.widthBounds / 2 + 200, this.heigthBounds - 150, 'exit')
 
         //create player
         this.player = new Worm(this, 0, this.heigthBounds - 100)
@@ -69,6 +72,7 @@ export default class Menu extends Phaser.Scene
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.player, this.play, this.handlePlay, undefined, this)
         this.physics.add.collider(this.player, this.levelSelect, this.handleSelect, undefined, this)
+        this.physics.add.collider(this.player, this.exit, this.handleExit, undefined, this)
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heigthBounds, false);
@@ -87,6 +91,10 @@ export default class Menu extends Phaser.Scene
     private handleSelect()
     {
         this.scene.start('levels')
+    }
+
+    private handleExit() {
+        window.location.href = 'https://hr-cmgt.github.io/arcade-server/'
     }
 
     update()
