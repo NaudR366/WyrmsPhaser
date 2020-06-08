@@ -43,6 +43,8 @@ export default class Load extends Phaser.Scene
 
         //load misc
         this.load.image('lava', 'assets/misc/lavaground.png')
+        this.load.image('heart', 'assets/healthbar/heart.png')
+        this.load.image('heart', 'assets/healthbar/death.png')
 
         //load sounds
         this.load.audio('menuMusic', 'assets/backgroundsounds/menuMusic.mp3')
