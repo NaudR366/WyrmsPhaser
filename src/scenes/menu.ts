@@ -38,11 +38,13 @@ export default class Menu extends Phaser.Scene
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
-        this.platforms.create(0,this.heigthBounds, 'grassPlatform')
-        this.platforms.create(800,this.heigthBounds, 'grassPlatform')
+        this.platforms.create(100,this.heigthBounds - 10, 'stoneground')
+        this.platforms.create(800,this.heigthBounds, 'stoneground')
         this.platforms.create(400,this.heigthBounds, 'grassPlatform')
         this.platforms.create(1200,this.heigthBounds, 'grassPlatform')
         this.platforms.create(1400,this.heigthBounds, 'grassPlatform')
+
+        
 
         //create play button
         this.play = this.physics.add.staticGroup()

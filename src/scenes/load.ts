@@ -14,6 +14,7 @@ export default class Load extends Phaser.Scene
         this.load.image('cavebg', 'assets/backgrounds/background.png')
         this.load.image('underwaterBackground', 'assets/backgrounds/bg_aal.png');
 
+
         //load menu buttons
         this.load.image('start', 'assets/menubuttons/menustart.png')
         this.load.image('levels', 'assets/menubuttons/levelselect.png')
@@ -47,6 +48,11 @@ export default class Load extends Phaser.Scene
         this.load.audio('menuMusic', 'assets/backgroundsounds/menuMusic.mp3')
         this.load.audio('deathMusic', 'assets/backgroundsounds/deathMusic.mp3')
         this.load.audio('playerJump', 'assets/playersounds/jump.wav')
+
+        //Cave 
+        this.load.image('cave', 'assets/backgrounds/cave.png')
+        this.load.image('stoneground', 'assets/grassplatforms/stoneground.png')
+        this.load.image('stonegroundsmall', 'assets/grassplatforms/stonegroundsmall.png')
 
 
         //create loading bar

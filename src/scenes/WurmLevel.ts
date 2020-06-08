@@ -13,8 +13,8 @@ export default class WurmLevel extends Phaser.Scene {
     private scoreText?: Phaser.GameObjects.Text
     private levelCompleteText?: Phaser.GameObjects.Text
 
-    private widthBounds = 1600
-    private heightBounds = 600
+    private widthBounds = 5000
+    private heightBounds = 2500
 
     constructor()
 	{
