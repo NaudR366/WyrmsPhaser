@@ -6,6 +6,8 @@ export default class Death extends Phaser.Scene
     private widthBounds = 1400
     private heigthBounds = 600
 
+    private spaceBar
+
 	constructor()
 	{
         super('death')
@@ -41,19 +43,24 @@ export default class Death extends Phaser.Scene
         //create camera
         this.cameras.main.setBounds(0, 0, this.game.renderer.width, this.game.renderer.height, true);
 
-
-        
+        //create key
+        this.spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+            
+    
     }
 
-    // private handlePlay()
-    // {   
-    //     this.scene.stop()
-    //     this.sound.stopAll()
-    //     this.scene.start('menu')
-    // }
+    private handlePlay()
+    {   this.scene.stop()
+        this.sound.stopAll()
+        this.scene.start('load')
+    }
 
     update()
     {
-        
+        if (Phaser.Input.Keyboard.JustDown(this.spaceBar))
+        {
+            console.log("spacebar pressed")
+            this.handlePlay()
+        } 
     }
 }

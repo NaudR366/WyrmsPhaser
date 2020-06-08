@@ -56,6 +56,9 @@ export default class Load extends Phaser.Scene
         this.load.image('stoneground', 'assets/grassplatforms/stoneground.png')
         this.load.image('stonegroundsmall', 'assets/grassplatforms/stonegroundsmall.png')
 
+        //lava
+        this.load.image('lavabg', 'assets/backgrounds/lavabg.png')
+
 
         //create loading bar
         let loadingBar = this.add.graphics({

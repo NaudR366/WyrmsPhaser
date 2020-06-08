@@ -47,12 +47,12 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
     
         if(this.cursors?.left?.isDown)
         {
-            this.setVelocityX(-260)
+            this.setVelocityX(-230)
             this.anims.play('left',true)
         } 
         else if(this.cursors?.right?.isDown)
         {
-            this.setVelocityX(260)
+            this.setVelocityX(230)
             this.anims.play('right',true)
         } else 
         {
@@ -62,7 +62,7 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
     
         if (this.cursors.up?.isDown && this.body.touching.down) 
         {
-             this.setVelocityY(-360)
+             this.setVelocityY(-330)
              this.scene.sound.play('playerJump', {
                  volume: 0.1
              })

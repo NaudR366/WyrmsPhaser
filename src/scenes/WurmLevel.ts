@@ -9,12 +9,12 @@ export default class WurmLevel extends Phaser.Scene {
     // private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private suitcase?: Phaser.Physics.Arcade.Group
 
-    private score = 0
-    private scoreText?: Phaser.GameObjects.Text
+    // private score = 0
+    // private scoreText?: Phaser.GameObjects.Text
     private levelCompleteText?: Phaser.GameObjects.Text
 
-    private widthBounds = 5000
-    private heightBounds = 2500
+    private widthBounds = 1500
+    private heightBounds = 750
 
     constructor()
 	{
@@ -27,32 +27,102 @@ export default class WurmLevel extends Phaser.Scene {
         //set world bounderies
         this.physics.world.setBounds(0, 0, this.widthBounds, this.heightBounds)
 
-        //set background
-        this.add.image(0, 0, "cavebg").setDisplaySize(this.widthBounds, this.heightBounds).setOrigin(0)
-
         //set background sound
 
-        //add lava
+        // //add lava
         this.lava = this.physics.add.staticGroup()
-        this.lava.create(0, this.heightBounds, 'lava')
-        this.lava.create(200, this.heightBounds, 'lava')
-        this.lava.create(700, this.heightBounds, 'lava')
-        this.lava.create(1400, this.heightBounds, 'lava')
 
-        //create platforms
+        // //create platforms
         this.platforms = this.physics.add.staticGroup()
-        const ground = this.platforms.create(50, this.heightBounds, 'stoneground5') as Phaser.Physics.Arcade.Sprite // spawn ground 
 
-        ground
-        .setScale(1)
-        .refreshBody()
-        
-        this.platforms.create(400,this.heightBounds - 100, 'stoneground5') //1
-        this.platforms.create(700,this.heightBounds - 200, 'stoneground5') // 2
-        this.platforms.create(820,this.heightBounds - 200, 'stoneground5')
-        this.platforms.create(820,this.heightBounds - 330, 'stoneground5')
-        this.platforms.create(1200,this.heightBounds - 200, 'stoneground5')
-        this.platforms.create(1320,this.heightBounds - 200, 'stoneground5')
+        this.add.image(0, 0, "lavabg").setOrigin(0, 0);
+		
+		// stoneground
+		this.platforms.create(67.1582665740762, 677.285413781711, "stoneground").visible = false
+		
+		// stoneground_1
+		this.platforms.create(158.06479093273256, 677.5800701255883, "stoneground").visible = false
+		
+		// stoneground_1_1
+		this.platforms.create(157.59493752464041, 708.9313181356833, "stoneground").visible = false
+		
+		// stoneground_1_1_1
+		this.platforms.create(157.0183694466333, 737.6964128694597, "stoneground").visible = false
+		
+		// stoneground_1_1_1_1
+		this.platforms.create(532.8529448881952, 694.1148715764208, "stoneground").visible = false
+		
+		// stoneground_1_1_1_1_1
+		this.platforms.create(597.9671131707776, 666.9839463643647, "stoneground").visible = false
+		
+		// stoneground_1_1_1_1_2
+		this.platforms.create(532.8529438152912, 725.99365234375, "stoneground").visible = false
+		
+		// stonegroundsmall
+		this.platforms.create(167.53928234391134, 662.2899492483393, "stonegroundsmall").visible = false
+		
+		// stonegroundsmall_1
+		this.platforms.create(201.45754802771182, 661.9969130956325, "stonegroundsmall").visible = false
+		
+		// stonegroundsmall_2
+		this.platforms.create(660.4637287753798, 649.769010348779, "stonegroundsmall").visible = false
+		
+		// stonegroundsmall_2_1
+		this.platforms.create(686.482979155465, 650.1240559938263, "stonegroundsmall").visible = false
+		
+		// stoneground_1_1_1_1_3
+		this.platforms.create(637.3199234252189, 696.3607249180396, "stoneground").visible = false
+		
+		// stoneground_1_1_1_1_3_1
+		this.platforms.create(637.3199385323849, 727.3683831970174, "stoneground").visible = false
+		
+		// stonegroundsmall_2_1_1
+		this.platforms.create(685.3079402247866, 674.2124065281265, "stonegroundsmall").visible = false
+		
+		// stoneground_2
+		this.platforms.create(1203.9968613898766, 695.0586389052869, "stoneground").visible = false
+		
+		// stoneground_2_1
+		this.platforms.create(1203.5193452239018, 725.4039306640625, "stoneground").visible = false
+		
+		// stoneground_2_2
+		this.platforms.create(1267.928460071486, 668.3273855632193, "stoneground").visible = false
+		
+		// stoneground_2_2_1
+		this.platforms.create(1434.4005273831601, 678.099900737872, "stoneground").visible = false
+		
+		// stonegroundsmall_3
+		this.platforms.create(1329.6197999503838, 649.9298050756648, "stonegroundsmall").visible = false
+		
+		// stonegroundsmall_3_1
+		this.platforms.create(1354.0794853534335, 650.8905170734032, "stonegroundsmall").visible = false
+		
+		// stonegroundsmall_4
+		this.platforms.create(882.3143142705977, 633.6366966244668, "stonegroundsmall").visible = false
+		
+		// stonegroundsmall_4_1
+		this.platforms.create(917.3978623846077, 633.41796875, "stonegroundsmall").visible = false
+		
+		// stonegroundsmall_4_1_1
+		this.platforms.create(951.900604236484, 634.4710472104043, "stonegroundsmall").visible = false
+		
+		// lava6
+		this.lava.create(291.39278400238607, 713.2518720002512, "stoneground").visible = false
+		
+		// lava5
+		this.lava.create(401.8497265735711, 714.0978598282505, "stoneground").visible = false
+		
+		// lava4
+		this.lava.create(771.2364462133701, 711.5642331476189, "stoneground").visible = false
+		
+		// lava3
+		this.lava.create(905.2825124320989, 712.4586124549442, "stoneground").visible = false
+		
+		// lava2
+		this.lava.create(1040.0063341248424, 712.5028441532422, "stoneground").visible = false
+		
+		// lava
+		this.lava.create(1175.5370709192957, 713.1575540300889, "stoneground").visible = false
 
         //create player
         this.player = new Worm(this, 0, this.heightBounds - 200)
@@ -63,7 +133,7 @@ export default class WurmLevel extends Phaser.Scene {
         //create suitcase
         this.suitcase = this.physics.add.group({
             key: 'suitcase',
-            setXY: {x: 1300, y: this.heightBounds - 400,}
+            setXY: {x: 1450, y: this.heightBounds - 400,}
         })
 
         this.physics.add.collider(this.suitcase, this.platforms)
@@ -72,14 +142,14 @@ export default class WurmLevel extends Phaser.Scene {
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
-        this.cameras.main.setZoom(1.8)
+        this.cameras.main.setZoom(1.5)
         
 
         //create score
-        this.scoreText = this.add.text(16, 16, 'Score: 0', {
-            fontSize: '32px',
-            fill: '#fff',
-        })
+        // this.scoreText = this.add.text(16, 16, 'Score: 0', {
+        //     fontSize: '32px',
+        //     fill: '#fff',
+        // })
 
     }
 

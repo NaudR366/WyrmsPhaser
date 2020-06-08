@@ -134,7 +134,7 @@ export default class WurmVsMole extends Phaser.Scene {
 		this.platforms.create(1419.75891669735, 678.3147584438677, "stoneground").visible = false;
 
         //create player
-        this.player = new Worm(this, 0, 100)
+        this.player = new Worm(this, 0, this.heightBounds - 200)
 
         this.moleX = 1000
         this.moleY = 450
@@ -147,7 +147,7 @@ export default class WurmVsMole extends Phaser.Scene {
 
         this.suitcase = this.physics.add.group({
             key: 'suitcase',
-            setXY: { x: 1000, y: 200, }
+            setXY: { x: 1450, y: this.heightBounds - 200, }
         })
 
         this.physics.add.collider(this.suitcase, this.platforms)
