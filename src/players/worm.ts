@@ -9,6 +9,14 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
         return this.hp
     }
 
+    public getX() {
+        return this.x
+    }
+
+    public getY() {
+        return this.y
+    }
+
     constructor(scene, x : number, y: number, texture = 'worm') {
         super(scene, x, y, texture)
 
@@ -59,6 +67,8 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
                  volume: 0.1
              })
         }
+
+        
     }
 
     handleHit() {
