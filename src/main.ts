@@ -10,7 +10,7 @@ import Ice from './scenes/iceWorld'
 import Death from './scenes/deathscene'
 
 
-const config: Phaser.Types.Core.GameConfig = {
+let config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
 	scale: {
 		mode: Phaser.Scale.FIT,
@@ -37,4 +37,14 @@ const config: Phaser.Types.Core.GameConfig = {
 	scene: [Load, Menu, Levels, WurmLevel, WurmVsMole, AalLevel, Ice, Death]
 }
 
-export default new Phaser.Game(config)
+// export default new Phaser.Game(config)
+export class Game extends Phaser.Game {
+	constructor(config: Phaser.Types.Core.GameConfig) {
+	  super(config);
+	}
+  }
+
+  window.onload = () => {
+	var game = new Game(config);
+  };
+  

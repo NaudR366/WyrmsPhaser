@@ -1,4 +1,4 @@
-import Phaser from 'phaser'
+import Phaser, { Game } from 'phaser'
 
 export default class Death extends Phaser.Scene
 {
@@ -50,9 +50,12 @@ export default class Death extends Phaser.Scene
     }
 
     private handlePlay()
-    {   this.scene.stop()
-        this.sound.stopAll()
-        this.scene.start('load')
+    {   
+        //destroy old game
+        this.sys.game.destroy(true, true)
+
+        //start new game
+        location.reload()
     }
 
     update()

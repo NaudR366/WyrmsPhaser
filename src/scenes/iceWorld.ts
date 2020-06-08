@@ -1,11 +1,12 @@
 import Phaser from 'phaser'
 import Worm from '~/players/worm'
 
-export default class WurmLevel extends Phaser.Scene {
+export default class IceWorld extends Phaser.Scene {
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
     private player? : Worm
-    // private suitcase?: Phaser.Physics.Arcade.Group
+	private suitcase?: Phaser.Physics.Arcade.Group
+	private levelCompleteText?: Phaser.GameObjects.Text
 
     // private score = 0
     // private scoreText?: Phaser.GameObjects.Text
@@ -335,14 +336,49 @@ export default class WurmLevel extends Phaser.Scene {
         //create player
         this.player = new Worm(this, 0, this.heightBounds - 200)
 
-        this.physics.add.collider(this.player, this.platforms)
+		this.physics.add.collider(this.player, this.platforms)
+		
+		//create suitcase
+		this.suitcase = this.physics.add.group({
+			key: 'suitcase',
+			setXY: {x: 4928, y: this.heightBounds - 600}
+		})
+		
+		this.physics.add.collider(this.suitcase, this.platforms)
+		this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
         this.cameras.main.setZoom(1.2)
 
-    }
+	}
+	
+	    //function for collecting suitcase
+		private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject)
+		{
+			const suitcase = s as Phaser.Physics.Arcade.Image
+			suitcase.disableBody(true, true)
+			// this.score += 100
+			// this.scoreText?.setText(`Score: ${this.score}`)
+	
+			//create Level completed text
+			this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
+				fontSize: '60px',
+				fill: '#fff',
+					}).setScrollFactor(0)
+	
+				//pause animations
+				this.physics.pause()
+				this.anims.pauseAll()
+				this.sound.mute = true
+	
+			//go to next level
+			setTimeout(() => {
+				this.scene.start('menu')
+			}, 2000);
+	
+		}
 
     update() {
 

@@ -158,8 +158,8 @@ export default class WurmLevel extends Phaser.Scene {
     {
         const suitcase = s as Phaser.Physics.Arcade.Image
         suitcase.disableBody(true, true)
-        this.score += 100
-        this.scoreText?.setText(`Score: ${this.score}`)
+        // this.score += 100
+        // this.scoreText?.setText(`Score: ${this.score}`)
 
         //create Level completed text
         this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
