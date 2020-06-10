@@ -5,6 +5,7 @@ import Mole from '~/enemies/mole'
 export default class WurmVsMole extends Phaser.Scene {
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
+    private damageBlock?: Phaser.Physics.Arcade.StaticGroup
     private player?: Worm
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private suitcase?: Phaser.Physics.Arcade.Group
@@ -14,8 +15,8 @@ export default class WurmVsMole extends Phaser.Scene {
     private moleLives = 1
     private fadeCheck = false
 
-    private score = 0
-    private scoreText?: Phaser.GameObjects.Text
+    // private score = 0
+    // private scoreText?: Phaser.GameObjects.Text
     private levelCompleteText?: Phaser.GameObjects.Text
 
     private widthBounds = 1500
@@ -39,6 +40,7 @@ export default class WurmVsMole extends Phaser.Scene {
         this.sound.mute = false
 
         this.platforms = this.physics.add.staticGroup()
+        this.damageBlock = this.physics.add.staticGroup()
 
 
         // cristal_Level
@@ -132,16 +134,28 @@ export default class WurmVsMole extends Phaser.Scene {
 		this.platforms.create(1284.7672498483848, 646.9002497306128, "stoneground").visible = false;
 		
 		// stoneground_4
-		this.platforms.create(1419.75891669735, 678.3147584438677, "stoneground").visible = false;
+        this.platforms.create(1419.75891669735, 678.3147584438677, "stoneground").visible = false;
+        
+        // stonegroundsmall
+		this.damageBlock.create(585.470458984375, this.heightBounds, "stonegroundsmall").visible = false;
+		
+		// stonegroundsmall_1
+		this.damageBlock.create(620.7197265625, this.heightBounds, "stonegroundsmall").visible = false;
+		
+		// stonegroundsmall_1_1
+		this.damageBlock.create(774.979249340588, this.heightBounds, "stonegroundsmall").visible = false;
+		
+		// stonegroundsmall_1_1_1
+		this.damageBlock.create(937.9589549816857, this.heightBounds, "stonegroundsmall").visible = false;
 
         //create player
         this.player = new Worm(this, 0, this.heightBounds - 200)
 
-        this.moleX = 1000
+        this.moleX = 1100
         this.moleY = 450
 
         //create mole
-        this.mole = new Mole(this, this.moleX, this.moleY)
+        this.mole = new Mole(this, this.moleX, this.moleY, 1300)
 
         this.physics.add.collider(this.mole, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
@@ -153,6 +167,7 @@ export default class WurmVsMole extends Phaser.Scene {
 
         this.physics.add.collider(this.suitcase, this.platforms)
         this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
+        this.physics.add.collider(this.player, this.damageBlock, this.handleDamageBlock, undefined, this)
         this.physics.add.collider(this.player, this.mole, this.handleCollectMole, undefined, this)
 
         //create camera
@@ -161,18 +176,18 @@ export default class WurmVsMole extends Phaser.Scene {
         this.cameras.main.setZoom(1.5)
 
         //create score
-        this.scoreText = this.add.text(16, 16, 'Score: 0', {
-            fontSize: '32px',
-            fill: '#fff',
-        })
+        // this.scoreText = this.add.text(16, 16, 'Score: 0', {
+        //     fontSize: '32px',
+        //     fill: '#fff',
+        // })
 
     }
 
     private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject) {
         const suitcase = s as Phaser.Physics.Arcade.Image
         suitcase.disableBody(false, false)
-        this.score += 100
-        this.scoreText?.setText(`Score: ${this.score}`)
+        // this.score += 100
+        // this.scoreText?.setText(`Score: ${this.score}`)
         this.physics.pause();
         this.anims.pauseAll()
         //create Level completed text
@@ -190,11 +205,15 @@ export default class WurmVsMole extends Phaser.Scene {
     private handleCollectMole(player: Phaser.GameObjects.GameObject, m: Phaser.GameObjects.GameObject) {
         const mole = m as Phaser.Physics.Arcade.Sprite
         mole.disableBody(false, false)
-        this.score += 25
-        this.scoreText?.setText(`Score: ${this.score}`)
+        // this.score += 25
+        // this.scoreText?.setText(`Score: ${this.score}`)
         this.moleLives = this.moleLives - 1
 
 
+    }
+
+    handleDamageBlock() {
+        this.player?.handleHit() 
     }
 
 
@@ -205,14 +224,23 @@ export default class WurmVsMole extends Phaser.Scene {
             this.mole?.setActive(false).setVisible(false)
         }
 
-        if (this.moleX > 1200) {
-            this.mole?.setVelocityX(-100)
-            this.mole?.anims.play('leftmol', true)
+        // if (this.moleX > 1200) {
+        //     this.mole?.setVelocityX(-100)
+        //     this.mole?.anims.play('leftmol', true)
 
-        } else {
-            this.mole?.setVelocityX(100)
-            this.mole?.anims.play('rightmol', true)
-            this.moleX = this.moleX += 1
+        // } else {
+        //     this.mole?.setVelocityX(100)
+        //     this.mole?.anims.play('rightmol', true)
+        //     this.moleX = this.moleX += 1
+        // }
+
+        //update player life
+        let hp = this.player?.getHp()
+        
+        if(hp == 0) {
+            this.player?.destroy()
+            this.sound.stopAll()
+            this.scene.start('death')
         }
     }
 

@@ -22,7 +22,8 @@
 		"typescript": "^3.9.3"
 	},
 	"dependencies": {
-		"phaser": "^3.23.0"
+		"phaser": "^3.23.0",
+		"phaser3-weapon-plugin": "^2.0.1"
 	},
 	"parcelCleanPaths": [
 		"dist"

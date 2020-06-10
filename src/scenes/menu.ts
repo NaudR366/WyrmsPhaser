@@ -128,17 +128,17 @@ export default class Menu extends Phaser.Scene
         this.player = new Worm(this, 0, this.heigthBounds -250)
 
         //create controls text
-        this.add.text(10,this.heigthBounds - 300, "Controls", {
+        this.add.text(10,this.heigthBounds - 330, "Controls", {
             fontSize: '30px',
             fill: '#fff',
                 })
 
-        this.add.text(10,this.heigthBounds - 270, "use the arrow keys to move", {
+        this.add.text(10,this.heigthBounds - 300, "use the arrow keys to move", {
             fontSize: '25px',
             fill: '#fff',
                 })
 
-        this.add.text(10,this.heigthBounds - 240, "down arrow to go in stealth mode", {
+        this.add.text(10,this.heigthBounds - 270, "down arrow to go in stealth mode", {
             fontSize: '25px',
             fill: '#fff',
                 })
