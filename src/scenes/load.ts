@@ -35,7 +35,10 @@ export default class Load extends Phaser.Scene
         this.load.spritesheet('worm', 'assets/players/worm.png', { 
             frameWidth: 65, frameHeight: 60
         })
-        this.load.image('aal', 'assets/players/aal.png');
+
+        this.load.spritesheet('aal', 'assets/players/aal.png', { 
+            frameWidth: 64.7, frameHeight: 60
+        })
 
         //load enemys
         this.load.spritesheet('mol', 'assets/enemys/mole.png',{frameWidth: 65, frameHeight: 57})
@@ -127,6 +130,29 @@ export default class Load extends Phaser.Scene
             repeat: -1
         });
 
-        this.scene.start('menu')
+         //create aal animations
+         this.anims.create({
+            key: 'leftaal',
+            frames: this.anims.generateFrameNumbers('aal', {
+                start: 0, end: 3
+            }),
+            frameRate: 10,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: 'turnaal',
+            frames: [ { key: 'aal', frame: 4 } ],
+            frameRate: 20
+        })
+
+        this.anims.create({
+            key: 'rightaal',
+            frames: this.anims.generateFrameNumbers('aal', { start: 5, end: 9 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.scene.start('aal-world')
     }
 }
