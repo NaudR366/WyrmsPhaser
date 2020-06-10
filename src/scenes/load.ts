@@ -37,7 +37,7 @@ export default class Load extends Phaser.Scene
         })
 
         this.load.spritesheet('aal', 'assets/players/aal.png', { 
-            frameWidth: 64.7, frameHeight: 60
+            frameWidth: 64.46, frameHeight: 60
         })
 
         //load enemys
@@ -151,7 +151,7 @@ export default class Load extends Phaser.Scene
 
         this.anims.create({
             key: 'rightaal',
-            frames: this.anims.generateFrameNumbers('aal', { start: 5, end: 9 }),
+            frames: this.anims.generateFrameNumbers('aal', { start: 5, end: 8 }),
             frameRate: 10,
             repeat: -1
         });
