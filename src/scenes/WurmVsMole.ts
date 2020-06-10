@@ -180,7 +180,7 @@ export default class WurmVsMole extends Phaser.Scene {
 
         //create score
         this.scoreText = this.add.text(16, this.heightBounds - 100, `Health: ${this.player.getHp()}`, {
-            fontSize: '32px',
+            fontSize: '20px',
             fill: '#fff',
         })
 
@@ -224,6 +224,10 @@ export default class WurmVsMole extends Phaser.Scene {
     }
 
     update() {
+
+
+        this.scoreText?.setX(this.player?.x)
+        this.scoreText?.setY(this.player?.y)
 
         if(this.player?.getHp) {
             this.scoreText?.setText( `Health: ${this.player?.getHp()}`)
