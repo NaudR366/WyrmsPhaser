@@ -151,11 +151,11 @@ export default class WurmVsMole extends Phaser.Scene {
         //create player
         this.player = new Worm(this, 0, this.heightBounds - 200)
 
-        this.moleX = 1000
+        this.moleX = 1100
         this.moleY = 450
 
         //create mole
-        this.mole = new Mole(this, this.moleX, this.moleY)
+        this.mole = new Mole(this, this.moleX, this.moleY, 1300)
 
         this.physics.add.collider(this.mole, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
@@ -224,15 +224,15 @@ export default class WurmVsMole extends Phaser.Scene {
             this.mole?.setActive(false).setVisible(false)
         }
 
-        if (this.moleX > 1200) {
-            this.mole?.setVelocityX(-100)
-            this.mole?.anims.play('leftmol', true)
+        // if (this.moleX > 1200) {
+        //     this.mole?.setVelocityX(-100)
+        //     this.mole?.anims.play('leftmol', true)
 
-        } else {
-            this.mole?.setVelocityX(100)
-            this.mole?.anims.play('rightmol', true)
-            this.moleX = this.moleX += 1
-        }
+        // } else {
+        //     this.mole?.setVelocityX(100)
+        //     this.mole?.anims.play('rightmol', true)
+        //     this.moleX = this.moleX += 1
+        // }
 
         //update player life
         let hp = this.player?.getHp()
