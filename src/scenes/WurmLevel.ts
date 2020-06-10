@@ -122,7 +122,9 @@ export default class WurmLevel extends Phaser.Scene {
 		this.lava.create(1040.0063341248424, 712.5028441532422, "stoneground").visible = false
 		
 		// lava
-		this.lava.create(1175.5370709192957, 713.1575540300889, "stoneground").visible = false
+        this.lava.create(1175.5370709192957, 713.1575540300889, "stoneground").visible = false
+    
+        //this.plugins.installScenePlugin('WeaponPlugin',WeaponPlugin.WeaponPlugin,'weapons',this);
 
         //create player
         this.player = new Worm(this, 0, this.heightBounds - 200)
