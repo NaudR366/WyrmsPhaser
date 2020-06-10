@@ -13,9 +13,12 @@ export default class Menu extends Phaser.Scene
     private levelSelect?: Phaser.Physics.Arcade.StaticGroup
     private exit?: Phaser.Physics.Arcade.StaticGroup
     // private score = 0
+    private playb? 
+    private levels? 
+    private credits? 
 
-    private widthBounds = 1400
-    private heigthBounds = 600
+    private widthBounds = 1500
+    private heigthBounds = 750
 
 	constructor()
 	{
@@ -38,28 +41,91 @@ export default class Menu extends Phaser.Scene
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
-        this.platforms.create(100,this.heigthBounds, 'grassPlatform')
-        this.platforms.create(800,this.heigthBounds, 'grassPlatform')
-        this.platforms.create(400,this.heigthBounds, 'grassPlatform')
-        this.platforms.create(1200,this.heigthBounds, 'grassPlatform')
-        this.platforms.create(1400,this.heigthBounds, 'grassPlatform')
-
+        
+        // stonegroundsmall
+		this.platforms.create(17, 589.390739179897, "stonegroundsmall").visible = false;
+		this.platforms.create(26.6958023494819, 590.2070627603003, "stonegroundsmall").visible = false;
+		this.platforms.create(59.98490848210746, 608.6440863403545, "stonegroundsmall").visible = false;
+		this.platforms.create(73.81269397405082, 609.1562263801152, "stonegroundsmall").visible = false;
+		this.platforms.create(304.4878914518224, 575.6461257633435, "stonegroundsmall").visible = false;
+		this.platforms.create(326.1270959863266, 575.9998175634743, "stonegroundsmall").visible = false;
+		this.platforms.create(381.5030485175165, 585.0381095494772, "stoneground").visible = false;
+		this.platforms.create(137.37473875258988, 725.5206735477857, "stoneground").visible = false;
+		this.platforms.create(225.97813862155732, 757.222824938849, "stoneground").visible = false;
+		this.platforms.create(74.04435729980469, 642.2243041992188, "stonegroundsmall").visible = false;
+		this.platforms.create(76.44001007080078, 659.5590593079369, "stonegroundsmall").visible = false;
+		this.platforms.create(93.41734704135101, 678.8306347364897, "stonegroundsmall").visible = false;
+		this.platforms.create(305.45964240458414, 608.6113859831399, "stonegroundsmall").visible = false;
+		this.platforms.create(305.45963619703195, 642.2469242042893, "stonegroundsmall").visible = false;
+		this.platforms.create(306.26048709398367, 673.4799783366343, "stonegroundsmall").visible = false;
+		this.platforms.create(434.3157997039665, 615.2342930651805, "stonegroundsmall").visible = false;
+		this.platforms.create(469.0508293001438, 645.41395245346, "stonegroundsmall").visible = false;
+		this.platforms.create(502.64704807609013, 646.5527637121224, "stonegroundsmall").visible = false;
+		this.platforms.create(501.5081783174523, 680.1489639942631, "stonegroundsmall").visible = false;
+		this.platforms.create(530.5765647640275, 701.5087290534539, "stonegroundsmall").visible = false;
+		this.platforms.create(562.586955039507, 702.0422493030538, "stonegroundsmall").visible = false;
+		this.platforms.create(574.3241047890181, 703.1092545515536, "stonegroundsmall").visible = false;
+		this.platforms.create(572.5709868255791, 737.2792427569264, "stonegroundsmall").visible = false;
+		this.platforms.create(644.2223153994955, 757.0993502549971, "stoneground").visible = false;
+		this.platforms.create(727.2434849405007, 758.0285055864935, "stonegroundsmall").visible = false;
+		this.platforms.create(714.6746829452258, 701.8908173688791, "stonegroundsmall").visible = false;
+		this.platforms.create(715.9451134280023, 668.2985635165994, "stonegroundsmall").visible = false;
+		this.platforms.create(713.2962634383898, 628.6946374831383, "stonegroundsmall").visible = false;
+		this.platforms.create(740.3602428027116, 599.9956410929057, "stonegroundsmall").visible = false;
+		this.platforms.create(743.175021335666, 583.8103840017044, "stonegroundsmall").visible = false;
+		this.platforms.create(782.6429994018025, 552.6513461722238, "stonegroundsmall").visible = false;
+		this.platforms.create(783.5217013482693, 521.0168009621096, "stonegroundsmall").visible = false;
+		this.platforms.create(782.6430053710938, 506.95700734147243, "stonegroundsmall").visible = false;
+		this.platforms.create(815.5956156536415, 507.8357408108534, "stonegroundsmall").visible = false;
+		this.platforms.create(849.8663572819169, 510.6547071871935, "stonegroundsmall").visible = false;
+		this.platforms.create(850.4802835928382, 527.5079514811358, "stonegroundsmall").visible = false;
+		this.platforms.create(850.4802777397977, 560.3156070909475, "stonegroundsmall").visible = false;
+		this.platforms.create(851.2438473857288, 594.2993744572788, "stonegroundsmall").visible = false;
+		this.platforms.create(862.2307679575262, 604.0434011485879, "stonegroundsmall").visible = false;
+		this.platforms.create(863.1709003109481, 636.9589454832362, "stonegroundsmall").visible = false;
+		this.platforms.create(849.1468164059594, 670.5166754864698, "stonegroundsmall").visible = false;
+		this.platforms.create(876.6941481765764, 690.5511011880429, "stonegroundsmall").visible = false;
+		this.platforms.create(904.2415031681369, 692.0536563749159, "stonegroundsmall").visible = false;
+		this.platforms.create(939.8026242849425, 720.6027600385123, "stonegroundsmall").visible = false;
+		this.platforms.create(972.8594452334044, 674.0226783356085, "stonegroundsmall").visible = false;
+		this.platforms.create(996.9007910159156, 675.0244399527886, "stonegroundsmall").visible = false;
+		this.platforms.create(1041.7714870666061, 686.8384134370917, "stonegroundsmall").visible = false;
+		this.platforms.create(1075.6272056073167, 684.1299471213, "stonegroundsmall").visible = false;
+		this.platforms.create(1114.8997689732666, 651.6285019194125, "stonegroundsmall").visible = false;
+		this.platforms.create(1116.9310195553041, 633.3464593595834, "stonegroundsmall").visible = false;
+		this.platforms.create(1152.1410120651667, 634.0235595703125, "stonegroundsmall").visible = false;
+		this.platforms.create(1179.9025622835125, 623.8668948367563, "stonegroundsmall").visible = false;
+		this.platforms.create(1184.3306658340039, 564.6973933559522, "stonegroundsmall").visible = false;
+		this.platforms.create(1185.996618356496, 592.0425462567896, "stonegroundsmall").visible = false;
+		this.platforms.create(1220.3851318359375, 569.3942260742188, "stonegroundsmall").visible = false;
+		this.platforms.create(1255.3719514390666, 571.4767411767093, "stonegroundsmall").visible = false;
+		this.platforms.create(1292.407715884439, 560.9363806752391, "stonegroundsmall").visible = false;
+		this.platforms.create(1317.660155209311, 550.5982872935109, "stonegroundsmall").visible = false;
+		this.platforms.create(1313.9786676316294, 584.4624262795991, "stonegroundsmall").visible = false;
+		this.platforms.create(1312.56787109375, 617.6144253076324, "stonegroundsmall").visible = false;
+		this.platforms.create(1313.273277167858, 651.4718875258402, "stonegroundsmall").visible = false;
+		this.platforms.create(1312.567915599714, 683.9185210666401, "stonegroundsmall").visible = false;
+		this.platforms.create(1345.7199975173746, 722.0081185946369, "stonegroundsmall").visible = false;
+		this.platforms.create(1380.9881446100403, 722.0080969838328, "stonegroundsmall").visible = false;
+		this.platforms.create(1411.3186282484965, 693.0882289809988, "stonegroundsmall").visible = false;
+		this.platforms.create(1430.3634353380075, 659.2308505712739, "stonegroundsmall").visible = false;
+		this.platforms.create(1429.6581203572061, 623.2573822536724, "stonegroundsmall").visible = false;
+		this.platforms.create(1471.2745567029276, 587.9892123876801, "stonegroundsmall").visible = false;
+		this.platforms.create(1469.158447265625, 577.4087969473704, "stonegroundsmall").visible = false;
         
 
-        //create play button
+        //Buttons blocks
         this.play = this.physics.add.staticGroup()
-        this.play.create(this.widthBounds / 2 - 200, this.heigthBounds - 150, 'start')
+        this.play.create(364.95447466338436, 430.90068202088753, 'stonegroundsmall').visible = false
 
-        //create level select button
         this.levelSelect = this.physics.add.staticGroup()
-        this.levelSelect.create(this.widthBounds / 2, this.heigthBounds - 150, 'levels')
+        this.levelSelect.create(805.5901755112031, 387.6385635845812, 'stonegroundsmall').visible = false
 
-        //create exit button
         this.exit = this.physics.add.staticGroup()
-        this.exit.create(this.widthBounds / 2 + 200, this.heigthBounds - 150, 'exit')
+        this.exit.create(1251.3335521876904, 448.1875305175781, "stonegroundsmall").visible = false;
 
         //create player
-        this.player = new Worm(this, 0, this.heigthBounds - 100)
+        this.player = new Worm(this, 0, this.heigthBounds -250)
 
         //create controls text
         this.add.text(10,this.heigthBounds - 300, "Controls", {
@@ -81,7 +147,7 @@ export default class Menu extends Phaser.Scene
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heigthBounds, false);
         this.cameras.main.startFollow(this.player, true)
-        this.cameras.main.setZoom(1.8)
+        this.cameras.main.setZoom(1.5)
         
     }
 

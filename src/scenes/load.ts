@@ -16,8 +16,9 @@ export default class Load extends Phaser.Scene
 
 
         //load menu buttons
-        this.load.image('start', 'assets/menubuttons/menustart.png')
-        this.load.image('levels', 'assets/menubuttons/levelselect.png')
+        this.load.image('start', 'assets/menubuttons/play.png')
+        this.load.image('levelsb', 'assets/menubuttons/levelsb.png')
+        this.load.image('credits', 'assets/menubuttons/credits.png')
 
         //load platforms
         this.load.image('grassPlatform', 'assets/grassplatforms/ground.png')
