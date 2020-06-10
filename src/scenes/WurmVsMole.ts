@@ -11,6 +11,7 @@ export default class WurmVsMole extends Phaser.Scene {
     private mole?: Mole
     private moleX?
     private moleY?
+    private moleLives = 1
     private fadeCheck = false
 
     private score = 0
@@ -152,7 +153,7 @@ export default class WurmVsMole extends Phaser.Scene {
 
         this.physics.add.collider(this.suitcase, this.platforms)
         this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
-        this.physics.add.overlap(this.player, this.mole, this.handleCollectMole, undefined, this)
+        this.physics.add.collider(this.player, this.mole, this.handleCollectMole, undefined, this)
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
@@ -164,8 +165,6 @@ export default class WurmVsMole extends Phaser.Scene {
             fontSize: '32px',
             fill: '#fff',
         })
-
-
 
     }
 
@@ -193,6 +192,7 @@ export default class WurmVsMole extends Phaser.Scene {
         mole.disableBody(false, false)
         this.score += 25
         this.scoreText?.setText(`Score: ${this.score}`)
+        this.moleLives = this.moleLives - 1
 
 
     }
@@ -201,13 +201,17 @@ export default class WurmVsMole extends Phaser.Scene {
 
     update() {
 
+        if(this.moleLives == 0){
+            this.mole?.setActive(false).setVisible(false)
+        }
+
         if (this.moleX > 1200) {
             this.mole?.setVelocityX(-100)
-            this.mole?.anims.play('leftmol', false)
+            this.mole?.anims.play('leftmol', true)
 
         } else {
             this.mole?.setVelocityX(100)
-            this.mole?.anims.play('rightmol', false)
+            this.mole?.anims.play('rightmol', true)
             this.moleX = this.moleX += 1
         }
     }

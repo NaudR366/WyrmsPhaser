@@ -35,7 +35,7 @@ export default class Menu extends Phaser.Scene
 
         //add music
         // this.sound.play("menuMusic", {
-        //     loop: true,
+        //     loop: false,
         //     volume: 0.5
         // })
 
@@ -95,12 +95,12 @@ export default class Menu extends Phaser.Scene
 		this.platforms.create(1116.9310195553041, 633.3464593595834, "stonegroundsmall").visible = false;
 		this.platforms.create(1152.1410120651667, 634.0235595703125, "stonegroundsmall").visible = false;
 		this.platforms.create(1179.9025622835125, 623.8668948367563, "stonegroundsmall").visible = false;
-		this.platforms.create(1184.3306658340039, 564.6973933559522, "stonegroundsmall").visible = false;
+		this.platforms.create(1184.3306658340039, 567.6973933559522, "stonegroundsmall").visible = false;
 		this.platforms.create(1185.996618356496, 592.0425462567896, "stonegroundsmall").visible = false;
 		this.platforms.create(1220.3851318359375, 569.3942260742188, "stonegroundsmall").visible = false;
 		this.platforms.create(1255.3719514390666, 571.4767411767093, "stonegroundsmall").visible = false;
-		this.platforms.create(1292.407715884439, 560.9363806752391, "stonegroundsmall").visible = false;
-		this.platforms.create(1317.660155209311, 550.5982872935109, "stonegroundsmall").visible = false;
+		this.platforms.create(1292.407715884439, 565.9363806752391, "stonegroundsmall").visible = false;
+		this.platforms.create(1317.660155209311, 565.5982872935109, "stonegroundsmall").visible = false;
 		this.platforms.create(1313.9786676316294, 584.4624262795991, "stonegroundsmall").visible = false;
 		this.platforms.create(1312.56787109375, 617.6144253076324, "stonegroundsmall").visible = false;
 		this.platforms.create(1313.273277167858, 651.4718875258402, "stonegroundsmall").visible = false;
@@ -146,7 +146,7 @@ export default class Menu extends Phaser.Scene
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heigthBounds, false);
-        this.cameras.main.startFollow(this.player, true)
+        this.cameras.main.startFollow(this.player, false)
         this.cameras.main.setZoom(1.5)
         
     }

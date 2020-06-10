@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 export default class Mole extends Phaser.Physics.Arcade.Sprite {
 
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
+    private mole?
 
     constructor(scene, x : number, y: number, texture = 'mol') {
         super(scene, x, y, texture)
@@ -23,6 +24,7 @@ export default class Mole extends Phaser.Physics.Arcade.Sprite {
         
     }
 
+
     update() {
         if(this.x > 700 ){
             this.setVelocityX(-100)
@@ -31,7 +33,9 @@ export default class Mole extends Phaser.Physics.Arcade.Sprite {
         } else if(this.x == 0) {
             this.setVelocityX(100)
             this.anims.play('rightmol', true)
-            this.x = this.x
+            this.x
+             = this.x
         }
+        
     }
 }
