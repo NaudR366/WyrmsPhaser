@@ -19,7 +19,7 @@ export default class Death extends Phaser.Scene
         this.physics.world.setBounds(0, 0, this.widthBounds, this.heigthBounds)
 
         //create background
-        this.add.image(0, 0, "blueCave").setDisplaySize(this.game.renderer.width, this.game.renderer.height).setOrigin(0)
+        this.add.image(0, 0, "sky").setDisplaySize(this.game.renderer.width, this.game.renderer.height).setOrigin(0)
 
         //add music
         this.sound.play("deathMusic", {

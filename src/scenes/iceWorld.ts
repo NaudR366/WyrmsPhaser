@@ -26,7 +26,7 @@ export default class IceWorld extends Phaser.Scene {
         this.physics.world.setBounds(0, 0, this.widthBounds, this.heightBounds)
 
         //set background
-		this.add.image(0, 0, "blueCave").setDisplaySize(this.widthBounds, this.heightBounds).setOrigin(0)
+		this.add.image(0, 0, "sky").setDisplaySize(this.widthBounds, this.heightBounds).setOrigin(0)
 		
 		//restart animations
 		this.anims.resumeAll()

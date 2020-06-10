@@ -13,6 +13,7 @@ export default class Load extends Phaser.Scene
         this.load.image('blueCave', 'assets/backgrounds/menubg.png')
         this.load.image('cavebg', 'assets/backgrounds/background.png')
         this.load.image('underwaterBackground', 'assets/backgrounds/bg_aal.png');
+        this.load.image('sky', 'assets/backgrounds/sky.png')
 
 
         //load menu buttons
