@@ -64,8 +64,11 @@ export default class Load extends Phaser.Scene
         //lava
         this.load.image('lavabg', 'assets/backgrounds/lavabg.png')
 
+        //load healthbar
+        this.load.image('healthbar', 'assets/healthbar/healthbar.png' )
+
         //load plugin
-        this.load.script('WeaponPlugin', 'node_modules/phaser3-weapon-plugin/out/WeaponPlugin.js');
+        // this.load.script('WeaponPlugin', 'node_modules/phaser3-weapon-plugin/out/WeaponPlugin.js');
 
 
         //create loading bar

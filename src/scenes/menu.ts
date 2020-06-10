@@ -1,6 +1,7 @@
 import Phaser, { Game } from 'phaser'
 import Worm from '~/players/worm'
 import Mole from '~/enemies/mole'
+import Healthbar from '~/healthbar/healthbar'
 
 export default class Menu extends Phaser.Scene
 {
@@ -8,6 +9,7 @@ export default class Menu extends Phaser.Scene
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
     private player? : Worm
+    private healthbar? : Healthbar
     // private mole?: Phaser.Physics.Arcade.Sprite
     private play?: Phaser.Physics.Arcade.StaticGroup
     private levelSelect?: Phaser.Physics.Arcade.StaticGroup
@@ -34,10 +36,10 @@ export default class Menu extends Phaser.Scene
         this.add.image(this.widthBounds /2,this.heigthBounds / 2, "blueCave").setDisplaySize(this.widthBounds, this.heigthBounds)
 
         // add music
-        this.sound.play("menuMusic", {
-            loop: true,
-            volume: 0.5
-        })
+        // this.sound.play("menuMusic", {
+        //     loop: true,
+        //     volume: 0.5
+        // })
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
@@ -127,6 +129,10 @@ export default class Menu extends Phaser.Scene
         //create player
         this.player = new Worm(this, 0, this.heigthBounds -250)
 
+        //create healthbar
+        // this.healthbar = new Healthbar(this, this.player.x,this.player.y)
+        // this.healthbar = new Healthbar(this, this.player.x, this.player.y)
+
         //create controls text
         this.add.text(10,this.heigthBounds - 330, "Controls", {
             fontSize: '30px',
@@ -176,6 +182,6 @@ export default class Menu extends Phaser.Scene
 
     update()
     {
-        
+
     }
 }

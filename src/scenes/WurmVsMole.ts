@@ -1,6 +1,7 @@
 import Phaser, { Loader } from 'phaser'
 import Worm from '~/players/worm'
 import Mole from '~/enemies/mole'
+import Healthbar from '~/healthbar/healthbar'
 
 export default class WurmVsMole extends Phaser.Scene {
 
@@ -16,12 +17,13 @@ export default class WurmVsMole extends Phaser.Scene {
     private fadeCheck = false
 
     // private score = 0
-    // private scoreText?: Phaser.GameObjects.Text
+    private scoreText?: Phaser.GameObjects.Text
     private levelCompleteText?: Phaser.GameObjects.Text
 
     private widthBounds = 1500
     private heightBounds = 750
     private colliderMole: Phaser.Physics.Arcade.Collider
+    // private healthbar: Healthbar
 
 
     constructor() {
@@ -177,10 +179,10 @@ export default class WurmVsMole extends Phaser.Scene {
         this.cameras.main.setZoom(1.5)
 
         //create score
-        // this.scoreText = this.add.text(16, 16, 'Score: 0', {
-        //     fontSize: '32px',
-        //     fill: '#fff',
-        // })
+        this.scoreText = this.add.text(16, this.heightBounds - 100, `Health: ${this.player.getHp()}`, {
+            fontSize: '32px',
+            fill: '#fff',
+        })
 
     }
 
@@ -223,19 +225,13 @@ export default class WurmVsMole extends Phaser.Scene {
 
     update() {
 
+        if(this.player?.getHp) {
+            this.scoreText?.setText( `Health: ${this.player?.getHp()}`)
+        }
+
         if(this.moleLives == 0){
             this.mole?.setActive(false).setVisible(false)
         }
-
-        // if (this.moleX > 1200) {
-        //     this.mole?.setVelocityX(-100)
-        //     this.mole?.anims.play('leftmol', true)
-
-        // } else {
-        //     this.mole?.setVelocityX(100)
-        //     this.mole?.anims.play('rightmol', true)
-        //     this.moleX = this.moleX += 1
-        // }
 
         //update player life
         let hp = this.player?.getHp()

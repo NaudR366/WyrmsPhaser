@@ -1,10 +1,13 @@
 import Phaser, { DOWN } from 'phaser'
+import Healthbar from '~/healthbar/healthbar'
 
 export default class Worm extends Phaser.Physics.Arcade.Sprite {
 
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private hp: number = 3
+    // private healthbar: Healthbar
     public stealthMode: boolean = false
+    // public healthText: Text
 
      public getHp() {
         return this.hp
@@ -37,6 +40,11 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
 
         //create controls
         this.cursors = this.scene.input.keyboard.createCursorKeys()
+
+        //create hp bar
+        // this.healthbar = new Healthbar(this, this.x, this.y)
+
+        
     }
 
     create() {
@@ -45,6 +53,7 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
 
     update() {
         //check keyboard inputs
+
         if(!this.cursors)
         {
              return
@@ -113,7 +122,6 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
         //     this.alpha = 1
         //     this.stealthMode = false
         // }
-
         
     }
 
