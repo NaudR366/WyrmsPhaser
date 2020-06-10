@@ -81,9 +81,11 @@ export default class Level extends Phaser.Scene
 
     private handleBack()
     {
-        this.scene.stop()
-        this.sound.stopAll()
-        this.scene.switch('menu')
+        // this.player?.destroy()
+        // this.scene.stop()
+        // this.sound.stopAll()
+        // this.scene.switch('menu')
+        location.reload()
     }
 
     private handleLevel1()
