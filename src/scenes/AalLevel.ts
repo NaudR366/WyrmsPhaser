@@ -680,7 +680,7 @@ export default class AalLevel extends Phaser.Scene {
         this.cameras.main.setZoom(1.5)
 
         this.physics.add.collider(this.player, this.platforms)
-        //this.physics.add.collider(this.koffer, this.platforms)
+        this.physics.add.collider(this.koffer, this.platforms)
         this.physics.add.overlap(this.player, this.koffer, this.handleCollectSuitcase, undefined, this)
 
     }

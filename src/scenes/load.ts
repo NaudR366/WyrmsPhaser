@@ -156,6 +156,6 @@ export default class Load extends Phaser.Scene
             repeat: -1
         });
 
-        this.scene.start('aal-world')
+        this.scene.start('menu')
     }
 }

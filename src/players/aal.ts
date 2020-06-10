@@ -70,21 +70,6 @@ export default class Aal extends Phaser.Physics.Arcade.Sprite {
              })
              
         }
-
-        if (this.cursors.down?.isDown && this.body.touching.down) 
-        {
-            this.setVelocityX(0)
-            this.anims.play('turn')
-            this.alpha = 0.3
-            this.stealthMode = true
-             
-        }
-
-        if (this.cursors.down?.isUp && this.body.touching.down) 
-        {
-            this.alpha = 1
-            this.stealthMode = false
-        }
         
     }
 
