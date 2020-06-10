@@ -2,7 +2,6 @@ import Phaser from 'phaser'
 
 export default class Mole extends Phaser.Physics.Arcade.Sprite {
 
-    private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private mole?
 
     constructor(scene, x : number, y: number, texture = 'mol') {
