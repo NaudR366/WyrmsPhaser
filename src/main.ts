@@ -22,7 +22,7 @@ let config: Phaser.Types.Core.GameConfig = {
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 400 },
-			debug: true,
+			debug: false,
 		}
 	},
 	fps: {
@@ -34,7 +34,7 @@ let config: Phaser.Types.Core.GameConfig = {
 	render: {
 		pixelArt: true,
 	},
-	scene: [Load, Menu, Levels, WurmLevel, WurmVsMole, AalLevel, Ice, Death]
+	scene: [Load, Menu, Levels, WurmLevel, AalLevel, WurmVsMole, Ice, Death]
 }
 
 // export default new Phaser.Game(config)
