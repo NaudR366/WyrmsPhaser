@@ -26,8 +26,12 @@ export default class Level extends Phaser.Scene
 
     create()
     {
+
+        //set world bounderies
+        this.physics.world.setBounds(0, 0, this.widthBounds, this.heigthBounds)
+
         //create background
-        this.add.image(0,0, "blueCave").setOrigin(0).setDepth(0);
+        this.add.image(0, 0, "sky").setDisplaySize(this.widthBounds, this.heigthBounds).setOrigin(0)
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
@@ -43,7 +47,7 @@ export default class Level extends Phaser.Scene
 
         //create back button
         this.back = this.physics.add.staticGroup()
-        this.back.create(this.widthBounds / 2 - 300, this.heigthBounds - 200, 'start')
+        this.back.create(this.widthBounds / 2 - 300, this.heigthBounds - 200, 'menu')
 
         //level 1 select button
         this.level1 = this.physics.add.staticGroup()

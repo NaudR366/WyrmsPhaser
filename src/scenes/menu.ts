@@ -133,7 +133,7 @@ export default class Menu extends Phaser.Scene
             fill: '#fff',
                 })
 
-        this.add.text(10,this.heigthBounds - 270, "To move use the arrow keys", {
+        this.add.text(10,this.heigthBounds - 270, "use the arrow keys to move", {
             fontSize: '25px',
             fill: '#fff',
                 })
