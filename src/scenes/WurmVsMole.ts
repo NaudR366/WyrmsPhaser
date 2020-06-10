@@ -15,8 +15,8 @@ export default class WurmVsMole extends Phaser.Scene {
     private moleLives = 1
     private fadeCheck = false
 
-    private score = 0
-    private scoreText?: Phaser.GameObjects.Text
+    // private score = 0
+    // private scoreText?: Phaser.GameObjects.Text
     private levelCompleteText?: Phaser.GameObjects.Text
 
     private widthBounds = 1500
@@ -176,18 +176,18 @@ export default class WurmVsMole extends Phaser.Scene {
         this.cameras.main.setZoom(1.5)
 
         //create score
-        this.scoreText = this.add.text(16, 16, 'Score: 0', {
-            fontSize: '32px',
-            fill: '#fff',
-        })
+        // this.scoreText = this.add.text(16, 16, 'Score: 0', {
+        //     fontSize: '32px',
+        //     fill: '#fff',
+        // })
 
     }
 
     private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject) {
         const suitcase = s as Phaser.Physics.Arcade.Image
         suitcase.disableBody(false, false)
-        this.score += 100
-        this.scoreText?.setText(`Score: ${this.score}`)
+        // this.score += 100
+        // this.scoreText?.setText(`Score: ${this.score}`)
         this.physics.pause();
         this.anims.pauseAll()
         //create Level completed text
@@ -205,8 +205,8 @@ export default class WurmVsMole extends Phaser.Scene {
     private handleCollectMole(player: Phaser.GameObjects.GameObject, m: Phaser.GameObjects.GameObject) {
         const mole = m as Phaser.Physics.Arcade.Sprite
         mole.disableBody(false, false)
-        this.score += 25
-        this.scoreText?.setText(`Score: ${this.score}`)
+        // this.score += 25
+        // this.scoreText?.setText(`Score: ${this.score}`)
         this.moleLives = this.moleLives - 1
 
 
