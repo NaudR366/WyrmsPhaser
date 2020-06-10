@@ -4,6 +4,7 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
 
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private hp: number = 3
+    public stealthMode: boolean = false
 
      public getHp() {
         return this.hp
@@ -66,6 +67,22 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
              this.scene.sound.play('playerJump', {
                  volume: 0.1
              })
+             
+        }
+
+        if (this.cursors.down?.isDown && this.body.touching.down) 
+        {
+            this.setVelocityX(0)
+            this.anims.play('turn')
+            this.alpha = 0.3
+            this.stealthMode = true
+             
+        }
+
+        if (this.cursors.down?.isUp && this.body.touching.down) 
+        {
+            this.alpha = 1
+            this.stealthMode = false
         }
 
         
@@ -77,8 +94,10 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
             // this.destroy()
             return this.hp
         } else {
+            if(this.stealthMode == false) {
             this.hp -= 1
             return this.hp
+            }
         }
     }
 }

@@ -334,7 +334,7 @@ export default class IceWorld extends Phaser.Scene {
 		this.platforms.create(5056, 2448, "ice");
 
         //create player
-        this.player = new Worm(this, 0, this.heightBounds - 200)
+		this.player = new Worm(this, 0, this.heightBounds - 200)
 
 		this.physics.add.collider(this.player, this.platforms)
 		

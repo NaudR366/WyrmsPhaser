@@ -138,6 +138,11 @@ export default class Menu extends Phaser.Scene
             fill: '#fff',
                 })
 
+        this.add.text(10,this.heigthBounds - 240, "down arrow to go in stealth mode", {
+            fontSize: '25px',
+            fill: '#fff',
+                })
+
         //set collisions
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.player, this.play, this.handlePlay, undefined, this)

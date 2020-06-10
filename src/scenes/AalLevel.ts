@@ -1,9 +1,10 @@
 import Phaser from 'phaser'
+import Aal from '~/players/aal';
 
 export default class AalLevel extends Phaser.Scene {
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup;
-    private player?: Phaser.Physics.Arcade.Sprite;
+    private player?: Aal;
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
 
     private koffer?: Phaser.Physics.Arcade.Group
@@ -29,9 +30,7 @@ export default class AalLevel extends Phaser.Scene {
         this.platforms.create(1000,600, 'grassPlatform');
 
         //playa create
-        this.player = this.physics.add.sprite(100, 450, 'aal');
-        this.player.setBounce(0.1);
-        this.player.setCollideWorldBounds(true);
+        this.player = new Aal(this, 0, 0)
 
         this.physics.add.collider(this.player, this.platforms);
 
