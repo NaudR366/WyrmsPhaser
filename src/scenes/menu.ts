@@ -33,11 +33,11 @@ export default class Menu extends Phaser.Scene
         //create background
         this.add.image(this.widthBounds /2,this.heigthBounds / 2, "blueCave").setDisplaySize(this.widthBounds, this.heigthBounds)
 
-        //add music
-        // this.sound.play("menuMusic", {
-        //     loop: false,
-        //     volume: 0.5
-        // })
+        // add music
+        this.sound.play("menuMusic", {
+            loop: true,
+            volume: 0.5
+        })
 
         //create platform
         this.platforms = this.physics.add.staticGroup()

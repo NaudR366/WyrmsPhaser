@@ -661,7 +661,8 @@ export default class AalLevel extends Phaser.Scene {
 
 
         //player create
-        this.player = new Aal(this, 0, 100)
+		this.player = new Aal(this, 0, 100)
+		this.anims.resumeAll()
 
         this.physics.add.collider(this.player, this.platforms);
 

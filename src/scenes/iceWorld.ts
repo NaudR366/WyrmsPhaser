@@ -13,7 +13,7 @@ export default class IceWorld extends Phaser.Scene {
     // private levelCompleteText?: Phaser.GameObjects.Text
 
     private widthBounds = 5000
-    private heightBounds = 2500
+    private heightBounds = 750
 
     constructor()
 	{
