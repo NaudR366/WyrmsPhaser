@@ -61,7 +61,7 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
          this.anims.play('turn')
         }
     
-        if (this.cursors.up?.isDown && this.body.touching.down) 
+        if (this.cursors.up?.isDown && this.body.touching.down && this.stealthMode == false) 
         {
              this.setVelocityY(-300)
              this.scene.sound.play('playerJump', {
