@@ -138,7 +138,7 @@ export default class Menu extends Phaser.Scene
             fill: '#fff',
                 })
 
-        this.add.text(10,this.heigthBounds - 270, "down arrow to go in stealth mode", {
+        this.add.text(10,this.heigthBounds - 270, "down arrow to toggle stealth mode", {
             fontSize: '25px',
             fill: '#fff',
                 })

@@ -21,6 +21,7 @@ export default class WurmVsMole extends Phaser.Scene {
 
     private widthBounds = 1500
     private heightBounds = 750
+    private colliderMole: Phaser.Physics.Arcade.Collider
 
 
     constructor() {
@@ -168,7 +169,7 @@ export default class WurmVsMole extends Phaser.Scene {
         this.physics.add.collider(this.suitcase, this.platforms)
         this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
         this.physics.add.collider(this.player, this.damageBlock, this.handleDamageBlock, undefined, this)
-        this.physics.add.collider(this.player, this.mole, this.handleCollectMole, undefined, this)
+        this.colliderMole = this.physics.add.collider(this.player, this.mole, this.handleHitMole, undefined, this)
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
@@ -202,21 +203,23 @@ export default class WurmVsMole extends Phaser.Scene {
         }, 3000);
     }
 
-    private handleCollectMole(player: Phaser.GameObjects.GameObject, m: Phaser.GameObjects.GameObject) {
-        const mole = m as Phaser.Physics.Arcade.Sprite
-        mole.disableBody(false, false)
-        // this.score += 25
-        // this.scoreText?.setText(`Score: ${this.score}`)
-        this.moleLives = this.moleLives - 1
-
-
+    handleHitMole() {
+        this.player?.handleHit()
+        this.colliderMole.active = false
+        if(this.player && this.player.stealthMode == false) { 
+            this.player.setSpriteColor(0xff0000)
+        }
+        setTimeout(() => {
+            this.colliderMole.active = true
+            if(this.player && this.player.stealthMode == false) {
+                this.player.clearTint()
+            }
+        }, 1000)
     }
 
     handleDamageBlock() {
         this.player?.handleHit() 
     }
-
-
 
     update() {
 

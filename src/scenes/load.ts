@@ -127,6 +127,6 @@ export default class Load extends Phaser.Scene
             repeat: -1
         });
 
-        this.scene.start('menu')
+        this.scene.start('mole-world')
     }
 }

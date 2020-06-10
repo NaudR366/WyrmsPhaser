@@ -1,4 +1,4 @@
-import Phaser from 'phaser'
+import Phaser, { DOWN } from 'phaser'
 
 export default class Worm extends Phaser.Physics.Arcade.Sprite {
 
@@ -16,6 +16,10 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
 
     public getY() {
         return this.y
+    }
+
+    setSpriteColor(hex: number) {
+        this.tint = hex
     }
 
     constructor(scene, x : number, y: number, texture = 'worm') {
@@ -46,12 +50,12 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
              return
         }
     
-        if(this.cursors?.left?.isDown)
+        if(this.cursors?.left?.isDown && this.stealthMode == false)
         {
             this.setVelocityX(-230)
             this.anims.play('left',true)
         } 
-        else if(this.cursors?.right?.isDown)
+        else if(this.cursors?.right?.isDown && this.stealthMode == false)
         {
             this.setVelocityX(230)
             this.anims.play('right',true)
@@ -70,20 +74,45 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
              
         }
 
-        if (this.cursors.down?.isDown && this.body.touching.down) 
-        {
-            this.setVelocityX(0)
-            this.anims.play('turn')
-            this.alpha = 0.3
-            this.stealthMode = true
+        // if (this.cursors.down?.isDown && this.body.touching.down) 
+        // {
+        //     this.setVelocityX(0)
+        //     this.anims.play('turn')
+        //     this.alpha = 0.3
+        //     this.stealthMode = true
              
-        }
+        // }
+        let arrowDown = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN)
+        if (Phaser.Input.Keyboard.JustDown(arrowDown)) {
+            console.log("key down is losgelaten");
 
-        if (this.cursors.down?.isUp && this.body.touching.down) 
-        {
-            this.alpha = 1
-            this.stealthMode = false
+            this.stealthMode = !this.stealthMode
+
+            if(this.stealthMode) {
+                this.setVelocityX(0) 
+                this.anims.play('turn')
+                this.alpha = 0.3
+            } else {
+                this.alpha = 1
+            }
+
         }
+        // this.scene.input.keyboard.on("keyup", () => {
+        //     if(Phaser.Input.Keyboard.KeyCodes.DOWN)
+        //     console.log("key down is losgelaten");
+            
+        // })
+
+        // this.scene.input.keyboard.once("keyup", () => {
+        //     if(Phaser.Input.Keyboard.KeyCodes.SPACE) {
+        //         console.log("key down is losgelaten");
+        //     }
+        // })
+        // if (this.cursors.down?.isDown && this.body.touching.down) 
+        // {
+        //     this.alpha = 1
+        //     this.stealthMode = false
+        // }
 
         
     }
