@@ -6,9 +6,6 @@ body {
     background-color: grey;
 }
 
-/* canvas {
-    display: block;
+canvas {
     cursor: none;
-    margin: 10 auto;
-    border: 5px black solid;
-} */
+}

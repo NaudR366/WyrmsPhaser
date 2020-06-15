@@ -17,13 +17,15 @@ export default class WurmVsMole extends Phaser.Scene {
     private fadeCheck = false
 
     // private score = 0
-    private scoreText?: Phaser.GameObjects.Text
+    private hpText?: Phaser.GameObjects.Text
     private levelCompleteText?: Phaser.GameObjects.Text
 
     private widthBounds = 1500
     private heightBounds = 750
     private colliderMole: Phaser.Physics.Arcade.Collider
     // private healthbar: Healthbar
+
+    private startHp: number = this.player?.getX()
 
 
     constructor() {
@@ -44,6 +46,12 @@ export default class WurmVsMole extends Phaser.Scene {
 
         this.platforms = this.physics.add.staticGroup()
         this.damageBlock = this.physics.add.staticGroup()
+
+        //add music
+        // this.sound.play("gamemusic", {
+        //     loop: true,
+        //     volume: 0.3
+        // })
 
 
         // cristal_Level
@@ -178,31 +186,43 @@ export default class WurmVsMole extends Phaser.Scene {
         this.cameras.main.startFollow(this.player, false)
         this.cameras.main.setZoom(1.5)
 
-        //create score
-        this.scoreText = this.add.text(16, this.heightBounds - 100, `Health: ${this.player.getHp()}`, {
+        //create hp
+        this.hpText = this.add.text(16, this.heightBounds - 100, `Health: ${this.player.getHp()}`, {
             fontSize: '20px',
             fill: '#fff',
         })
 
+        // for(let i = 0; i < this.player.getHp(); i++) {
+        //     this.add.image(this.startHp, this.player.getY(), 'heart')
+        //     this.startHp += 200
+        // }
+
     }
 
-    private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject) {
+    private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject)
+    {
         const suitcase = s as Phaser.Physics.Arcade.Image
-        suitcase.disableBody(false, false)
+        suitcase.disableBody(true, true)
         // this.score += 100
         // this.scoreText?.setText(`Score: ${this.score}`)
-        this.physics.pause();
-        this.anims.pauseAll()
+
         //create Level completed text
         this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
             fontSize: '60px',
             fill: '#fff',
-        })
+                }).setScrollFactor(0)
+
+            //pause animations
+            this.physics.pause()
+            this.anims.pauseAll()
+            // this.sound.stopAll()
+            this.sound.mute = true
 
         //go to next level
         setTimeout(() => {
             this.scene.start('aal-world')
-        }, 3000);
+        }, 2000);
+
     }
 
     handleHitMole() {
@@ -225,12 +245,11 @@ export default class WurmVsMole extends Phaser.Scene {
 
     update() {
 
-
-        this.scoreText?.setX(this.player?.x)
-        this.scoreText?.setY(this.player?.y)
+        this.hpText?.setX(this.player?.x)
+        this.hpText?.setY(this.player?.y)
 
         if(this.player?.getHp) {
-            this.scoreText?.setText( `Health: ${this.player?.getHp()}`)
+            this.hpText?.setText( `Health: ${this.player?.getHp()}`)
         }
 
         if(this.moleLives == 0){

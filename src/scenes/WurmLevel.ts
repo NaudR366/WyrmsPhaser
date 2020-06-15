@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import Worm from '~/players/worm'
+import Mole from '~/enemies/mole'
 
 export default class WurmLevel extends Phaser.Scene {
 
@@ -8,6 +9,10 @@ export default class WurmLevel extends Phaser.Scene {
     private player? : Worm
     // private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private suitcase?: Phaser.Physics.Arcade.Group
+
+    //create enemy
+    private mole?: Mole
+    private colliderMole: Phaser.Physics.Arcade.Collider
 
     // private score = 0
     // private scoreText?: Phaser.GameObjects.Text
@@ -28,6 +33,15 @@ export default class WurmLevel extends Phaser.Scene {
         this.physics.world.setBounds(0, 0, this.widthBounds, this.heightBounds)
 
         //set background sound
+        this.sound.play("lava", {
+            loop: true,
+            volume: 0.5
+        })
+
+        this.sound.play("gamemusic", {
+            loop: true,
+            volume: 0.2
+        })
 
         // //add lava
         this.lava = this.physics.add.staticGroup()
@@ -132,6 +146,11 @@ export default class WurmLevel extends Phaser.Scene {
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.player, this.lava, this.handleLava, undefined, this)
 
+        //create enemy
+        this.mole = new Mole(this, 580, this.heightBounds - 200, 600)
+        this.physics.add.collider(this.mole, this.platforms)
+        this.physics.add.collider(this.player, this.platforms)
+
         //create suitcase
         this.suitcase = this.physics.add.group({
             key: 'suitcase',
@@ -140,6 +159,7 @@ export default class WurmLevel extends Phaser.Scene {
 
         this.physics.add.collider(this.suitcase, this.platforms)
         this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
+        this.colliderMole = this.physics.add.collider(this.player, this.mole, this.handleHitMole, undefined, this)
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
@@ -172,6 +192,8 @@ export default class WurmLevel extends Phaser.Scene {
             //pause animations
             this.physics.pause()
             this.anims.pauseAll()
+            // this.sound.stopAll()
+            this.sound.stopByKey('lava')
             this.sound.mute = true
 
         //go to next level
@@ -185,7 +207,30 @@ export default class WurmLevel extends Phaser.Scene {
             this.player?.handleHit() 
     }
 
+    handleHitMole() {
+        this.player?.handleHit()
+        this.colliderMole.active = false
+        if(this.player && this.player.stealthMode == false) { 
+            this.player.setSpriteColor(0xff0000)
+        }
+        setTimeout(() => {
+            this.colliderMole.active = true
+            if(this.player && this.player.stealthMode == false) {
+                this.player.clearTint()
+            }
+        }, 1000)
+    }
+
     update() {
+        //update player life
+        // let hp = this.player?.getHp()
+        
+        // if(hp == 0) {
+        //     this.player?.destroy()
+        //     this.sound.stopAll()
+        //     this.scene.start('death')
+        // }
+
         //update player life
         let hp = this.player?.getHp()
         

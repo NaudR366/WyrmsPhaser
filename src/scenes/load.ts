@@ -49,12 +49,16 @@ export default class Load extends Phaser.Scene
         //load misc
         this.load.image('lava', 'assets/misc/lavaground.png')
         this.load.image('heart', 'assets/healthbar/heart.png')
-        this.load.image('heart', 'assets/healthbar/death.png')
+        this.load.image('deathheart', 'assets/healthbar/death.png')
 
         //load sounds
         this.load.audio('menuMusic', 'assets/backgroundsounds/menuMusic.mp3')
         this.load.audio('deathMusic', 'assets/backgroundsounds/deathMusic.mp3')
+        this.load.audio('gamemusic', 'assets/backgroundsounds/hope.mp3')
+        this.load.audio('lava', 'assets/backgroundsounds/lava.mp3')
         this.load.audio('playerJump', 'assets/playersounds/jump.wav')
+        // this.load.audio('swim', 'assets/playersounds/splash.mp3')
+        // this.load.audio('levelup', 'assets/playersounds/levelup.wav')
 
         //Cave 
         this.load.image('cave', 'assets/backgrounds/cave.png')
@@ -66,6 +70,7 @@ export default class Load extends Phaser.Scene
 
         //load healthbar
         this.load.image('healthbar', 'assets/healthbar/healthbar.png' )
+
 
         //load plugin
         // this.load.script('WeaponPlugin', 'node_modules/phaser3-weapon-plugin/out/WeaponPlugin.js');

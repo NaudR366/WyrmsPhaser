@@ -33,6 +33,12 @@ export default class Level extends Phaser.Scene
         //create background
         this.add.image(0, 0, "sky").setDisplaySize(this.widthBounds, this.heigthBounds).setOrigin(0)
 
+        // add music
+        this.sound.play("menuMusic", {
+            loop: true,
+            volume: 0.5
+        })
+
         //create platform
         this.platforms = this.physics.add.staticGroup()
         this.platforms.create(0,this.heigthBounds, 'grassPlatform')
@@ -92,6 +98,10 @@ export default class Level extends Phaser.Scene
     {
         this.scene.stop()
         this.sound.stopAll()
+        this.sound.play("gamemusic", {
+            loop: true,
+            volume: 0.2
+        })
         this.scene.start('wurmWorld')
     }
 
@@ -99,6 +109,10 @@ export default class Level extends Phaser.Scene
     {
         this.scene.stop()
         this.sound.stopAll()
+        this.sound.play("gamemusic", {
+            loop: true,
+            volume: 0.2
+        })
         this.scene.start('mole-world')
     }
 
@@ -106,6 +120,10 @@ export default class Level extends Phaser.Scene
     {
         this.scene.stop()
         this.sound.stopAll()
+        this.sound.play("gamemusic", {
+            loop: true,
+            volume: 0.2
+        })
         this.scene.start('aal-world')
     }
 

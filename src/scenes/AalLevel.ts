@@ -18,10 +18,18 @@ export default class AalLevel extends Phaser.Scene {
 	}
 
     create() {
-        this.physics.world.setBounds(0, 0, this.widthBounds, this.heightBounds)
+		this.physics.world.setBounds(0, 0, this.widthBounds, this.heightBounds)
         this.add.image(0, 0, 'underwaterBackground').setOrigin(0, 0);
         //platform
-        this.platforms = this.physics.add.staticGroup();
+		this.platforms = this.physics.add.staticGroup();
+		
+		//add music
+		this.sound.mute = false
+
+		// this.sound.play("gamemusic", {
+		// 	loop: true,
+		// 	volume: 0.3
+		// })
 
         // stonegroundsmall
 		this.platforms.create(14.765329776470193, 282.3171081542969, "stonegroundsmall").visible = false;
@@ -661,7 +669,8 @@ export default class AalLevel extends Phaser.Scene {
 
 
         //player create
-		this.player = new Aal(this, 0, 100)
+		this.player = new Aal(this, 0, 200)
+		this.player.setGravity(0, -400)
 		this.anims.resumeAll()
 
         this.physics.add.collider(this.player, this.platforms);
@@ -672,7 +681,7 @@ export default class AalLevel extends Phaser.Scene {
 
         this.koffer = this.physics.add.group({
             key: 'suitcase',
-            setXY: {x: 400, y: 100,}
+            setXY: {x: 1250, y: 200,}
         });
 
         //create camera
@@ -686,41 +695,33 @@ export default class AalLevel extends Phaser.Scene {
 
     }
     //function for collecting suitcase
-    private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject){
+    private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject)
+    {
         const suitcase = s as Phaser.Physics.Arcade.Image
         suitcase.disableBody(true, true)
-  
+        // this.score += 100
+        // this.scoreText?.setText(`Score: ${this.score}`)
+
         //create Level completed text
         this.levelCompleteText = this.add.text(500, 300, 'Level Completed', {
             fontSize: '60px',
             fill: '#fff',
-        })
+                }).setScrollFactor(0)
 
-        //pause animations
-        this.physics.pause();
-        this.anims.pauseAll()
+            //pause animations
+            this.physics.pause()
+            this.anims.pauseAll()
+            // this.sound.stopAll()
+            this.sound.mute = true
 
         //go to next level
         setTimeout(() => {
             this.scene.start('iceWorld')
-        }, 3000);
+        }, 2000);
+
     }
 
     update() {
-        if(!this.cursors){
-            return;
-        }
 
-        if(this.cursors?.left?.isDown){
-            this.player?.setVelocityX(-260);
-        } else if(this.cursors?.right?.isDown){
-            this.player?.setVelocityX(260);
-        } else{
-            this.player?.setVelocityX(0);
-        }
-
-        if(this.cursors.up?.isDown && this.player?.body.touching.down){
-            this.player.setVelocityY(-550);
-        }
     }
 }

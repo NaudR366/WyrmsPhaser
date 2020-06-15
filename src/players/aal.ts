@@ -49,12 +49,13 @@ export default class Aal extends Phaser.Physics.Arcade.Sprite {
     
         if(this.cursors?.left?.isDown)
         {
-            this.setVelocityX(-230)
+            this.setVelocityX(-130)
             this.anims.play('leftaal',true)
+            
         } 
         else if(this.cursors?.right?.isDown)
         {
-            this.setVelocityX(230)
+            this.setVelocityX(130)
             this.anims.play('rightaal',true)
         } else 
         {
@@ -62,13 +63,18 @@ export default class Aal extends Phaser.Physics.Arcade.Sprite {
          this.anims.play('turnaal')
         }
     
-        if (this.cursors.up?.isDown && this.body.touching.down) 
+        if (this.cursors.up?.isDown) 
         {
-             this.setVelocityY(-300)
-             this.scene.sound.play('playerJump', {
-                 volume: 0.1
-             })
-             
+             this.setVelocityY(-100)
+            //  this.scene.sound.play('swim', {
+            //      volume: 0.1,
+            //      loop: true
+            //  })
+        }
+
+        if (this.cursors.down?.isDown)
+        {
+            this.setVelocityY(100)
         }
         
     }
