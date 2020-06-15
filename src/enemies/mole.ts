@@ -32,11 +32,11 @@ export default class Mole extends Phaser.Physics.Arcade.Sprite {
     update() {
 
         if(this.x > this.endX ){
-            this.setVelocityX(-100)
+            this.setVelocityX(-50)
             this.anims.play('leftmol', true)
             
         } else if(this.x <= this.startX) {
-            this.setVelocityX(100)
+            this.setVelocityX(50)
             this.anims.play('rightmol', true)
         }
         
