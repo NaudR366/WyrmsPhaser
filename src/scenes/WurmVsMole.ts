@@ -34,8 +34,6 @@ export default class WurmVsMole extends Phaser.Scene {
 
     create() {
 
-
-
         this.physics.world.setBounds(0, 0, this.widthBounds, this.heightBounds)
 
         //restart animations
@@ -227,12 +225,12 @@ export default class WurmVsMole extends Phaser.Scene {
 
     handleHitMole() {
         this.player?.handleHit()
-        this.colliderMole.active = false
+        !this.colliderMole?.active
         if(this.player && this.player.stealthMode == false) { 
             this.player.setSpriteColor(0xff0000)
         }
         setTimeout(() => {
-            this.colliderMole.active = true
+            this.colliderMole?.active
             if(this.player && this.player.stealthMode == false) {
                 this.player.clearTint()
             }
