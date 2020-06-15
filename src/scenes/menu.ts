@@ -21,6 +21,7 @@ export default class Menu extends Phaser.Scene
 
     private widthBounds = 1500
     private heigthBounds = 750
+    private spaceBar
 
 	constructor()
 	{
@@ -149,6 +150,11 @@ export default class Menu extends Phaser.Scene
             fill: '#fff',
                 })
 
+        this.add.text(10,this.heigthBounds - 250, "spacebar to go back to game select", {
+            fontSize: '25px',
+            fill: '#fff',
+                })
+
         //set collisions
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.player, this.play, this.handlePlay, undefined, this)
@@ -159,6 +165,9 @@ export default class Menu extends Phaser.Scene
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heigthBounds, false);
         this.cameras.main.startFollow(this.player, false)
         this.cameras.main.setZoom(1.5)
+
+        //create key
+        this.spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         
     }
 
@@ -182,6 +191,10 @@ export default class Menu extends Phaser.Scene
 
     update()
     {
-
+        if (Phaser.Input.Keyboard.JustDown(this.spaceBar))
+        {
+            console.log("spacebar pressed")
+            this.handleExit()
+        } 
     }
 }
