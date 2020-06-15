@@ -148,6 +148,7 @@ export default class WurmLevel extends Phaser.Scene {
 
         //create enemy
         this.mole = new Mole(this, 580, this.heightBounds - 200, 600)
+        this.mole.setScale(0.7)
         this.physics.add.collider(this.mole, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
 

@@ -25,7 +25,7 @@ export default class WurmVsMole extends Phaser.Scene {
     private colliderMole: Phaser.Physics.Arcade.Collider
     // private healthbar: Healthbar
 
-    private startHp: number = this.player?.getX()
+    // private startHp: number = this.player?.getX()
 
 
     constructor() {
@@ -245,8 +245,10 @@ export default class WurmVsMole extends Phaser.Scene {
 
     update() {
 
-        this.hpText?.setX(this.player?.x)
-        this.hpText?.setY(this.player?.y)
+        // let playerY = this.player?.body.position.y
+
+        this.hpText?.setX(this.player?.body.position.x)
+        this.hpText?.setY(this.player?.body.bottom)
 
         if(this.player?.getHp) {
             this.hpText?.setText( `Health: ${this.player?.getHp()}`)
