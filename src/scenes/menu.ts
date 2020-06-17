@@ -21,7 +21,7 @@ export default class Menu extends Phaser.Scene
 
     private widthBounds = 1500
     private heigthBounds = 750
-    private spaceBar
+    private bkey
 
 	constructor()
 	{
@@ -150,7 +150,7 @@ export default class Menu extends Phaser.Scene
             fill: '#fff',
                 })
 
-        this.add.text(10,this.heigthBounds - 250, "spacebar to go back to game select", {
+        this.add.text(10,this.heigthBounds - 250, "B to go back to game select", {
             fontSize: '25px',
             fill: '#fff',
                 })
@@ -167,7 +167,7 @@ export default class Menu extends Phaser.Scene
         this.cameras.main.setZoom(1.5)
 
         //create key
-        this.spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        this.bkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
         
     }
 
@@ -191,9 +191,9 @@ export default class Menu extends Phaser.Scene
 
     update()
     {
-        if (Phaser.Input.Keyboard.JustDown(this.spaceBar))
+        if (Phaser.Input.Keyboard.JustDown(this.bkey))
         {
-            console.log("spacebar pressed")
+            console.log("b pressed")
             this.handleExit()
         } 
     }
