@@ -41,6 +41,7 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
         //create controls
         this.cursors = this.scene.input.keyboard.createCursorKeys()
 
+
         //create hp bar
         // this.healthbar = new Healthbar(this, this.x, this.y)
 
@@ -52,6 +53,14 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
+
+        //create controller input
+        // var pad = Phaser.typ
+
+        // if(this.scene.input.gamepad.total) {
+        //     pad = this.scene.input.gamepad.pad1
+        // }
+        
         //check keyboard inputs
 
         if(!this.cursors)
