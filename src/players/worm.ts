@@ -148,4 +148,10 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
             }
         }
     }
+
+    handleHeal() {
+        if (this.hp < 3)
+        this.hp = this.hp + 1
+
+    }
 }

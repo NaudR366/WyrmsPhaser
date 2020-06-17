@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import Worm from '~/players/worm'
+import Robot from '~/enemies/robot'
 
 export default class IceWorld extends Phaser.Scene {
 
@@ -9,6 +10,13 @@ export default class IceWorld extends Phaser.Scene {
 	private suitcase?: Phaser.Physics.Arcade.Group
 	private levelCompleteText?: Phaser.GameObjects.Text
 	private damageBlock2?: Phaser.Physics.Arcade.StaticGroup
+	private robot: Robot[] = []
+    private moleX? = 500
+	private moleY? = 400
+	private colliderRobot: Phaser.Physics.Arcade.Collider
+	private apples? : Phaser.Physics.Arcade.Group
+	private newHp
+	private createSpeechBubble
 
     // private score = 0
     // private scoreText?: Phaser.GameObjects.Text
@@ -266,15 +274,31 @@ export default class IceWorld extends Phaser.Scene {
 		this.damageBlock2.create(2463.5244134223108, 758.9656074025555, "stoneground").visible = false;
 
         //create player
-		this.player = new Worm(this, 70, this.heightBounds - 500)
+		this.player = new Worm(this, 100, this.heightBounds - 500)
 
-		this.physics.add.collider(this.player, this.platforms)
-		
+
 		//create suitcase
 		this.suitcase = this.physics.add.group({
 			key: 'suitcase',
-			setXY: {x: 4928, y: this.heightBounds - 600}
+			setXY: {x: 2400, y:  100}
 		})
+
+		//spawn enemy
+		this.robot.push(new Robot(this, 500, 450, 590))
+		this.robot.push(new Robot(this, 1050, 450, 1250))
+		this.robot.push(new Robot(this, 1050, 200, 1200))
+		this.robot.push(new Robot(this, 1600, 450, 1850))
+		this.robot.push(new Robot(this, 1800, 250, 2000))
+		this.robot.push(new Robot(this, 2220, 100, 2400))
+		
+
+		//spawn apples
+		this.apples = this.physics.add.group({
+			key: 'apple',
+			setXY: {x: 1265, y: 600}
+		})
+
+		this.physics.add.collider(this.player, this.platforms)
 
 		//create hp
         this.hpText = this.add.text(16, this.heightBounds - 100, `Health: ${this.player.getHp()}`, {
@@ -283,19 +307,47 @@ export default class IceWorld extends Phaser.Scene {
         })
 		
 		this.physics.add.collider(this.suitcase, this.platforms)
+		this.physics.add.collider(this.apples, this.platforms)
+		this.physics.add.collider(this.robot, this.platforms)
 		this.physics.add.collider(this.player, this.damageBlock2, this.handleDamageBlock2, undefined, this)
+		this.physics.add.collider(this.player, this.apples, this.handleApple, undefined, this)
 		this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
+		this.colliderRobot = this.physics.add.collider(this.player, this.robot, this.handleDamage, undefined, this)
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
-        this.cameras.main.setZoom(1.5)
+		this.cameras.main.setZoom(1.5)
+	
 
 	}
+
+	handleApple(player: Phaser.GameObjects.GameObject, a: Phaser.GameObjects.GameObject) {
+		this.player?.handleHeal()
+		const apple = a as Phaser.Physics.Arcade.Image
+        apple.disableBody(true, true)
+	
+	}
+	
+
 	handleDamageBlock2() {
-        this.player?.handleHit() 
+		this.player?.handleHit() 
     }
 	
+		private handleDamage() {
+			this.player?.handleHit()
+        this.colliderRobot.active = false
+        if(this.player && this.player.stealthMode == false) { 
+            this.player.setSpriteColor(0xff0000)
+        }
+        setTimeout(() => {
+            this.colliderRobot.active = true
+            if(this.player && this.player.stealthMode == false) {
+                this.player.clearTint()
+            }
+        }, 1000)
+		}
+
 	    //function for collecting suitcase
 		private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject)
 		{

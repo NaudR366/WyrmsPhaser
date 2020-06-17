@@ -17,7 +17,6 @@ export default class Load extends Phaser.Scene
         this.load.image('levelselect', 'assets/backgrounds/levelselect.png')
         this.load.image('gameover', 'assets/backgrounds/gameover.png')
 
-
         //load menu buttons
         this.load.image('start', 'assets/menubuttons/play.png')
         this.load.image('levelsb', 'assets/menubuttons/levelsb.png')
@@ -45,9 +44,11 @@ export default class Load extends Phaser.Scene
         //load enemys
         this.load.spritesheet('mol', 'assets/enemys/mole.png',{frameWidth: 65.6, frameHeight: 57})
         this.load.spritesheet('swimmole', 'assets/enemys/swimmole.png',{frameWidth: 65.7, frameHeight: 57})
+        this.load.spritesheet('robot', 'assets/enemys/robot.png',{frameWidth: 65, frameHeight: 40})
 
         //load pickups
         this.load.image('suitcase', 'assets/pickups/koffer.png')
+        this.load.image('apple', 'assets/pickups/apple.png')
 
         //load misc
         this.load.image('lava', 'assets/misc/lavaground.png')
@@ -186,6 +187,29 @@ export default class Load extends Phaser.Scene
         this.anims.create({
             key: 'rightaal',
             frames: this.anims.generateFrameNumbers('aal', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        //create robot animations
+        this.anims.create({
+            key: 'leftrobot',
+            frames: this.anims.generateFrameNumbers('robot', {
+                start: 0, end: 3
+            }),
+            frameRate: 10,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: 'turnrobot',
+            frames: [ { key: 'robot', frame: 4 } ],
+            frameRate: 20
+        })
+
+        this.anims.create({
+            key: 'rightrobot',
+            frames: this.anims.generateFrameNumbers('robot', { start: 5, end: 8 }),
             frameRate: 10,
             repeat: -1
         });

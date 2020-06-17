@@ -51,33 +51,33 @@ export default class Level extends Phaser.Scene
         //create player
         this.player = new Worm(this, 0, this.heigthBounds - 200)
 
-        //create back button
-        this.back = this.physics.add.staticGroup()
-        this.back.create(this.widthBounds / 2 - 300, this.heigthBounds - 200, 'menu')
+        // //create back button
+        // this.back = this.physics.add.staticGroup()
+        // this.back.create(this.widthBounds / 2 - 300, this.heigthBounds - 200, 'menu')
 
-        //level 1 select button
-        this.level1 = this.physics.add.staticGroup()
-        this.level1.create(this.widthBounds / 2 - 200,this.heigthBounds - 200, 'Wurm')
+        // //level 1 select button
+        // this.level1 = this.physics.add.staticGroup()
+        // this.level1.create(this.widthBounds / 2 - 200,this.heigthBounds - 200, 'Wurm')
         
-        //level 2 select button
-        this.level2 = this.physics.add.staticGroup()
-        this.level2.create(this.widthBounds / 2 - 100,this.heigthBounds - 200, 'WvM')
+        // //level 2 select button
+        // this.level2 = this.physics.add.staticGroup()
+        // this.level2.create(this.widthBounds / 2 - 100,this.heigthBounds - 200, 'WvM')
 
-        //level 3 select button
-        this.level3 = this.physics.add.staticGroup()
-        this.level3.create(this.widthBounds / 2,this.heigthBounds - 200, 'Aal')
+        // //level 3 select button
+        // this.level3 = this.physics.add.staticGroup()
+        // this.level3.create(this.widthBounds / 2,this.heigthBounds - 200, 'Aal')
 
-        //level 4 select button
-        this.level4 = this.physics.add.staticGroup()
-        this.level4.create(this.widthBounds / 2 + 100,this.heigthBounds - 200, 'iceworld')
+        // //level 4 select button
+        // this.level4 = this.physics.add.staticGroup()
+        // this.level4.create(this.widthBounds / 2 + 100,this.heigthBounds - 200, 'iceworld')
         
         //set collisions
-        this.physics.add.collider(this.player, this.platforms)
-        this.physics.add.collider(this.player, this.back, this.handleBack, undefined, this)
-        this.physics.add.collider(this.player, this.level1, this.handleLevel1, undefined, this)
-        this.physics.add.collider(this.player, this.level2, this.handleLevel2, undefined, this)
-        this.physics.add.collider(this.player, this.level3, this.handleLevel3, undefined, this)
-        this.physics.add.collider(this.player, this.level4, this.handleLevel4, undefined, this)
+        // this.physics.add.collider(this.player, this.platforms)
+        // this.physics.add.collider(this.player, this.back, this.handleBack, undefined, this)
+        // this.physics.add.collider(this.player, this.level1, this.handleLevel1, undefined, this)
+        // this.physics.add.collider(this.player, this.level2, this.handleLevel2, undefined, this)
+        // this.physics.add.collider(this.player, this.level3, this.handleLevel3, undefined, this)
+        // this.physics.add.collider(this.player, this.level4, this.handleLevel4, undefined, this)
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heigthBounds, false);
