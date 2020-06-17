@@ -30,7 +30,10 @@ let config: Phaser.Types.Core.GameConfig = {
         target: 60,
         forceSetTimeOut: false,
         deltaHistory: 10
-    },
+	},
+	input: {
+		gamepad: true
+	},
 	render: {
 		pixelArt: true,
 	},
