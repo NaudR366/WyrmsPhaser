@@ -31,7 +31,7 @@ export default class Level extends Phaser.Scene
         this.physics.world.setBounds(0, 0, this.widthBounds, this.heigthBounds)
 
         //create background
-        this.add.image(0, 0, "sky").setDisplaySize(this.widthBounds, this.heigthBounds).setOrigin(0)
+        this.add.image(0, 0, "levelselect").setDisplaySize(this.widthBounds, this.heigthBounds).setOrigin(0)
 
         // add music
         this.sound.play("menuMusic", {
@@ -41,11 +41,11 @@ export default class Level extends Phaser.Scene
 
         //create platform
         this.platforms = this.physics.add.staticGroup()
-        this.platforms.create(0,this.heigthBounds, 'grassPlatform')
-        this.platforms.create(800,this.heigthBounds, 'grassPlatform')
-        this.platforms.create(400,this.heigthBounds, 'grassPlatform')
-        this.platforms.create(1200,this.heigthBounds, 'grassPlatform')
-        this.platforms.create(1400,this.heigthBounds, 'grassPlatform')
+        this.platforms.create(0, 589, 'grassPlatform').visible = false
+        this.platforms.create(800,589, 'grassPlatform').visible = false
+        this.platforms.create(400,589, 'grassPlatform').visible = false
+        this.platforms.create(1200,589, 'grassPlatform').visible = false
+        this.platforms.create(1400,589, 'grassPlatform').visible = false
 
 
         //create player

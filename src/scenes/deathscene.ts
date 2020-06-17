@@ -19,26 +19,13 @@ export default class Death extends Phaser.Scene
         this.physics.world.setBounds(0, 0, this.widthBounds, this.heigthBounds)
 
         //create background
-        this.add.image(0, 0, "sky").setDisplaySize(this.game.renderer.width, this.game.renderer.height).setOrigin(0)
+        this.add.image(0, 0, "gameover").setDisplaySize(this.game.renderer.width, this.game.renderer.height).setOrigin(0)
 
         //add music
         this.sound.play("deathMusic", {
             loop: true,
             volume: 0.5
         })
-
-        //create death text
-        this.add.text(this.game.renderer.width / 2,this.game.renderer.height / 2, "Game Over!", {
-            fontSize: '30px',
-            fill: '#fff',
-            align: 'center'
-                })
-
-        this.add.text(this.game.renderer.width / 2,this.game.renderer.height / 2 + 50, "Press Spacebar to restart", {
-            fontSize: '25px',
-            fill: '#fff',
-            align: 'center'
-                })
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.game.renderer.width, this.game.renderer.height, true);

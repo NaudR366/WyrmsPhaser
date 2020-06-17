@@ -217,52 +217,52 @@ export default class IceWorld extends Phaser.Scene {
 		this.platforms.create(1057.47900390625, 732.7072314623201, "stonegroundsmall").visible = false;
 
 		// stoneground_2
-		this.damageBlock2.create(72.57952117919922, 739.8051417264048, "stoneground");
+		this.damageBlock2.create(72.57952117919922, 739.8051417264048, "stoneground").visible = false;
 		
 		// stoneground_2_1
-		this.damageBlock2.create(209.0404510498047, 741.9808931662801, "stoneground");
+		this.damageBlock2.create(209.0404510498047, 741.9808931662801, "stoneground").visible = false;
 		
 		// stoneground_2_1_1
-		this.damageBlock2.create(342.9276480157877, 742.4073334303993, "stoneground");
+		this.damageBlock2.create(342.9276480157877, 742.4073334303993, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1
-		this.damageBlock2.create(477.32035547405155, 741.3057594158377, "stoneground");
+		this.damageBlock2.create(477.32035547405155, 741.3057594158377, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1
-		this.damageBlock2.create(610.6115122851323, 740.2041454385655, "stoneground");
+		this.damageBlock2.create(610.6115122851323, 740.2041454385655, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1
-		this.damageBlock2.create(1142.8244016994652, 751.7023207537055, "stoneground");
+		this.damageBlock2.create(1142.8244016994652, 751.7023207537055, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1_1
-		this.damageBlock2.create(1280.1826319891936, 753.3047557799996, "stoneground");
+		this.damageBlock2.create(1280.1826319891936, 753.3047557799996, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1_1_1
-		this.damageBlock2.create(1415.1639575277732, 753.3047628688395, "stoneground");
+		this.damageBlock2.create(1415.1639575277732, 753.3047628688395, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1_1_1_1
-		this.damageBlock2.create(1556.0139833596036, 753.3047234122098, "stoneground");
+		this.damageBlock2.create(1556.0139833596036, 753.3047234122098, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1_1_1_1_1
-		this.damageBlock2.create(1692.4624696877286, 754.7719367440402, "stoneground");
+		this.damageBlock2.create(1692.4624696877286, 754.7719367440402, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1_1_1_1_1_1
-		this.damageBlock2.create(1823.0422785491571, 757.7062952837051, "stoneground");
+		this.damageBlock2.create(1823.0422785491571, 757.7062952837051, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1_1_1_1_1_1_1
-		this.damageBlock2.create(1959.7367926387055, 757.8334298412182, "stoneground");
+		this.damageBlock2.create(1959.7367926387055, 757.8334298412182, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1_1_1_1_1_1_1_1
-		this.damageBlock2.create(2096.7708225956635, 758.7916817943432, "stoneground");
+		this.damageBlock2.create(2096.7708225956635, 758.7916817943432, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1_1_1_1_1_1_1_1_1
-		this.damageBlock2.create(2240.5128358515944, 758.7916765769675, "stoneground");
+		this.damageBlock2.create(2240.5128358515944, 758.7916765769675, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1_1_1_1_1_1_1_1_1_1
-		this.damageBlock2.create(2386.1713251048855, 756.8751447618272, "stoneground");
+		this.damageBlock2.create(2386.1713251048855, 756.8751447618272, "stoneground").visible = false;
 		
 		// stoneground_2_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1
-		this.damageBlock2.create(2463.5244134223108, 758.9656074025555, "stoneground");
+		this.damageBlock2.create(2463.5244134223108, 758.9656074025555, "stoneground").visible = false;
 
         //create player
 		this.player = new Worm(this, 70, this.heightBounds - 500)
