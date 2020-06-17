@@ -41,8 +41,8 @@ export default class Load extends Phaser.Scene
         })
 
         //load enemys
-        this.load.spritesheet('mol', 'assets/enemys/mole.png',{frameWidth: 65, frameHeight: 57})
-        this.load.spritesheet('swimmole', 'assets/enemys/swimmole.png',{frameWidth: 65, frameHeight: 57})
+        this.load.spritesheet('mol', 'assets/enemys/mole.png',{frameWidth: 65.6, frameHeight: 57})
+        this.load.spritesheet('swimmole', 'assets/enemys/swimmole.png',{frameWidth: 65.7, frameHeight: 57})
 
         //load pickups
         this.load.image('suitcase', 'assets/pickups/koffer.png')
