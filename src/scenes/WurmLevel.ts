@@ -12,7 +12,7 @@ export default class WurmLevel extends Phaser.Scene {
     private suitcase?: Phaser.Physics.Arcade.Group
 
     //create enemy
-    private mole?: Mole
+    private mole: Mole[] = []
     private colliderMole: Phaser.Physics.Arcade.Collider
 
     // private score = 0
@@ -148,8 +148,10 @@ export default class WurmLevel extends Phaser.Scene {
         this.physics.add.collider(this.player, this.lava, this.handleLava, undefined, this)
 
         //create enemy
-        this.mole = new Mole(this, 580, this.heightBounds - 200, 600)
-        this.mole.setScale(0.7)
+        this.mole.push(new Mole(this, 580, this.heightBounds - 200, 600))
+        this.mole.push(new Mole(this, 1240, this.heightBounds - 200, 1260))
+        this.mole[0].setScale(0.7)
+        this.mole[1].setScale(0.7)
         this.physics.add.collider(this.mole, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
 
