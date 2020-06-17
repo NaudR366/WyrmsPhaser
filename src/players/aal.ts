@@ -19,6 +19,10 @@ export default class Aal extends Phaser.Physics.Arcade.Sprite {
         return this.y
     }
 
+    setSpriteColor(hex: number) {
+        this.tint = hex
+    }
+
     constructor(scene, x : number, y: number, texture = 'aal') {
         super(scene, x, y, texture)
 

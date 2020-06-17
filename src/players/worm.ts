@@ -100,9 +100,11 @@ export default class Worm extends Phaser.Physics.Arcade.Sprite {
             if(this.stealthMode) {
                 this.setVelocityX(0) 
                 this.anims.play('turn')
+                this.clearTint()
                 this.alpha = 0.3
             } else {
                 this.alpha = 1
+                this.clearTint()
             }
 
         }

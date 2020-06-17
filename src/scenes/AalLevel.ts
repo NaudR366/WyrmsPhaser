@@ -1,16 +1,22 @@
 import Phaser from 'phaser'
 import Aal from '~/players/aal';
+// import Mole from '~/enemies/swimmole'
+import SwimMole from '~/enemies/swimmole';
 
 export default class AalLevel extends Phaser.Scene {
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup;
     private player?: Aal;
-    private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
+	private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
+	private hpText?: Phaser.GameObjects.Text
 
     private koffer?: Phaser.Physics.Arcade.Group
     private levelCompleteText?: Phaser.GameObjects.Text
     private widthBounds = 1500
-    private heightBounds = 750
+	private heightBounds = 750
+	
+	private mole: SwimMole[] = []
+	private colliderMole: Phaser.Physics.Arcade.Collider
 
     constructor()
 	{
@@ -675,7 +681,20 @@ export default class AalLevel extends Phaser.Scene {
 
         this.physics.add.collider(this.player, this.platforms);
 
-        this.cursors = this.input.keyboard.createCursorKeys();
+		// this.cursors = this.input.keyboard.createCursorKeys();
+		
+		//create enemy
+		this.mole.push(new SwimMole(this, 200, 200, 400))
+		this.mole.push(new SwimMole(this, 500, 480, 800))
+		this.mole.push(new SwimMole(this, 250, 550, 800))
+		this.mole.push(new SwimMole(this, 800, 150, 1000))
+
+		this.mole[0].setGravity(0, -400)
+		this.mole[1].setGravity(0, -400)
+		this.mole[2].setGravity(0, -400)
+		this.mole[3].setGravity(0, -400)
+
+		this.physics.add.collider(this.mole, this.platforms)
 
         this.koffer = this.physics.add.group();
 
@@ -687,11 +706,18 @@ export default class AalLevel extends Phaser.Scene {
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
-        this.cameras.main.setZoom(1.5)
+		this.cameras.main.setZoom(1.5)
+		
+		//create hp
+		this.hpText = this.add.text(16, this.heightBounds - 100, `Health: ${this.player.getHp()}`, {
+			fontSize: '20px',
+			fill: '#fff',
+		})
 
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.koffer, this.platforms)
-        this.physics.add.overlap(this.player, this.koffer, this.handleCollectSuitcase, undefined, this)
+		this.physics.add.overlap(this.player, this.koffer, this.handleCollectSuitcase, undefined, this)
+		this.colliderMole = this.physics.add.collider(this.player, this.mole, this.handleHitMole, undefined, this)
 
     }
     //function for collecting suitcase
@@ -719,9 +745,35 @@ export default class AalLevel extends Phaser.Scene {
             this.scene.start('iceWorld')
         }, 2000);
 
+	}
+	
+	handleHitMole() {
+        this.player?.handleHit()
+        this.colliderMole.active = false
+            this.player?.setSpriteColor(0xff0000) 
+        setTimeout(() => {
+            this.colliderMole.active = true
+                this.player?.clearTint()
+        }, 1000)
     }
 
     update() {
 
+		if(this.player?.getHp) {
+            this.hpText?.setText(`Health: ${this.player?.getHp()}`)
+        }
+
+        //hp text update
+        this.hpText?.setX(this.player?.body.position.x)
+		this.hpText?.setY(this.player?.body.bottom)
+		
+		//update player life
+        let hp = this.player?.getHp()
+        
+        if(hp == 0) {
+            this.player?.destroy()
+            this.sound.stopAll()
+            this.scene.start('death')
+        }
     }
 }
