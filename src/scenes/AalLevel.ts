@@ -688,11 +688,13 @@ export default class AalLevel extends Phaser.Scene {
 		this.mole.push(new SwimMole(this, 500, 480, 800))
 		this.mole.push(new SwimMole(this, 250, 550, 800))
 		this.mole.push(new SwimMole(this, 800, 150, 1000))
+		this.mole.push(new SwimMole(this, 1000, 580, 1300))
 
 		this.mole[0].setGravity(0, -400)
 		this.mole[1].setGravity(0, -400)
 		this.mole[2].setGravity(0, -400)
 		this.mole[3].setGravity(0, -400)
+		this.mole[4].setGravity(0, -400)
 
 		this.physics.add.collider(this.mole, this.platforms)
 
