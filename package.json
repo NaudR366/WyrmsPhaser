@@ -4,7 +4,7 @@
 	"description": "A template project for Phaser3 using Parceljs",
 	"scripts": {
 		"start": "parcel src/index.html -p 8000",
-		"build": "parcel build src/index.html --out-dir dist",
+		"build": "parcel build src/index.html --out-dir docs",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "supertommy",
@@ -13,7 +13,7 @@
 		"type": "git",
 		"url": "https://github.com/ourcade/phaser3-parcel-template.git"
 	},
-	"homepage": "https://github.com/ourcade/phaser3-parcel-template",
+	"homepage": "https://stud.hosted.hr.nl/0996549/websites/wyrms/",
 	"devDependencies": {
 		"cssnano": "^4.1.10",
 		"eslint": "^6.8.0",
@@ -27,7 +27,7 @@
 		"phaser3-weapon-plugin": "^2.0.1"
 	},
 	"parcelCleanPaths": [
-		"dist"
+		"docs"
 	],
 	"staticFiles": {
 		"staticPath": "public",
