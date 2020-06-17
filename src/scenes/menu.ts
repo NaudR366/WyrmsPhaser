@@ -193,34 +193,34 @@ export default class Menu extends Phaser.Scene
         window.location.href = 'https://hr-cmgt.github.io/arcade-server/'
     }
 
-    // private text(x:number, y:number, width:number, height:number, q:string){
+    private text(x:number, y:number, width:number, height:number, q:string){
         
-    //     console.log("text bubble test");
+        console.log("text bubble test");
 
-    //     let h = height;
-    //     let w = width;
-    //     let padding = 10;
-    //     let bbq = q;
-    //     let text = this.add.graphics({x: x, y: y});
+        let h = height;
+        let w = width;
+        let padding = 10;
+        let bbq = q;
+        let text = this.add.graphics({x: x, y: y});
         
-    //     console.log(bbq);
+        console.log(bbq);
 
-    //     //bg
-    //     text.fillStyle(0x898989);
+        //bg
+        text.fillStyle(0x898989);
         
-    //     //outline
-    //     text.lineStyle(4, 0x092384, 1);
+        //outline
+        text.lineStyle(4, 0x092384, 1);
 
-    //     //shape
-    //     text.strokeRoundedRect(0,0, w, h, 14);
-    //     text.fillRoundedRect(0,0, w, h, 14);
+        //shape
+        text.strokeRoundedRect(0,0, w, h, 14);
+        text.fillRoundedRect(0,0, w, h, 14);
 
-    //     //text
-    //     let inhoud = this.add.text(0,0, bbq, { fontFamily: 'Arial', fontSize: 20, color: '#ffffff', align: 'center', wordWrap: { width: w - (padding * 2) }} );
-    //     let b = inhoud.getBounds();
+        //text
+        let inhoud = this.add.text(0,0, bbq, { fontFamily: 'Arial', fontSize: 20, color: '#ffffff', align: 'center', wordWrap: { width: w - (padding * 2) }} );
+        let b = inhoud.getBounds();
 
-    //     text.setPosition(text.x + (w / 2) - (b.width / 2), text.y + (h / 2) - (b.height / 2));
-    // }
+        text.setPosition(text.x + (w / 2) - (b.width / 2), text.y + (h / 2) - (b.height / 2));
+    }
 
     update()
     {
