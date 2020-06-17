@@ -13,7 +13,7 @@
 		"type": "git",
 		"url": "https://github.com/ourcade/phaser3-parcel-template.git"
 	},
-	"homepage": "https://stud.hosted.hr.nl/0996549/websites/wyrms/",
+	"homepage": "https://naudr366.github.io/WyrmsPhaser/",
 	"devDependencies": {
 		"cssnano": "^4.1.10",
 		"eslint": "^6.8.0",
