@@ -225,12 +225,12 @@ export default class WurmVsMole extends Phaser.Scene {
 
     handleHitMole() {
         this.player?.handleHit()
-        !this.colliderMole?.active
+        this.colliderMole.active = false
         if(this.player && this.player.stealthMode == false) { 
             this.player.setSpriteColor(0xff0000)
         }
         setTimeout(() => {
-            this.colliderMole?.active
+            this.colliderMole.active = true
             if(this.player && this.player.stealthMode == false) {
                 this.player.clearTint()
             }
