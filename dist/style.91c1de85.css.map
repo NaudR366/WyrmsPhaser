@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA,KACI,QAAS,CACT,SAAU,CACV,eAAgB,CAEhB,qBACJ,CAEA,OACI,WACJ","file":"style.91c1de85.css","sourceRoot":"..\\src","sourcesContent":["body {\r\n    margin: 0;\r\n    padding: 0;\r\n    overflow: hidden;\r\n    /* cursor: none; */\r\n    background-color: grey;\r\n}\r\n\r\ncanvas {\r\n    cursor: none;\r\n}"]}
