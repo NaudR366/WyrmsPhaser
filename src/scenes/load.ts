@@ -41,12 +41,8 @@ export default class Load extends Phaser.Scene
         })
 
         //load enemys
-<<<<<<< HEAD
-        this.load.spritesheet('mol', 'assets/enemys/mole.png',{frameWidth: 65, frameHeight: 57})
-=======
         this.load.spritesheet('mol', 'assets/enemys/mole.png',{frameWidth: 65.6, frameHeight: 57})
         this.load.spritesheet('swimmole', 'assets/enemys/swimmole.png',{frameWidth: 65.7, frameHeight: 57})
->>>>>>> 5dc168e91cd94a5f1b32f354c83eaa49892c513e
 
         //load pickups
         this.load.image('suitcase', 'assets/pickups/koffer.png')
@@ -169,10 +165,6 @@ export default class Load extends Phaser.Scene
             repeat: -1
         });
 
-<<<<<<< HEAD
-        this.scene.start('iceWorld')
-=======
         this.scene.start('menu')
->>>>>>> 5dc168e91cd94a5f1b32f354c83eaa49892c513e
     }
 }
