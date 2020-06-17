@@ -142,6 +142,29 @@ export default class Load extends Phaser.Scene
             repeat: -1
         });
 
+        // swimmol animation
+        this.anims.create({
+            key: 'leftswimmole',
+            frames: this.anims.generateFrameNumbers('swimmole', {
+                start: 0, end: 3
+            }),
+            frameRate: 10,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: 'turnswimmole',
+            frames: [ { key: 'swimmole', frame: 7 } ],
+            frameRate: 20
+        })
+
+        this.anims.create({
+            key: 'rightswimmole',
+            frames: this.anims.generateFrameNumbers('swimmole', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
          //create aal animations
          this.anims.create({
             key: 'leftaal',
