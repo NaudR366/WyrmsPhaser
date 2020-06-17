@@ -206,7 +206,7 @@ export default class Menu extends Phaser.Scene
         console.log(bbq);
 
         //bg
-        text.fillStyle(0x000000);
+        text.fillStyle(0x898989);
         
         //outline
         text.lineStyle(4, 0x092384, 1);
