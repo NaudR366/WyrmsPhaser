@@ -10,7 +10,7 @@ export default class WurmVsMole extends Phaser.Scene {
     private player?: Worm
     private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private suitcase?: Phaser.Physics.Arcade.Group
-    private mole?: Mole
+    private mole: Mole[] = []
     private moleX?
     private moleY?
     private moleLives = 1
@@ -59,7 +59,7 @@ export default class WurmVsMole extends Phaser.Scene {
 		this.platforms.create(52.98955268179842, 611.1715542031992, "stoneground").visible = false;
 		
 		// stoneground_1
-		this.platforms.create(179.6962011702972, 612.8831787109375, "stoneground").visible = false;
+		this.platforms.create(179.6962011702972, 619.5092424580542, "stoneground").visible = false;
 		
 		// stonegroundsmall
 		this.platforms.create(263.8553562717727, 619.5092424580542, "stonegroundsmall").visible = false;
@@ -164,7 +164,10 @@ export default class WurmVsMole extends Phaser.Scene {
         this.moleY = 450
 
         //create mole
-        this.mole = new Mole(this, this.moleX, this.moleY, 1300)
+        this.mole.push(new Mole(this, this.moleX, this.moleY, 1300))
+        this.mole.push(new Mole(this, 200, this.moleY, 400))
+
+        this.mole[0].setScale(1.4)
 
         this.physics.add.collider(this.mole, this.platforms)
         this.physics.add.collider(this.player, this.platforms)

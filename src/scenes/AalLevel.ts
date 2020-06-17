@@ -731,7 +731,7 @@ export default class AalLevel extends Phaser.Scene {
     update() {
 
 		if(this.player?.getHp) {
-            this.hpText?.setText( `Health: ${this.player?.getHp()}`)
+            this.hpText?.setText(`Health: ${this.player?.getHp()}`)
         }
 
         //hp text update

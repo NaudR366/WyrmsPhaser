@@ -50,8 +50,8 @@ export default class Menu extends Phaser.Scene
 		this.platforms.create(26.6958023494819, 590.2070627603003, "stonegroundsmall").visible = false;
 		this.platforms.create(59.98490848210746, 608.6440863403545, "stonegroundsmall").visible = false;
 		this.platforms.create(73.81269397405082, 609.1562263801152, "stonegroundsmall").visible = false;
-		this.platforms.create(304.4878914518224, 575.6461257633435, "stonegroundsmall").visible = false;
-		this.platforms.create(326.1270959863266, 575.9998175634743, "stonegroundsmall").visible = false;
+		this.platforms.create(304.4878914518224, 585.0381095494772, "stonegroundsmall").visible = false;
+		this.platforms.create(326.1270959863266, 585.0381095494772, "stonegroundsmall").visible = false;
 		this.platforms.create(381.5030485175165, 585.0381095494772, "stoneground").visible = false;
 		this.platforms.create(137.37473875258988, 725.5206735477857, "stoneground").visible = false;
 		this.platforms.create(225.97813862155732, 757.222824938849, "stoneground").visible = false;
