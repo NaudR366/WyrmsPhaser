@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* cursor: none; */
+    background-color: grey;
+}
+
+canvas {
+    cursor: none;
+}
+
+/*# sourceMappingURL=/style.78032849.css.map */
