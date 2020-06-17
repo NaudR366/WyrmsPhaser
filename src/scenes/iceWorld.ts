@@ -7,12 +7,13 @@ export default class IceWorld extends Phaser.Scene {
     private player? : Worm
 	private suitcase?: Phaser.Physics.Arcade.Group
 	private levelCompleteText?: Phaser.GameObjects.Text
+	private damageBlock2?: Phaser.Physics.Arcade.StaticGroup
 
     // private score = 0
     // private scoreText?: Phaser.GameObjects.Text
     // private levelCompleteText?: Phaser.GameObjects.Text
 
-    private widthBounds = 5000
+    private widthBounds = 2500
     private heightBounds = 750
 
     constructor()
@@ -32,309 +33,239 @@ export default class IceWorld extends Phaser.Scene {
 		this.anims.resumeAll()
 
         //create platforms
-        this.platforms = this.physics.add.staticGroup()
-		// iceground1
-		this.platforms.create(64, 2448, "iceground1");
+		this.platforms = this.physics.add.staticGroup()
+		this.damageBlock2 = this.physics.add.staticGroup()
 		
-		// iceground2
-		this.platforms.create(192, 2448, "iceground2");
+		// stonegroundsmall
+		this.platforms.create(87.68258666992188, 437.1197070482576, "stonegroundsmall").visible = false;
 		
-		// ground2_1
-		this.platforms.create(320, 2448, "iceground2");
+		// stonegroundsmall_1
+		this.platforms.create(127.17024993896484, 436.7888965013826, "stonegroundsmall").visible = false;
 		
-		// stoneground5
-		this.platforms.create(448, 2448, "stoneground5");
+		// stonegroundsmall_1_1
+		this.platforms.create(253.20614624023438, 584.2630786302889, "stonegroundsmall").visible = false;
 		
-		// ground1_1
-		this.platforms.create(448, 2320, "iceground1");
+		// stonegroundsmall_1_1_1
+		this.platforms.create(266.11895751953125, 584.6524829271639, "stonegroundsmall").visible = false;
 		
-		// ground5_1
-		this.platforms.create(576, 2448, "stoneground5");
+		// stonegroundsmall_1_1_1_1
+		this.platforms.create(399.3536682128906, 582.9200610521639, "stonegroundsmall").visible = false;
 		
-		// ground2_2
-		this.platforms.create(576, 2320, "iceground2");
+		// stonegroundsmall_1_1_1_1_1
+		this.platforms.create(514.3336181640625, 530.4881762865389, "stonegroundsmall").visible = false;
 		
-		// ice
-		this.platforms.create(704, 2448, "ice");
+		// stonegroundsmall_1_1_1_1_1_1
+		this.platforms.create(583.3521118164062, 530.1925830248201, "stonegroundsmall").visible = false;
 		
-		// ice_1
-		this.platforms.create(832, 2448, "ice");
+		// stonegroundsmall_1_1_1_1_1_1_1
+		this.platforms.create(676.2096557617188, 530.2124194506014, "stonegroundsmall").visible = false;
 		
-		// ground1_2
-		this.platforms.create(848, 2160, "iceground1");
+		// stonegroundsmall_1_1_1_1_1_1_1_1
+		this.platforms.create(713.42529296875, 529.1488208177889, "stonegroundsmall").visible = false;
 		
-		// iceground3
-		this.platforms.create(976, 2160, "iceground3");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1
+		this.platforms.create(700.9304809570312, 396.5183581713045, "stonegroundsmall").visible = false;
 		
-		// ice_2
-		this.platforms.create(960, 2448, "ice");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1_1
+		this.platforms.create(742.3392333984375, 399.7955493334139, "stonegroundsmall").visible = false;
 		
-		// ice_3
-		this.platforms.create(1088, 2448, "ice");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1_2
+		this.platforms.create(696.7280883789062, 329.8628100756014, "stonegroundsmall").visible = false;
 		
-		// ground5_2
-		this.platforms.create(1216, 2448, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1_2_1
+		this.platforms.create(737.2575073242188, 333.1306933763826, "stonegroundsmall").visible = false;
 		
-		// ground5_2_1
-		this.platforms.create(1216, 2320, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1_2_1_1
+		this.platforms.create(737.816162109375, 281.1664599779451, "stonegroundsmall").visible = false;
 		
-		// ground1_3
-		this.platforms.create(1216, 2192, "iceground1");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1_2_1_1_1
+		this.platforms.create(739.8609008789062, 226.3717059496248, "stonegroundsmall").visible = false;
 		
-		// ground5_2_2
-		this.platforms.create(1344, 2448, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2
+		this.platforms.create(736.68212890625, 579.6470507982576, "stonegroundsmall").visible = false;
 		
-		// ground5_2_1_1
-		this.platforms.create(1344, 2320, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1
+		this.platforms.create(736.68212890625, 650.1044482591951, "stonegroundsmall").visible = false;
 		
-		// ground2_3
-		this.platforms.create(1344, 2192, "iceground2");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1
+		this.platforms.create(738.9549560546875, 716.0161914232576, "stonegroundsmall").visible = false;
 		
-		// ground5_2_2_1
-		this.platforms.create(1472, 2448, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_1
+		this.platforms.create(775.0078735351562, 367.3545703295076, "stonegroundsmall").visible = false;
 		
-		// ground5_2_1_1_1
-		this.platforms.create(1472, 2320, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2
+		this.platforms.create(827.4547729492188, 367.47325319083575, "stonegroundsmall").visible = false;
 		
-		// ground2_3_1
-		this.platforms.create(1472, 2192, "iceground2");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1
+		this.platforms.create(852.9388427734375, 378.157884538492, "stonegroundsmall").visible = false;
 		
-		// ground5_2_2_2
-		this.platforms.create(1600, 2448, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_1
+		this.platforms.create(770.79296875, 559.0345630052889, "stonegroundsmall").visible = false;
 		
-		// ground5_2_1_1_2
-		this.platforms.create(1600, 2320, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_1_1
+		this.platforms.create(813.3596801757812, 559.2235278490389, "stonegroundsmall").visible = false;
 		
-		// ground2_3_2
-		this.platforms.create(1600, 2192, "iceground2");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_1_1_1
+		this.platforms.create(850.772705078125, 560.0211352709139, "stonegroundsmall").visible = false;
 		
-		// ground5_2_2_2_1
-		this.platforms.create(1728, 2448, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_1_1_1_1
+		this.platforms.create(927.0902099609375, 588.5276660326326, "stonegroundsmall").visible = false;
 		
-		// ground3_1
-		this.platforms.create(1728, 2320, "iceground3");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_1_1_1_1_1
+		this.platforms.create(944.9033813476562, 588.5276049974764, "stonegroundsmall").visible = false;
 		
-		// ground1_3_1
-		this.platforms.create(1952, 2048, "iceground1");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_1_1_1_1_1_1
+		this.platforms.create(765.9066772460938, 641.5285815599764, "stonegroundsmall").visible = false;
 		
-		// ground2_3_3
-		this.platforms.create(2080, 2048, "iceground2");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_1_1_1_1_1_1_1
+		this.platforms.create(783.9618530273438, 641.5285815599764, "stonegroundsmall").visible = false;
 		
-		// ice_4
-		this.platforms.create(1856, 2448, "ice");
+		// stoneground
+		this.platforms.create(882.178466796875, 699.7669848802889, "stoneground").visible = false;
 		
-		// ice_1_1
-		this.platforms.create(1984, 2448, "ice");
+		// stoneground_1
+		this.platforms.create(969.8028564453125, 700.1140918138826, "stoneground").visible = false;
 		
-		// ice_2_1
-		this.platforms.create(2112, 2448, "ice");
+		// stonegroundsmall_2
+		this.platforms.create(1265.735595703125, 674.4177417162264, "stonegroundsmall").visible = false;
 		
-		// ice_3_1
-		this.platforms.create(2240, 2448, "ice");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1_2_1_1_1_1
+		this.platforms.create(734.7527465820312, 150.34761232169512, "stonegroundsmall").visible = false;
 		
-		// ground3_2
-		this.platforms.create(2208, 2048, "iceground3");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1_2_1_1_1_1_1
+		this.platforms.create(734.7527465820312, 75.26835054190995, "stonegroundsmall").visible = false;
 		
-		// ground1_3_1_1
-		this.platforms.create(2464, 1900, "iceground1");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1_2_1_1_1_1_1_1
+		this.platforms.create(768.2340087890625, 212.2372760179842, "stonegroundsmall").visible = false;
 		
-		// ground2_3_3_1
-		this.platforms.create(2592, 1900, "iceground2");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1_2_1_1_1_1_1_1_1
+		this.platforms.create(790.5548706054688, 213.25184816153887, "stonegroundsmall").visible = false;
 		
-		// ground3_2_1
-		this.platforms.create(2720, 1900, "iceground3");
+		// stonegroundsmall_1_1_1_1_1_1_2
+		this.platforms.create(548.993896484375, 530.0380420091951, "stonegroundsmall").visible = false;
 		
-		// ice_4_1
-		this.platforms.create(2368, 2448, "ice");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_3
+		this.platforms.create(739.3008422851562, 530.3702563646639, "stonegroundsmall").visible = false;
 		
-		// ice_1_1_1
-		this.platforms.create(2496, 2448, "ice");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_1_1_1_1_1_2
+		this.platforms.create(919.3395591636292, 428.2478023228534, "stonegroundsmall").visible = false;
 		
-		// ice_2_1_1
-		this.platforms.create(2624, 2448, "ice");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_1_1_1_1_1_2_1
+		this.platforms.create(935.371761934514, 430.08820925270714, "stonegroundsmall").visible = false;
 		
-		// ice_3_1_1
-		this.platforms.create(2752, 2448, "ice");
+		// stoneground_1_1
+		this.platforms.create(1111.384521484375, 529.1120166185701, "stoneground").visible = false;
 		
-		// ground5_2_3
-		this.platforms.create(2880, 2448, "stoneground5");
+		// stoneground_1_1_1
+		this.platforms.create(1228.515380859375, 529.8125171068514, "stoneground").visible = false;
 		
-		// ground5_2_1_2
-		this.platforms.create(2880, 2320, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_2
+		this.platforms.create(990.6298779208906, 322.57577636938674, "stonegroundsmall").visible = false;
 		
-		// ground1_3_2
-		this.platforms.create(2880, 2192, "iceground1");
+		// stoneground_1_1_2
+		this.platforms.create(1112.2235107421875, 278.003343522867, "stoneground").visible = false;
 		
-		// ground2_3_4
-		this.platforms.create(3008, 2192, "iceground2");
+		// stoneground_1_1_2_1
+		this.platforms.create(1159.6793212890625, 278.0033740404451, "stoneground").visible = false;
 		
-		// ground5_2_1_1_3
-		this.platforms.create(3008, 2320, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_2_1_1
+		this.platforms.create(1379.0205078125, 272.5060595873201, "stonegroundsmall").visible = false;
 		
-		// ground5_2_2_3
-		this.platforms.create(3008, 2448, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_2_1_1_1
+		this.platforms.create(1443.005615234375, 509.1303882006014, "stonegroundsmall").visible = false;
 		
-		// ground5_2_2_1_1
-		this.platforms.create(3136, 2448, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_2_1_1_1_1
+		this.platforms.create(1474.3946533203125, 509.1303882006014, "stonegroundsmall").visible = false;
 		
-		// ground5_2_1_1_1_1
-		this.platforms.create(3136, 2320, "stoneground5");
+		// stoneground_1_1_2_2
+		this.platforms.create(1127.908935546875, 167.47381776603106, "stoneground").visible = false;
 		
-		// ground2_3_1_1
-		this.platforms.create(3136, 2192, "iceground2");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_1_2_1_1_1_1_1_1_1_1
+		this.platforms.create(817.641357421875, 232.5321063402498, "stonegroundsmall").visible = false;
 		
-		// ground2_3_2_1
-		this.platforms.create(3264, 2192, "iceground2");
+		// stoneground_1_1_1_1
+		this.platforms.create(1685.3604736328125, 501.2148608568514, "stoneground").visible = false;
 		
-		// ground5_2_1_1_2_1
-		this.platforms.create(3264, 2320, "stoneground5");
+		// stoneground_1_1_1_1_1
+		this.platforms.create(1799.6951904296875, 502.2177905443514, "stoneground").visible = false;
 		
-		// ground5_2_2_2_2
-		this.platforms.create(3264, 2448, "stoneground5");
+		// stoneground_1_1_1_1_1_1
+		this.platforms.create(1839.8126220703125, 293.60704225333575, "stoneground").visible = false;
 		
-		// ground5_2_3_1
-		this.platforms.create(3392, 2448, "stoneground5");
+		// stoneground_1_1_1_1_1_1_1
+		this.platforms.create(1952.062744140625, 294.775804460367, "stoneground").visible = false;
 		
-		// ground5_2_1_2_1
-		this.platforms.create(3392, 2320, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_2_1_1_2
+		this.platforms.create(1584.7874755859375, 215.629320085367, "stonegroundsmall").visible = false;
 		
-		// ground5_2_1_1_3_1
-		this.platforms.create(3520, 2320, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_2_1_1_2_1
+		this.platforms.create(1996.5269775390625, 445.9544848802889, "stonegroundsmall").visible = false;
 		
-		// ground5_2_2_3_1
-		this.platforms.create(3520, 2448, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_2_1_1_2_1_1
+		this.platforms.create(2147.70556640625, 391.7080249193514, "stonegroundsmall").visible = false;
 		
-		// ground5_2_2_1_1_1
-		this.platforms.create(3648, 2448, "stoneground5");
+		// stoneground_1_1_1_1_1_1_1_1
+		this.platforms.create(2283.094970703125, 205.3237017992342, "stoneground").visible = false;
 		
-		// ground5_2_1_1_1_1_1
-		this.platforms.create(3648, 2320, "stoneground5");
+		// stoneground_1_1_1_1_1_1_1_1_1
+		this.platforms.create(2359.617919921875, 206.78236573966387, "stoneground").visible = false;
 		
-		// ground5_2_1_1_2_1_1
-		this.platforms.create(3776, 2320, "stoneground5");
+		// stonegroundsmall_1_1_1_1_1_1_1_1_2_1_1_2_1_2_1_1_2_2
+		this.platforms.create(2446.198486328125, 206.4816913011873, "stonegroundsmall").visible = false;
 		
-		// ground5_2_2_2_2_1
-		this.platforms.create(3776, 2448, "stoneground5");
+		// stonegroundsmall_2_1
+		this.platforms.create(1057.47900390625, 732.7072314623201, "stonegroundsmall").visible = false;
+
+		// stoneground_2
+		this.damageBlock2.create(72.57952117919922, 739.8051417264048, "stoneground");
 		
-		// ground5_2_1_2_1_1
-		this.platforms.create(3392, 2080, "stoneground5");
+		// stoneground_2_1
+		this.damageBlock2.create(209.0404510498047, 741.9808931662801, "stoneground");
 		
-		// ground5_2_3_1_1
-		this.platforms.create(3392, 2208, "stoneground5");
+		// stoneground_2_1_1
+		this.damageBlock2.create(342.9276480157877, 742.4073334303993, "stoneground");
 		
-		// ground5_2_2_3_1_1
-		this.platforms.create(3520, 2208, "stoneground5");
+		// stoneground_2_1_1_1
+		this.damageBlock2.create(477.32035547405155, 741.3057594158377, "stoneground");
 		
-		// ground5_2_1_1_3_1_1
-		this.platforms.create(3520, 2080, "stoneground5");
+		// stoneground_2_1_1_1_1
+		this.damageBlock2.create(610.6115122851323, 740.2041454385655, "stoneground");
 		
-		// ground5_2_1_1_1_1_1_1
-		this.platforms.create(3648, 2080, "stoneground5");
+		// stoneground_2_1_1_1_1_1
+		this.damageBlock2.create(1142.8244016994652, 751.7023207537055, "stoneground");
 		
-		// ground5_2_2_1_1_1_1
-		this.platforms.create(3648, 2208, "stoneground5");
+		// stoneground_2_1_1_1_1_1_1
+		this.damageBlock2.create(1280.1826319891936, 753.3047557799996, "stoneground");
 		
-		// ground5_2_2_2_2_1_1
-		this.platforms.create(3776, 2208, "stoneground5");
+		// stoneground_2_1_1_1_1_1_1_1
+		this.damageBlock2.create(1415.1639575277732, 753.3047628688395, "stoneground");
 		
-		// ground5_2_1_1_2_1_1_1
-		this.platforms.create(3776, 2080, "stoneground5");
+		// stoneground_2_1_1_1_1_1_1_1_1
+		this.damageBlock2.create(1556.0139833596036, 753.3047234122098, "stoneground");
 		
-		// ground5_2_1_2_1_1_1
-		this.platforms.create(3392, 1824, "stoneground5");
+		// stoneground_2_1_1_1_1_1_1_1_1_1
+		this.damageBlock2.create(1692.4624696877286, 754.7719367440402, "stoneground");
 		
-		// ground5_2_3_1_1_1
-		this.platforms.create(3392, 1952, "stoneground5");
+		// stoneground_2_1_1_1_1_1_1_1_1_1_1
+		this.damageBlock2.create(1823.0422785491571, 757.7062952837051, "stoneground");
 		
-		// ground5_2_2_3_1_1_1
-		this.platforms.create(3520, 1952, "stoneground5");
+		// stoneground_2_1_1_1_1_1_1_1_1_1_1_1
+		this.damageBlock2.create(1959.7367926387055, 757.8334298412182, "stoneground");
 		
-		// ground5_2_1_1_3_1_1_1
-		this.platforms.create(3520, 1824, "stoneground5");
+		// stoneground_2_1_1_1_1_1_1_1_1_1_1_1_1
+		this.damageBlock2.create(2096.7708225956635, 758.7916817943432, "stoneground");
 		
-		// ground5_2_1_1_1_1_1_1_1
-		this.platforms.create(3648, 1824, "stoneground5");
+		// stoneground_2_1_1_1_1_1_1_1_1_1_1_1_1_1
+		this.damageBlock2.create(2240.5128358515944, 758.7916765769675, "stoneground");
 		
-		// ground5_2_2_1_1_1_1_1
-		this.platforms.create(3648, 1952, "stoneground5");
+		// stoneground_2_1_1_1_1_1_1_1_1_1_1_1_1_1_1
+		this.damageBlock2.create(2386.1713251048855, 756.8751447618272, "stoneground");
 		
-		// ground5_2_2_2_2_1_1_1
-		this.platforms.create(3776, 1952, "stoneground5");
-		
-		// ground5_2_1_1_2_1_1_1_1
-		this.platforms.create(3776, 1824, "stoneground5");
-		
-		// ground1_3_1_1_1
-		this.platforms.create(2944, 1796, "iceground1");
-		
-		// ground2_3_3_1_1
-		this.platforms.create(3072, 1796, "iceground2");
-		
-		// ground3_2_1_1
-		this.platforms.create(3200, 1796, "iceground3");
-		
-		// ground1_3_1_1_2
-		this.platforms.create(3392, 1696, "iceground1");
-		
-		// ground2_3_3_1_2
-		this.platforms.create(3520, 1696, "iceground2");
-		
-		// ground3_2_1_2
-		this.platforms.create(3776, 1696, "iceground3");
-		
-		// ground2_3_3_1_2_1
-		this.platforms.create(3648, 1696, "iceground2");
-		
-		// ice_3_1_1_1
-		this.platforms.create(4800, 2448, "ice");
-		
-		// ice_2_1_1_1
-		this.platforms.create(4672, 2448, "ice");
-		
-		// ice_1_1_1_1
-		this.platforms.create(4544, 2448, "ice");
-		
-		// ice_4_1_1
-		this.platforms.create(4416, 2448, "ice");
-		
-		// ice_3_1_2
-		this.platforms.create(4288, 2448, "ice");
-		
-		// ice_2_1_2
-		this.platforms.create(4160, 2448, "ice");
-		
-		// ice_1_1_2
-		this.platforms.create(4032, 2448, "ice");
-		
-		// ice_4_2
-		this.platforms.create(3904, 2448, "ice");
-		
-		// ice_3_1_1_1_1
-		this.platforms.create(4928, 2448, "ice");
-		
-		// ground1_3_1_1_1_1
-		this.platforms.create(4096, 1936, "iceground1");
-		
-		// ground2_3_3_1_1_1
-		this.platforms.create(4224, 1936, "iceground2");
-		
-		// ground3_2_1_1_1
-		this.platforms.create(4352, 1936, "iceground3");
-		
-		// ground1_3_1_1_1_1_1
-		this.platforms.create(4672, 2160, "iceground1");
-		
-		// ground2_3_3_1_1_1_1
-		this.platforms.create(4800, 2160, "iceground2");
-		
-		// ground3_2_1_1_1_1
-		this.platforms.create(4928, 2160, "iceground3");
-		
-		// ice_3_1_1_1_1_1
-		this.platforms.create(5056, 2448, "ice");
+		// stoneground_2_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1
+		this.damageBlock2.create(2463.5244134223108, 758.9656074025555, "stoneground");
 
         //create player
-		this.player = new Worm(this, 0, this.heightBounds - 200)
+		this.player = new Worm(this, 70, this.heightBounds - 500)
 
 		this.physics.add.collider(this.player, this.platforms)
 		
@@ -345,14 +276,18 @@ export default class IceWorld extends Phaser.Scene {
 		})
 		
 		this.physics.add.collider(this.suitcase, this.platforms)
+		this.physics.add.collider(this.player, this.damageBlock2, this.handleDamageBlock2, undefined, this)
 		this.physics.add.overlap(this.player, this.suitcase, this.handleCollectSuitcase, undefined, this)
 
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
-        this.cameras.main.setZoom(1.2)
+        this.cameras.main.setZoom(1.5)
 
 	}
+	handleDamageBlock2() {
+        this.player?.handleHit() 
+    }
 	
 	    //function for collecting suitcase
 		private handleCollectSuitcase(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject)
@@ -381,6 +316,12 @@ export default class IceWorld extends Phaser.Scene {
 		}
 
     update() {
-
+		let hp = this.player?.getHp()
+        
+        if(hp == 0) {
+            this.player?.destroy()
+            this.sound.stopAll()
+            this.scene.start('death')
+        }
     }
 }
