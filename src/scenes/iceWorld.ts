@@ -4,7 +4,8 @@ import Worm from '~/players/worm'
 export default class IceWorld extends Phaser.Scene {
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup
-    private player? : Worm
+	private player? : Worm
+	private hpText?: Phaser.GameObjects.Text
 	private suitcase?: Phaser.Physics.Arcade.Group
 	private levelCompleteText?: Phaser.GameObjects.Text
 	private damageBlock2?: Phaser.Physics.Arcade.StaticGroup
@@ -274,6 +275,12 @@ export default class IceWorld extends Phaser.Scene {
 			key: 'suitcase',
 			setXY: {x: 4928, y: this.heightBounds - 600}
 		})
+
+		//create hp
+        this.hpText = this.add.text(16, this.heightBounds - 100, `Health: ${this.player.getHp()}`, {
+            fontSize: '20px',
+            fill: '#fff',
+        })
 		
 		this.physics.add.collider(this.suitcase, this.platforms)
 		this.physics.add.collider(this.player, this.damageBlock2, this.handleDamageBlock2, undefined, this)
@@ -316,6 +323,14 @@ export default class IceWorld extends Phaser.Scene {
 		}
 
     update() {
+		
+		this.hpText?.setX(this.player?.body.position.x)
+        this.hpText?.setY(this.player?.body.bottom)
+
+        if(this.player?.getHp) {
+            this.hpText?.setText( `Health: ${this.player?.getHp()}`)
+        }
+
 		let hp = this.player?.getHp()
         
         if(hp == 0) {

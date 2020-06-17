@@ -33,11 +33,11 @@ export default class SwimMole extends Phaser.Physics.Arcade.Sprite {
 
         if(this.x > this.endX ){
             this.setVelocityX(-50)
-            this.anims.play('leftswimmol', true)
+            this.anims.play('leftswimmole', true)
             
         } else if(this.x <= this.startX) {
             this.setVelocityX(50)
-            this.anims.play('rightswimmol', true)
+            this.anims.play('rightswimmole', true)
         }
         
     }
