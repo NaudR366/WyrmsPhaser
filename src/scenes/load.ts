@@ -42,6 +42,7 @@ export default class Load extends Phaser.Scene
 
         //load enemys
         this.load.spritesheet('mol', 'assets/enemys/mole.png',{frameWidth: 65, frameHeight: 57})
+        this.load.spritesheet('swimmole', 'assets/enemys/swimmole.png',{frameWidth: 65, frameHeight: 57})
 
         //load pickups
         this.load.image('suitcase', 'assets/pickups/koffer.png')
@@ -141,6 +142,29 @@ export default class Load extends Phaser.Scene
             repeat: -1
         });
 
+        // swimmol animation
+        this.anims.create({
+            key: 'leftswimmol',
+            frames: this.anims.generateFrameNumbers('swimmole', {
+                start: 0, end: 3
+            }),
+            frameRate: 10,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: 'turnswimmol',
+            frames: [ { key: 'mol', frame: 7 } ],
+            frameRate: 20
+        })
+
+        this.anims.create({
+            key: 'rightswimmol',
+            frames: this.anims.generateFrameNumbers('swimmole', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
          //create aal animations
          this.anims.create({
             key: 'leftaal',
@@ -164,6 +188,6 @@ export default class Load extends Phaser.Scene
             repeat: -1
         });
 
-        this.scene.start('menu')
+        this.scene.start('aal-world')
     }
 }

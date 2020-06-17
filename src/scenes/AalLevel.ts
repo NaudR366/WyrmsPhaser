@@ -1,5 +1,7 @@
 import Phaser from 'phaser'
 import Aal from '~/players/aal';
+// import Mole from '~/enemies/swimmole'
+import SwimMole from '~/enemies/swimmole';
 
 export default class AalLevel extends Phaser.Scene {
 
@@ -11,7 +13,10 @@ export default class AalLevel extends Phaser.Scene {
     private koffer?: Phaser.Physics.Arcade.Group
     private levelCompleteText?: Phaser.GameObjects.Text
     private widthBounds = 1500
-    private heightBounds = 750
+	private heightBounds = 750
+	
+	private mole: SwimMole[] = []
+	private colliderMole: Phaser.Physics.Arcade.Collider
 
     constructor()
 	{
@@ -676,7 +681,20 @@ export default class AalLevel extends Phaser.Scene {
 
         this.physics.add.collider(this.player, this.platforms);
 
-        this.cursors = this.input.keyboard.createCursorKeys();
+		// this.cursors = this.input.keyboard.createCursorKeys();
+		
+		//create enemy
+		this.mole.push(new SwimMole(this, 200, 200, 400))
+		this.mole.push(new SwimMole(this, 500, 480, 800))
+		this.mole.push(new SwimMole(this, 250, 550, 800))
+		this.mole.push(new SwimMole(this, 800, 150, 1000))
+
+		this.mole[0].setGravity(0, -400)
+		this.mole[1].setGravity(0, -400)
+		this.mole[2].setGravity(0, -400)
+		this.mole[3].setGravity(0, -400)
+
+		this.physics.add.collider(this.mole, this.platforms)
 
         this.koffer = this.physics.add.group();
 
@@ -698,7 +716,8 @@ export default class AalLevel extends Phaser.Scene {
 
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.koffer, this.platforms)
-        this.physics.add.overlap(this.player, this.koffer, this.handleCollectSuitcase, undefined, this)
+		this.physics.add.overlap(this.player, this.koffer, this.handleCollectSuitcase, undefined, this)
+		this.colliderMole = this.physics.add.collider(this.player, this.mole, this.handleHitMole, undefined, this)
 
     }
     //function for collecting suitcase
@@ -726,6 +745,16 @@ export default class AalLevel extends Phaser.Scene {
             this.scene.start('iceWorld')
         }, 2000);
 
+	}
+	
+	handleHitMole() {
+        this.player?.handleHit()
+        this.colliderMole.active = false
+            this.player?.setSpriteColor(0xff0000) 
+        setTimeout(() => {
+            this.colliderMole.active = true
+                this.player?.clearTint()
+        }, 1000)
     }
 
     update() {
@@ -736,6 +765,15 @@ export default class AalLevel extends Phaser.Scene {
 
         //hp text update
         this.hpText?.setX(this.player?.body.position.x)
-        this.hpText?.setY(this.player?.body.bottom)
+		this.hpText?.setY(this.player?.body.bottom)
+		
+		//update player life
+        let hp = this.player?.getHp()
+        
+        if(hp == 0) {
+            this.player?.destroy()
+            this.sound.stopAll()
+            this.scene.start('death')
+        }
     }
 }

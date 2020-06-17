@@ -255,9 +255,9 @@ export default class WurmVsMole extends Phaser.Scene {
             this.hpText?.setText( `Health: ${this.player?.getHp()}`)
         }
 
-        if(this.moleLives == 0){
-            this.mole?.setActive(false).setVisible(false)
-        }
+        // if(this.moleLives == 0){
+        //     this.mole
+        // }
 
         //update player life
         let hp = this.player?.getHp()
