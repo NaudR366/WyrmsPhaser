@@ -41,6 +41,9 @@ export default class IceWorld extends Phaser.Scene {
 		//restart animations
 		this.anims.resumeAll()
 
+		//add music
+		this.sound.mute = false
+
         //create platforms
 		this.platforms = this.physics.add.staticGroup()
 		this.damageBlock2 = this.physics.add.staticGroup()
