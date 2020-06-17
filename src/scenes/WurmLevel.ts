@@ -7,6 +7,7 @@ export default class WurmLevel extends Phaser.Scene {
     private platforms?: Phaser.Physics.Arcade.StaticGroup
     private lava?: Phaser.Physics.Arcade.StaticGroup
     private player? : Worm
+    private hpText?: Phaser.GameObjects.Text
     // private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
     private suitcase?: Phaser.Physics.Arcade.Group
 
@@ -166,6 +167,12 @@ export default class WurmLevel extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
         this.cameras.main.setZoom(1.5)
+
+        //create hp
+        this.hpText = this.add.text(16, this.heightBounds - 100, `Health: ${this.player.getHp()}`, {
+            fontSize: '20px',
+            fill: '#fff',
+        })
         
 
         //create score
@@ -234,6 +241,14 @@ export default class WurmLevel extends Phaser.Scene {
 
         //update player life
         let hp = this.player?.getHp()
+
+        if(this.player?.getHp) {
+            this.hpText?.setText( `Health: ${this.player?.getHp()}`)
+        }
+
+        //hp text update
+        this.hpText?.setX(this.player?.body.position.x)
+        this.hpText?.setY(this.player?.body.bottom)
         
         if(hp == 0) {
             this.player?.destroy()

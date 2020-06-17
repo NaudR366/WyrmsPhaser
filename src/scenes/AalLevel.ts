@@ -5,7 +5,8 @@ export default class AalLevel extends Phaser.Scene {
 
     private platforms?: Phaser.Physics.Arcade.StaticGroup;
     private player?: Aal;
-    private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
+	private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
+	private hpText?: Phaser.GameObjects.Text
 
     private koffer?: Phaser.Physics.Arcade.Group
     private levelCompleteText?: Phaser.GameObjects.Text
@@ -687,7 +688,13 @@ export default class AalLevel extends Phaser.Scene {
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
-        this.cameras.main.setZoom(1.5)
+		this.cameras.main.setZoom(1.5)
+		
+		//create hp
+		this.hpText = this.add.text(16, this.heightBounds - 100, `Health: ${this.player.getHp()}`, {
+			fontSize: '20px',
+			fill: '#fff',
+		})
 
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.koffer, this.platforms)
@@ -723,5 +730,12 @@ export default class AalLevel extends Phaser.Scene {
 
     update() {
 
+		if(this.player?.getHp) {
+            this.hpText?.setText( `Health: ${this.player?.getHp()}`)
+        }
+
+        //hp text update
+        this.hpText?.setX(this.player?.body.position.x)
+        this.hpText?.setY(this.player?.body.bottom)
     }
 }
