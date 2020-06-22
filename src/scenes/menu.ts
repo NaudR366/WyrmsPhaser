@@ -136,26 +136,7 @@ export default class Menu extends Phaser.Scene
         // this.healthbar = new Healthbar(this, this.player.x, this.player.y)
 
         //create controls text
-        this.add.text(10,this.heigthBounds - 330, "Controls", {
-            fontSize: '30px',
-            fill: '#fff',
-                })
-
-        this.add.text(10,this.heigthBounds - 300, "use the arrow keys/joystick to move", {
-            fontSize: '25px',
-            fill: '#fff',
-                })
-
-        this.add.text(10,this.heigthBounds - 270, "down arrow/joystick downwards to toggle stealth mode", {
-            fontSize: '25px',
-            fill: '#fff',
-                })
-
-        this.add.text(10,this.heigthBounds - 250, "B to go back to game select", {
-            fontSize: '25px',
-            fill: '#fff',
-                })
-
+        
         //set collisions
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.player, this.play, this.handlePlay, undefined, this)
@@ -171,7 +152,7 @@ export default class Menu extends Phaser.Scene
         this.bkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
 
          //add text bubble
-        this.text(520, 520, 320, 160, '“HALLOEEE DOE HET EENS PL0X KTHNXBYE”');
+        this.text(10, 350, 300, 140, 'DIT IS GEEN COMIC SANS Controls: use the arrow keys/joystick to move, down arrow/joystick downwards to toggle stealth mode, B to go back to game select');
         
     }
 
@@ -206,20 +187,20 @@ export default class Menu extends Phaser.Scene
         console.log(bbq);
 
         //bg
-        text.fillStyle(0x898989);
+        text.fillStyle(0x898989, 0);
         
         //outline
-        text.lineStyle(4, 0x092384, 1);
+        text.lineStyle(2, 0x092384, 0);
 
         //shape
         text.strokeRoundedRect(0,0, w, h, 14);
         text.fillRoundedRect(0,0, w, h, 14);
 
         //text
-        let inhoud = this.add.text(0,0, bbq, { fontFamily: 'Arial', fontSize: 20, color: '#ffffff', align: 'center', wordWrap: { width: w - (padding * 2) }} );
+        let inhoud = this.add.text(0,0, bbq, {fontFamily: 'Comic Sans', fontSize: 20, color: '#ffffff', align: 'center', wordWrap: { width: w - (padding * 2) }} );
         let b = inhoud.getBounds();
 
-        text.setPosition(text.x + (w / 2) - (b.width / 2), text.y + (h / 2) - (b.height / 2));
+        inhoud.setPosition(text.x + (w / 2) - (b.width / 2), text.y + (h / 2) - (b.height / 2));
     }
 
     update()

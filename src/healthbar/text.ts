@@ -7,13 +7,13 @@ export default class textBubble extends Phaser.GameObjects.Graphics {
     constructor(scene) {
         super(scene)
 
-        this.x = x;
+        /*this.x = x;
         this.y = y;
         let h = height;
         let w = width;
         let q_ = q;
 
-        this.draw(x, y, w, h, q_)
+        this.draw(x, y, w, h, q_)*/
 
         this.scene.physics.add.existing(this);
     }
