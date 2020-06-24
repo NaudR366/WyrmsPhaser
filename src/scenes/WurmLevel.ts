@@ -175,8 +175,6 @@ export default class WurmLevel extends Phaser.Scene {
             fontSize: '20px',
             fill: '#fff',
         })
-
-        this.text(1, 1, 150, 150, "yolo");
         
 
         //create score
@@ -231,38 +229,6 @@ export default class WurmLevel extends Phaser.Scene {
                 this.player.clearTint()
             }
         }, 1000)
-    }
-
-    private text(x:number, y:number, width:number, height:number, q:string){
-        
-        console.log("text bubble test");
-
-        let h = height;
-        let w = width;
-        let padding = 10;
-        let bbq = q;
-        let text = this.add.graphics({x: x, y: y});
-        
-        console.log(bbq);
-
-        //bg
-        text.fillStyle(0x898989); //0 maakt achtergrond transparant
-        
-        //outline
-        text.lineStyle(2, 0x092384);
-
-        //shape
-        text.strokeRoundedRect(0,0, w, h, 14);
-        text.fillRoundedRect(0,0, w, h, 14);
-
-        //text
-        let inhoud = this.add.text(0,0, bbq, {fontFamily: 'Comic Sans', fontSize: 20, color: '#ffffff', align: 'center', wordWrap: { width: w - (padding * 2) }} );
-        let b = inhoud.getBounds();
-
-        inhoud.setFontFamily('monospace');
-        inhoud.setPosition(text.x + (w / 2) - (b.width / 2), text.y + (h / 2) - (b.height / 2)); 
-        
-        //inhoud.setVisible(false);
     }
 
     update() {
