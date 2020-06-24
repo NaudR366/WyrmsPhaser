@@ -195,10 +195,6 @@ export default class Level extends Phaser.Scene
     {
         this.scene.stop()
         this.sound.stopAll()
-        this.sound.play("gamemusic", {
-            loop: true,
-            volume: 0.2
-        })
         this.scene.start('iceWorld')
     }
 
