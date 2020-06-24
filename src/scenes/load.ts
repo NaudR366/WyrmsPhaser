@@ -16,6 +16,7 @@ export default class Load extends Phaser.Scene
         this.load.image('sky', 'assets/backgrounds/sky.png')
         this.load.image('levelselect', 'assets/backgrounds/levelselect.png')
         this.load.image('gameover', 'assets/backgrounds/gameover.png')
+        this.load.image('credits', 'assets/backgrounds/credits.png')
 
         //load menu buttons
         this.load.image('start', 'assets/menubuttons/play.png')

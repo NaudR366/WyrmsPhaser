@@ -171,7 +171,10 @@ export default class Menu extends Phaser.Scene
     }
 
     private handleExit() {
-        window.location.href = 'https://hr-cmgt.github.io/arcade-server/'
+        // this.scene.stop()
+        // this.sound.stopAll()
+        this.scene.start('credits')
+        //window.location.href = 'https://hr-cmgt.github.io/arcade-server/'
     }
 
     private text(x:number, y:number, width:number, height:number, q:string){
