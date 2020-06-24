@@ -321,8 +321,9 @@ export default class IceWorld extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heightBounds, false);
         this.cameras.main.startFollow(this.player, true)
 		this.cameras.main.setZoom(1.5)
-	
 
+		//create text
+		this.text(this.player.x, this.player.y - 200, 250, 145, "Get the final piece of information!");
 	}
 
 	handleApple(player: Phaser.GameObjects.GameObject, a: Phaser.GameObjects.GameObject) {
@@ -375,7 +376,43 @@ export default class IceWorld extends Phaser.Scene {
 				this.scene.start('credits')
 			}, 2000);
 	
-		}
+	}
+	
+	private text(x:number, y:number, width:number, height:number, q:string){
+        
+        console.log("text bubble test");
+
+        let h = height;
+        let w = width;
+        let padding = 10;
+        let bbq = q;
+        let text = this.add.graphics({x: x, y: y});
+        
+        console.log(bbq);
+
+        //bg
+        text.fillStyle(0x898989); //0 maakt achtergrond transparant
+        
+        //outline
+        text.lineStyle(2, 0x092384);
+
+        //shape
+        text.strokeRoundedRect(0,0, w, h, 14);
+        text.fillRoundedRect(0,0, w, h, 14);
+
+        //text
+        let inhoud = this.add.text(0,0, bbq, {fontFamily: 'Comic Sans', fontSize: 20, color: '#ffffff', align: 'center', wordWrap: { width: w - (padding * 2) }} );
+        let b = inhoud.getBounds();
+
+        inhoud.setFontFamily('monospace');
+        inhoud.setPosition(text.x + (w / 2) - (b.width / 2), text.y + (h / 2) - (b.height / 2)); 
+        
+
+        setTimeout(() => {
+            text.setVisible(false);
+            inhoud.setVisible(false);
+        }, 10000);
+    }
 
     update() {
 		

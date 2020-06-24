@@ -176,7 +176,7 @@ export default class WurmLevel extends Phaser.Scene {
             fill: '#fff',
         })
 
-        this.text(1, 1, 150, 150, "yolo");
+        this.text(this.player.x, this.player.y - 200, 630, 145, "Hello Agent Bim. Your mission is to retrieve important information, which is stored in a suitcase. You will see members of the TLTZIDL organisation wandering around, guarding the information.");
         
 
         //create score
@@ -262,7 +262,11 @@ export default class WurmLevel extends Phaser.Scene {
         inhoud.setFontFamily('monospace');
         inhoud.setPosition(text.x + (w / 2) - (b.width / 2), text.y + (h / 2) - (b.height / 2)); 
         
-        //inhoud.setVisible(false);
+
+        setTimeout(() => {
+            text.setVisible(false);
+            inhoud.setVisible(false);
+        }, 8000);
     }
 
     update() {

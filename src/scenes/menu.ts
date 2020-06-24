@@ -23,6 +23,8 @@ export default class Menu extends Phaser.Scene
     private widthBounds = 1500
     private heigthBounds = 750
     private bkey
+    private space;
+    private isSpace;
 
 	constructor()
 	{
@@ -151,6 +153,7 @@ export default class Menu extends Phaser.Scene
 
         //create key
         this.bkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+        this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
     private handlePlay()
@@ -199,8 +202,7 @@ export default class Menu extends Phaser.Scene
 
         inhoud.setFontFamily('monospace');
         inhoud.setPosition(text.x + (w / 2) - (b.width / 2), text.y + (h / 2) - (b.height / 2)); 
-        
-        //inhoud.setVisible(false);
+
     }
 
     update()
