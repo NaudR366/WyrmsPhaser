@@ -34,6 +34,13 @@ export default class Credits extends Phaser.Scene
         //create background
         this.add.image(0, 0, "credits").setDisplaySize(this.widthBounds, this.heigthBounds).setOrigin(0)
 
+        //restart animations
+        this.anims.resumeAll()
+        
+        //add music
+        this.sound.stopAll()
+		this.sound.mute = false
+
         // add music
         this.sound.play("menuMusic", {
             loop: true,
@@ -46,7 +53,7 @@ export default class Credits extends Phaser.Scene
         //create camera
         this.cameras.main.setBounds(0, 0, this.widthBounds, this.heigthBounds, false);
         this.cameras.main.startFollow(this.player, true)
-        this.cameras.main.setZoom(1.5)
+        this.cameras.main.setZoom(1.2)
 
         this.platforms = this.physics.add.staticGroup()
         this.door = this.physics.add.staticGroup()
