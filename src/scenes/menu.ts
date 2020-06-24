@@ -137,7 +137,7 @@ export default class Menu extends Phaser.Scene
         // this.healthbar = new Healthbar(this, this.player.x, this.player.y)
 
         //create controls text
-        this.text(10, 350, 300, 140, 'DIT IS GEEN COMIC SANS Controls: use the arrow keys/joystick to move, down arrow/joystick downwards to toggle stealth mode. Press B to go back to game select');
+        this.text(10, 350, 300, 140, 'Controls: use the arrow keys/joystick to move, down arrow/joystick downwards to toggle stealth mode. Press B to go back to game select');
         
         //set collisions
         this.physics.add.collider(this.player, this.platforms)
@@ -152,7 +152,7 @@ export default class Menu extends Phaser.Scene
 
         //create key
         this.bkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
-        this.spaceb = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        // this.spaceb = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     
     }
 
