@@ -372,7 +372,7 @@ export default class IceWorld extends Phaser.Scene {
 	
 			//go to next level
 			setTimeout(() => {
-				this.scene.start('menu')
+				this.scene.start('credits')
 			}, 2000);
 	
 		}
