@@ -23,6 +23,7 @@ export default class Menu extends Phaser.Scene
     private widthBounds = 1500
     private heigthBounds = 750
     private bkey
+    private spaceb;
 
 	constructor()
 	{
@@ -151,6 +152,8 @@ export default class Menu extends Phaser.Scene
 
         //create key
         this.bkey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+        // this.spaceb = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    
     }
 
     private handlePlay()
@@ -168,7 +171,10 @@ export default class Menu extends Phaser.Scene
     }
 
     private handleExit() {
-        window.location.href = 'https://hr-cmgt.github.io/arcade-server/'
+        // this.scene.stop()
+        // this.sound.stopAll()
+        this.scene.start('credits')
+        //window.location.href = 'https://hr-cmgt.github.io/arcade-server/'
     }
 
     private text(x:number, y:number, width:number, height:number, q:string){
@@ -199,8 +205,6 @@ export default class Menu extends Phaser.Scene
 
         inhoud.setFontFamily('monospace');
         inhoud.setPosition(text.x + (w / 2) - (b.width / 2), text.y + (h / 2) - (b.height / 2)); 
-        
-        //inhoud.setVisible(false);
     }
 
     update()
@@ -208,7 +212,7 @@ export default class Menu extends Phaser.Scene
         if (Phaser.Input.Keyboard.JustDown(this.bkey))
         {
             console.log("b pressed")
-            this.handleExit() 
+            this.handleExit()
         } 
     }
 }
