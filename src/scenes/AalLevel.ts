@@ -722,7 +722,7 @@ export default class AalLevel extends Phaser.Scene {
 		this.colliderMole = this.physics.add.collider(this.player, this.mole, this.handleHitMole, undefined, this)
 
 		//create text
-		this.text(this.player.x, this.player.y - 200, 220, 130, "You have used your Wyrm powers to become an eel! Swim through the level.");
+		this.text(this.player.x, this.player.y - 150, 220, 130, "You have used your Wyrm powers to become an eel! Swim through the level.");
 
     }
     //function for collecting suitcase
